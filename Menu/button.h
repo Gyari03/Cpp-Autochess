@@ -9,13 +9,12 @@ private:
     unsigned int id; //majd a menu szamlalo jelenlegi erteket kapja meg
     char* name; //parameterkent kapott nev
     void (*function)(); //megnyomaskor aktivalodott fuggveny
-    //void (*function)(*army);
+    void (*functionArmy)(Army *army);
 
 public:
     Button();
-    Button(const char* name,unsigned int id);
-    //Button(const char* name,unsigned int id,void (*function)(Army*)); //nem jó mivel a Button alapfunctionje sima function pointer nem pedig paraméteres
-    //maybe type T function paraméter
+    Button(const char* name,int id,void (*function)());
+    Button(const char* name,unsigned int id,void (*functionArmy)(Army*));
     ~Button();
     Button(const Button& other);
     Button& operator=(const Button& other);

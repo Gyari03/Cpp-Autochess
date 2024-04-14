@@ -10,6 +10,14 @@ public:
     Buttonvoid(const char* name,unsigned int id,void (*function)()):Button(name,id){
         this->function=function;
     }
+    Buttonvoid(const Buttonvoid &other):Button(other){
+        this->function=other.function;
+    }
+    Buttonvoid& operator=(const Buttonvoid &other){
+        if(this!=&other){
+
+        }
+    }
     void (*getFunction())(){
         return function;
     }
