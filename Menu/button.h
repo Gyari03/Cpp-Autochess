@@ -9,7 +9,7 @@ private:
     unsigned int id; //majd a menu szamlalo jelenlegi erteket kapja meg
     char* name; //parameterkent kapott nev
     void (*function)(); //megnyomaskor aktivalodott fuggveny
-    //void (*function)(*army);ü
+    //void (*function)(*army);
 
 public:
     Button();
