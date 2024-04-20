@@ -32,22 +32,25 @@ void Army::incrementsizeofArmy() {
 
 //Ezt ui-n belül függvénybe foglalni: 1)Megnézni létezik ilyen, ha igen:kitörölni 2)beilleszteni helyére
 void Army::addPiece(Piece& newPiece) {
-    //nézzük végig, hogy rendelkezik-e valaki azonos koordinátákkal mert akkor felülírjuk
+
+    //hibakezelés túl nagy index esetén:
+    if(newPiece.getcoordX()>8 || newPiece.getcoordY()>4){
+        Piece* ptr = &newPiece; //rámutatás, hogy fel tudjam szabadítani mivel ez nem kerül bele a listbe ahonnan felszabadulnakk
+        delete ptr;
+        return;
+    }
+
     if(this->getPiece(newPiece.getcoordX(),newPiece.getcoordY())!=nullptr){
         this->pieces.deletefromList(getPiece(newPiece.getcoordX(),newPiece.getcoordY()));
-    //    std::cout<<"KITOROLTEM VALAKIT AHAHHA"<<std::endl;
         sizeofArmy--;
     }
     this->pieces.addtoList(&newPiece);
-
- //   std::cout<<"HOZZAADTAM VALAKIT AHAHAHAH"<<std::endl;
-
     sizeofArmy++;
 }
 
 
 
-void Army::deletePiece(int x,int y) { //Ez meg mi?
+void Army::deletePiece(int x,int y) {
     if(this->getPiece(x,y)!=nullptr){
         this->pieces.deletefromList(getPiece(x,y));
         sizeofArmy--;
@@ -57,7 +60,7 @@ void Army::deletePiece(int x,int y) { //Ez meg mi?
 
 
 Army::Army(const Army &army){
-    strncpy(this->nameofArmy, army.getnameofArmy(), sizeof(this->nameofArmy) - 1);//lehet nem jó a sizeof
+    strncpy(this->nameofArmy, army.getnameofArmy(), sizeof(this->nameofArmy) - 1);
     this->nameofArmy[sizeof(this->nameofArmy) - 1] = '\0';
     this->sizeofArmy=army.sizeofArmy;
     this->pieces=army.pieces;

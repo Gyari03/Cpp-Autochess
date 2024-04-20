@@ -24,12 +24,12 @@ char Piece::getname() const {
     return name;
 }
 
-void Piece::setcoordY(int y) {
-    this->y=y;
+void Piece::setcoordY(int j) {
+    this->y=j;
 }
 
-void Piece::setcoordX(int x) {
-    this->x=x;
+void Piece::setcoordX(int i) {
+    this->x=i;
 }
 
 bool Piece::operator==(const Piece &other)const{
@@ -46,6 +46,8 @@ void Piece::tolowercase() {
 Piece* createPiece(char name,int x,int y){
     name = (char) toupper(name);
     Piece *piece=nullptr;
+    //hiba kezelés kiindexelés esetén:
+
     switch(name){
         case 'K':piece = new King(x,y);break;
         case 'Q':piece = new Queen(x,y);break;

@@ -23,6 +23,7 @@ public:
 
     void idle()override;
     void saveArmy();
+    void saveArmy(Army* army); //már létrehozott army mentése
 
 };
 

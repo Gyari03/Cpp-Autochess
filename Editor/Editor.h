@@ -8,6 +8,7 @@ class Editor {
 private:
     Army* army;
     bool exit;
+    bool toDelete;
 
 public:
     Editor();//Új army készítése
@@ -15,6 +16,8 @@ public:
     Army* getArmy();
     void updateExit();
     bool getExit()const;
+    void updateDelete();
+    bool getDelete()const;
 };
 
 

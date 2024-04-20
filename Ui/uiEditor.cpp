@@ -78,6 +78,12 @@ void uiEditor::input(){//hibakezelés: max 3 karakteres input input.sizeof()==3
     x = input.substr(1, 1)[0] - '0';
     y = input.substr(2, 1)[0] - '0';
     if(name=='d'|| name=='D'){
+        if(input=="delete") {
+            editor->updateExit();
+            editor->updateDelete();
+            DeleteArmy(this->editor->getArmy(),"armies.txt");
+            return;
+        }
         this->editor->getArmy()->deletePiece(x,y);
         return;
     }
@@ -105,6 +111,10 @@ void uiEditor::saveArmy() { //az inputot egyszerre használjuk a névre és a Y/
     }
 }
 
+void uiEditor::saveArmy(Army *army) {
+    EditArmy(army,"armies.txt");
+}
+
 void Run(Editor* editorptr){
     bool newlymade = false;
     if(strcmp(editorptr->getArmy()->getnameofArmy(),"")==0){ //az alapján hogy a név üres ellenőrizzük, hogy új-e a sereg
@@ -114,7 +124,10 @@ void Run(Editor* editorptr){
     editor.idle();
     if(newlymade){
     editor.saveArmy();
+    return;
     }
-
+    if(!(editorptr->getDelete())){
+        editor.saveArmy(editorptr->getArmy());
+    }
 }
 

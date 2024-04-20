@@ -25,6 +25,9 @@ void uiMenu::input(){
     function.execute();
 }
 
+//refresh menu->újratölti a menüt és kilvassa újra az adatokat
+
+
 void uiMenu::idle(){
     while(!(menu->getExit())){
         show();
