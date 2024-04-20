@@ -1,24 +1,24 @@
 #include "button.h"
 #include <cstring>
 
-Button::Button():id(0),name(nullptr),function(nullptr),functionArmy(nullptr){}
+Button::Button():id(0),name(nullptr),buttonFunction(){}
 
-Button::Button(const char* name,int id,void (*function)()) {
+Button::Button(const char* name,int id,void (*function)()):buttonFunction(function) {
     this->id=id;
     this->name = new char[strlen(name)+1];
     strcpy(this->name,name);
-    this->function=function;
+ /*   this->function=function;
 
-    this->functionArmy=nullptr;
+    this->functionArmy=nullptr;*/
 }
 
-Button::Button(const char *name, unsigned int id, void (*functionArmy)(Army *)) {
+Button::Button(const char *name, unsigned int id, void (*functionArmy)(Army *),Army* armyPtr):buttonFunction(functionArmy,armyPtr) {
     this->id=id;
     this->name = new char[strlen(name)+1];
     strcpy(this->name,name);
-    this->functionArmy = functionArmy;
+    /*this->functionArmy = functionArmy;
 
-    this->function = nullptr;
+    this->function = nullptr;*/
 }
 
 Button::~Button() {
@@ -29,8 +29,9 @@ Button::Button(const Button &other) {
     this->id=other.id;
     this->name=new char[strlen(other.name)+1];
     strcpy(this->name,other.name);
-    this->function=other.function;
-    this->functionArmy=other.functionArmy;
+    /*this->function=other.function;
+    this->functionArmy=other.functionArmy;*/
+    this->buttonFunction=other.buttonFunction;
 }
 
 Button &Button::operator=(const Button &other) {
@@ -39,8 +40,9 @@ Button &Button::operator=(const Button &other) {
         this->id=other.id;
         this->name=new char[strlen(other.name)+1];
         strcpy(this->name,other.name);
-        this->function = other.function;
-        this->functionArmy=other.functionArmy;
+      /*  this->function = other.function;
+        this->functionArmy=other.functionArmy;*/
+        this->buttonFunction=other.buttonFunction;
     }
     return *this;
 }
@@ -59,6 +61,14 @@ const char* Button::getName()const{
 
 /*
 void (*Button::getFunction())(){
-    return function;
+    //this->buttonFunction.
+}*/
+
+ButtonFunction Button::getFunction() {
+    return this->buttonFunction;
 }
-*/
+
+void ButtonFunction::execute() {
+    if(function!=nullptr){function();return;}
+    else if(functionArmy!=nullptr){functionArmy(armyPointer);return;}//mégis át kéne adni az armyt
+}

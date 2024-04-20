@@ -20,8 +20,9 @@ void uiMenu::input(){
         menu->updateExit();
         return;
     }
-    void(*FunctionPtr)() = menu->getButton(choice-1)->getFunction();
-    FunctionPtr();
+    //átalakítani
+    ButtonFunction function = menu->getButton(choice-1)->getFunction();
+    function.execute();
 }
 
 void uiMenu::idle(){

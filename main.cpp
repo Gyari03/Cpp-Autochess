@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Memtrace/memtrace.h"
 #include "Menu/menu.h"
 #include "Menu/button.h"
 #include "Menu/buttonfunctions.h"

@@ -9,6 +9,7 @@
 #include "../Game/Piece.h"
 #include "../File Management/Filemanagement.h"
 
+
 //------------
 Menu* MainMenu() {
     Menu* main=new Menu;
@@ -52,7 +53,8 @@ void ArmyMenu(){
     List<Army>* armies = ListofArmies("armies.txt");
     for(int i =0;i<armies->getSize();i++){
         Army* currentArmy = (*armies)[i];
-       army->newButton(Button(currentArmy->getnameofArmy(),army->getIdCounter(),&EditArmy(currentArmy))); //EZ A HIBÁS RÉSZ: &EditArmy(choosenarmy) kéne ide
+       army->newButton(Button(currentArmy->getnameofArmy(),army->getIdCounter(),&EditArmy,currentArmy)); //EZ A HIBÁS RÉSZ: &EditArmy(choosenarmy) kéne ide
+       //army->newButton(Button(currentArmy->getnameofArmy(),army->getIdCounter(),EditArmy));
        //army->newButton(Button(armies[i]->getnameofArmy()....stb)) Miért nem jó?
     }
     Run(army);

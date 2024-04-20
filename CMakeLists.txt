@@ -44,10 +44,10 @@ add_executable(NHF_REFORMED main.cpp
         Editor/Editor.cpp
         Editor/Editor.h
         Game/Pieces/Bishop.h
+        Memtrace/memtrace.h
+        Memtrace/memtrace.cpp
         "File Management/Filemanagement.h"
         "File Management/Filemanagement.cpp"
-        Menu/Buttonvoid.cpp
-        Menu/Buttonvoid.h
-        Menu/Buttonarmy.cpp
-        Menu/Buttonarmy.h
+
 )
+add_compile_definitions(MEMTRACE)
