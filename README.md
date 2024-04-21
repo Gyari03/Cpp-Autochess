@@ -58,7 +58,7 @@ Ha ki szeretnénk belőle lépni, akkor inputnak bábutípus helyett **0**-át k
 Ezután az új sereg a sereg-lista menünek a legvégére bekerül, és lementésre kerül.
 
 ## Játék elindítása
-A *New game* menüben a játékosnak lehetősége lesz mintkét csapat helyére kiválasztania 1-1 sereget, az elkészítettekből.
+A *New game* menüben a játékosnak lehetősége lesz mindkét csapat helyére kiválasztania 1-1 sereget, az elkészítettekből.
 Ezután el tudja indítani a játékot.
 
 ## Játék menete
