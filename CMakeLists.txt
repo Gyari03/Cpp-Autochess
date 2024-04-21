@@ -48,6 +48,8 @@ add_executable(NHF_REFORMED main.cpp
         Memtrace/memtrace.cpp
         "File Management/Filemanagement.h"
         "File Management/Filemanagement.cpp"
+        Menu/ButtonFunction.cpp
+        Menu/ButtonFunction.h
 
 )
 add_compile_definitions(MEMTRACE)

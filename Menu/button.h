@@ -2,9 +2,11 @@
 #define NHF_REFORMED_BUTTON_H
 
 #include "../Game/Army.h"
+#include "ButtonFunction.h"
 
 
-//új class a functionoknek
+//új class a functionoknek/*
+/*
 class ButtonFunction{
 private:
     void (*function)(); //megnyomaskor aktivalodott fuggveny
@@ -17,15 +19,13 @@ public:
     ButtonFunction(void (*funcArmy)(Army*),Army* armyPtr):function(nullptr),functionArmy(funcArmy),armyPointer(armyPtr){}
     void execute();
 
-};
+};*/
 
 
 class Button{
 private:
     unsigned int id; //majd a menu szamlalo jelenlegi erteket kapja meg
     char* name; //parameterkent kapott nev
-    /*void (*function)(); //megnyomaskor aktivalodott fuggveny
-    void (*functionArmy)(Army *army);*/
     ButtonFunction buttonFunction;
 
 public:
@@ -38,7 +38,6 @@ public:
     void setId(unsigned int id);
     unsigned int getId()const;
     const char* getName()const;
-   // void (*getFunction())();
     ButtonFunction getFunction();
 
 };

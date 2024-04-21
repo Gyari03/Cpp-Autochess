@@ -59,16 +59,8 @@ const char* Button::getName()const{
     return name;
 }
 
-/*
-void (*Button::getFunction())(){
-    //this->buttonFunction.
-}*/
-
 ButtonFunction Button::getFunction() {
     return this->buttonFunction;
 }
 
-void ButtonFunction::execute() {
-    if(function!=nullptr){function();return;}
-    else if(functionArmy!=nullptr){functionArmy(armyPointer);return;}//mégis át kéne adni az armyt
-}
+
