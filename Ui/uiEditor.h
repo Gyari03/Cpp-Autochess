@@ -17,14 +17,8 @@ public:
     void show() override;
     bool input() override;//megirni
     void renderTable(); //megirni
-    Piece* searchfor(int x,int y){
-        return editor->getArmy()->getPiece(x,y);
-    }
-
     void idle()override;
-    void saveArmy();
-    void saveArmy(Army* army); //már létrehozott army mentése
-
+    void saveSequence();
 };
 
 void Run(Editor* editorptr);

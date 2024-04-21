@@ -2,7 +2,7 @@
 #define NHF_REFORMED_FILEMANAGEMENT_H
 //#include <iostream>
 #include <fstream>
-#include "../Game/List.hpp"
+#include "../List/List.hpp"
 #include "../Game/Army.h"
 #include "../Game/Piece.h"
 #include <vector>

@@ -20,7 +20,7 @@ add_executable(NHF_REFORMED main.cpp
         Game/Team.h
         Game/Piece.cpp
         Game/Piece.h
-        Game/List.hpp
+        List/List.hpp
         Game/Move.cpp
         Game/Move.h
         Game/Pieces/Horse.cpp

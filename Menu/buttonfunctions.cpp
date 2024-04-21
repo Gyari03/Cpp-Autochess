@@ -4,7 +4,7 @@
 #include "../Ui/uiEditor.h"
 #include <iostream>
 #include <fstream>
-#include "../Game/List.hpp"
+#include "../List/List.hpp"
 #include "../Game/Army.h"
 #include "../Game/Piece.h"
 #include "../File Management/Filemanagement.h"

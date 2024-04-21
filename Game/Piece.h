@@ -1,6 +1,6 @@
 #ifndef NHF_REFORMED_PIECE_H
 #define NHF_REFORMED_PIECE_H
-#include "List.hpp"
+#include "../List/List.hpp"
 #include "Move.h"
 
 

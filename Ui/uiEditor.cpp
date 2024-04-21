@@ -37,10 +37,10 @@ void uiEditor::renderTable(){
             }
             else if(i%4==2){
                 for(int j=0;j<8;j++){ //x+1 és 8-y a konvertálandóak
-                    if(searchfor(j+1,8-y)!=nullptr){ /*searchfor(j,y) std::cout<<"ITT VAN EGY ELEM AHAHAH";*/
-                        std::cout<<"    "<<searchfor(j+1,8-y)->getname()<<"    #";
+                    if(editor->searchfor(j+1,8-y)!=nullptr){
+                        std::cout<<"    "<<editor->searchfor(j+1,8-y)->getname()<<"    #";
                     }
-                    else if(searchfor(j+1,8-y)==nullptr){
+                    else if(editor->searchfor(j+1,8-y)==nullptr){
                         std::cout<<"         #";
                     }
 
@@ -98,7 +98,7 @@ void uiEditor::idle(){
     }
 }
 
-void uiEditor::saveArmy() { //az inputot egyszerre használjuk a névre és a Y/N választásra
+void uiEditor::saveSequence() { //az inputot egyszerre használjuk a névre és a Y/N választásra
     clear();
     char input[35];
     std::cout<<"Would you like to save this army?(Y/N)"<<std::endl;
@@ -108,12 +108,9 @@ void uiEditor::saveArmy() { //az inputot egyszerre használjuk a névre és a Y/
         std::cout<<"Give a name to this army: ";
         std::cin>>input;
         editor->getArmy()->setnameofArmy(input);
-        AppendArmy(editor->getArmy(),"armies.txt");
+        //AppendArmy(editor->getArmy(),"armies.txt");
+        editor->saveArmy();
     }
-}
-
-void uiEditor::saveArmy(Army *army) {
-    EditArmy(army,"armies.txt");
 }
 
 void Run(Editor* editorptr){
@@ -124,11 +121,11 @@ void Run(Editor* editorptr){
     uiEditor editor(editorptr);
     editor.idle();
     if(newlymade){
-    editor.saveArmy();
+        editor.saveSequence();
     return;
     }
-    else if(!(editorptr->getDelete())){
-        editor.saveArmy(editorptr->getArmy());
+    else if(!(editorptr->getDelete())){ //ha nem lett elrendelve, hogy töröljék akkor mentsük le a .txt-be:
+        editorptr->editArmy();
     }
 }
 

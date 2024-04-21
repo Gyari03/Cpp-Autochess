@@ -16,6 +16,10 @@ Army* Editor::getArmy() {
     return army;
 }
 
+Piece* Editor::searchfor(int x,int y){
+    return army->getPiece(x,y);
+}
+
 void Editor::updateExit() {
     exit = true;
 }
@@ -30,4 +34,12 @@ void Editor::updateDelete() {
 
 bool Editor::getDelete() const {
     return toDelete;
+}
+
+void Editor::saveArmy() {
+    AppendArmy(army,"armies.txt");
+}
+
+void Editor::editArmy() {
+    EditArmy(army,"armies.txt");
 }
