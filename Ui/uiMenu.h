@@ -12,11 +12,13 @@ public:
     uiMenu(Menu* menu);
     ~uiMenu();
     void show() override;
-    void input() override;
+    bool input() override;
     void idle() override;
+    void refreshingidle();
 };
 
 void Run(Menu* menu);
+void refreshingRun(Menu* menuPtr);
 
 
 #endif //NHF_REFORMED_UIMENU_H

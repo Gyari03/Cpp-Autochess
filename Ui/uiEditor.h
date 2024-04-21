@@ -15,7 +15,7 @@ public:
     ~uiEditor();
 
     void show() override;
-    void input() override;//megirni
+    bool input() override;//megirni
     void renderTable(); //megirni
     Piece* searchfor(int x,int y){
         return editor->getArmy()->getPiece(x,y);

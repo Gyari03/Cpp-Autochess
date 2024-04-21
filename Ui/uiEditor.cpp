@@ -1,7 +1,7 @@
 #include "uiEditor.h"
 #include "../Editor/Editor.h"
 
-uiEditor::uiEditor(Editor *editor):ui(),editor(editor) {}
+uiEditor::uiEditor(Editor *editor):editor(editor) {}
 
 uiEditor::~uiEditor() {
     delete editor;
@@ -66,7 +66,7 @@ void uiEditor::show(){
     renderTable();
 }
 
-void uiEditor::input(){//hibakezelés: max 3 karakteres input input.sizeof()==3
+bool uiEditor::input(){
 
     char name;
     int x,y;
@@ -74,7 +74,7 @@ void uiEditor::input(){//hibakezelés: max 3 karakteres input input.sizeof()==3
     std::string input;
     std::cin>>input;
     name = input[0];
-    if(name=='0'){editor->updateExit();return;}//kilépés
+    if(name=='0'){editor->updateExit();return true;}//kilépés
     x = input.substr(1, 1)[0] - '0';
     y = input.substr(2, 1)[0] - '0';
     if(name=='d'|| name=='D'){
@@ -82,12 +82,13 @@ void uiEditor::input(){//hibakezelés: max 3 karakteres input input.sizeof()==3
             editor->updateExit();
             editor->updateDelete();
             DeleteArmy(this->editor->getArmy(),"armies.txt");
-            return;
+            return true;
         }
         this->editor->getArmy()->deletePiece(x,y);
-        return;
+        return true;
     }
     this->editor->getArmy()->addPiece(*createPiece(name,x,y));
+    return true;
 }
 
 void uiEditor::idle(){
@@ -126,7 +127,7 @@ void Run(Editor* editorptr){
     editor.saveArmy();
     return;
     }
-    if(!(editorptr->getDelete())){
+    else if(!(editorptr->getDelete())){
         editor.saveArmy(editorptr->getArmy());
     }
 }

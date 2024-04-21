@@ -1,6 +1,6 @@
 #include "uiMenu.h"
 
-uiMenu::uiMenu(Menu *menu):ui(),menu(menu) {}
+uiMenu::uiMenu(Menu *menu):menu(menu) {}
 
 uiMenu::~uiMenu(){
     delete menu;
@@ -13,26 +13,41 @@ void uiMenu::show(){
     }
 }
 
-void uiMenu::input(){
+bool uiMenu::input(){ //returnérték: bool->true:lejátszott függvényt false:hibás bemenet, nem játszott le függvényt:amit csak a refreshingidle-ben használunk fel
     int choice;
     std::cin>>choice;
     if(choice==0){
         menu->updateExit();
-        return;
+        return false;
     }
-    //átalakítani
+    //hibás bemenet esetén:
+    else if(choice>menu->getIdCounter() || choice<0){
+        return false;
+    }
     ButtonFunction function = menu->getButton(choice-1)->getFunction();
     function.execute();
+    return true;
 }
-
-//refresh menu->újratölti a menüt és kilvassa újra az adatokat
-
 
 void uiMenu::idle(){
     while(!(menu->getExit())){
         show();
         input();
     }
+}
+
+
+
+void uiMenu::refreshingidle() {
+    while(!(menu->getExit())){
+        show();
+        if(input()){menu->updateExit();} //input mellékhatása egy bool
+    }
+}
+
+void refreshingRun(Menu* menuPtr){
+    uiMenu menu(menuPtr);
+    menu.refreshingidle();
 }
 
 void Run(Menu* menuPtr){

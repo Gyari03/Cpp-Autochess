@@ -55,7 +55,7 @@ void ArmyMenu(){
         Army* currentArmy = (*armies)[i];
        army->newButton(Button(currentArmy->getnameofArmy(),army->getIdCounter(),&EditArmy,currentArmy));
     }
-    Run(army);
+    refreshingRun(army);
     delete armies;
 }
 //------------

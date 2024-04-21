@@ -126,6 +126,7 @@ void AppendArmy(Army* army,const char *filename){
     if (!file) {
         return;
     }
+    file<<std::endl; //std::ios_bas::app nem rak hozzá valamiért új sort... LEHET ÚJRA KELL ÍRNI AZ EGÉSZET
     writeArmy(file,army);
 }
 
