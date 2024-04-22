@@ -17,8 +17,8 @@ public:
     int getcoordY()const;
     int getcoordX()const;
     char getname()const;
-    void setcoordY(int x);
-    void setcoordX(int y);
+    void setcoordY(int j);
+    void setcoordX(int i);
     bool operator==(const Piece& other)const;
     void tolowercase();
     void virtual calculateMoves()=0;

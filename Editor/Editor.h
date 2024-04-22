@@ -14,7 +14,7 @@ private:
 public:
     Editor();//Új army készítése
     Editor(Army* army);//Meglévő szerkesztése
-    Army* getArmy();
+    Army* getArmy()const;
     Piece* searchfor(int x,int y);
     void updateExit();
     bool getExit()const;
@@ -22,6 +22,7 @@ public:
     bool getDelete()const;
     void saveArmy(); //új army mentése
     void editArmy(); //már létrehozott army mentése
+    void deleteArmy(); //már létrehozott army törlése
 };
 
 

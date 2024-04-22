@@ -15,8 +15,8 @@ public:
     ~uiEditor();
 
     void show() override;
-    bool input() override;//megirni
-    void renderTable(); //megirni
+    bool input() override;
+    void renderTable();
     void idle()override;
     void saveSequence();
 };

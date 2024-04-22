@@ -13,8 +13,6 @@ public:
     virtual bool input()=0;
     virtual void idle()=0;
     void clear();
-    //virtual void renderTable()=0;
-
 };
 
 

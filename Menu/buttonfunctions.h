@@ -6,15 +6,11 @@ Menu* MainMenu();
 
 void Play();
 
-void Settings();
-
 void Exit();
 
 void NewGame();
 
 void ArmyMenu();
-
-void SetColor();
 
 void CreateArmy();
 

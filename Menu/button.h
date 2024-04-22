@@ -4,24 +4,6 @@
 #include "../Game/Army.h"
 #include "ButtonFunction.h"
 
-
-//új class a functionoknek/*
-/*
-class ButtonFunction{
-private:
-    void (*function)(); //megnyomaskor aktivalodott fuggveny
-    void (*functionArmy)(Army *army); //Army editelésre használt fv.
-    Army* armyPointer;
-
-public:
-    ButtonFunction():function(nullptr),functionArmy(nullptr),armyPointer(nullptr){}
-    ButtonFunction(void (*func)()):function(func),functionArmy(nullptr),armyPointer(nullptr){}
-    ButtonFunction(void (*funcArmy)(Army*),Army* armyPtr):function(nullptr),functionArmy(funcArmy),armyPointer(armyPtr){}
-    void execute();
-
-};*/
-
-
 class Button{
 private:
     unsigned int id; //majd a menu szamlalo jelenlegi erteket kapja meg
@@ -38,7 +20,7 @@ public:
     void setId(unsigned int id);
     unsigned int getId()const;
     const char* getName()const;
-    ButtonFunction getFunction();
+    ButtonFunction getFunction()const;
 
 };
 

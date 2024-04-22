@@ -7,13 +7,13 @@
 
 class Game {
 private:
-    Team team[2];//team[0]:white team[1]:black
+    Team* team[2];//Team pointerekből 2-őt tárol [0]:fehér [1]:fekete //A Gamekonstruktorból hozódik létre a 2 team a Team konstruktorokból(Army*,Szin)
     Army white;
     Army black;
 
 public:
     Game(Army white,Army black);//rendes létrehozás
-    void setupBoard(Army white,Army black); //assuming its 8x8, for bigger boards other setups must be made
+    void setupBoard();
 
 };
 

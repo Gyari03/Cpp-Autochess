@@ -16,7 +16,6 @@ public:
     void idle() override;
     void refreshingidle();
 };
-
 void Run(Menu* menu);
 void refreshingRun(Menu* menuPtr);
 

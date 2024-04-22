@@ -81,7 +81,7 @@ bool uiEditor::input(){
         if(input=="delete") {
             editor->updateExit();
             editor->updateDelete();
-            DeleteArmy(this->editor->getArmy(),"armies.txt");
+            editor->deleteArmy();
             return true;
         }
         this->editor->getArmy()->deletePiece(x,y);

@@ -59,7 +59,7 @@ const char* Button::getName()const{
     return name;
 }
 
-ButtonFunction Button::getFunction() {
+ButtonFunction Button::getFunction()const {
     return this->buttonFunction;
 }
 

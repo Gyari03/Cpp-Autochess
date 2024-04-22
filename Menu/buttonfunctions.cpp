@@ -9,41 +9,24 @@
 #include "../Game/Piece.h"
 #include "../File Management/Filemanagement.h"
 
-
-
-//------------
 Menu* MainMenu() {
     Menu* main=new Menu;
     main->newButton(Button("Play", main->getIdCounter(), &Play));
-   // main->newButton(Button("Settings", main->getIdCounter(), &Settings));
     main->newButton(Button("Exit", main->getIdCounter(), &Exit));
     return main;
 }
-//------------
 
-//Main menu
 void Play() {
     Menu* play=new Menu;
     play->newButton(Button("New game",play->getIdCounter(),&NewGame));
     play->newButton(Button("Army editor",play->getIdCounter(),&ArmyMenu));
     Run(play);
-
 }
-/*
-void Settings() {
-    Menu* settings=new Menu;
-    settings->newButton(Button("Change color",settings->getIdCounter(),&SetColor));
-    //settings->idle();
-    Run(settings);
-}*/
 
 void Exit() {
    exit(0);
 }
-//------------
 
-
-//Play menu
 void NewGame(){
     std::cout << "New game!!";
 }
@@ -59,15 +42,6 @@ void ArmyMenu(){
     refreshingRun(army);
     delete armies;
 }
-//------------
-
-
-//Settings menu
-/*
-void SetColor(){
-    std::cout<<"NEW COLOR!"<<std::endl;
-}
-*/
 
 void CreateArmy(){
     Editor* newEditor = new Editor;
@@ -79,5 +53,3 @@ void EditArmy(Army* army){
     Run(newEditor);
 
 }
-
-//------------

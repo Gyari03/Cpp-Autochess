@@ -12,7 +12,7 @@ Editor::Editor(Army *army) {
     this->toDelete=false;
 }
 
-Army* Editor::getArmy() {
+Army* Editor::getArmy()const {
     return army;
 }
 
@@ -42,4 +42,8 @@ void Editor::saveArmy() {
 
 void Editor::editArmy() {
     EditArmy(army,"armies.txt");
+}
+
+void Editor::deleteArmy() {
+    DeleteArmy(army,"armies.txt");
 }

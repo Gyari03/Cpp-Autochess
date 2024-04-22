@@ -7,5 +7,8 @@
 #include "Ui/uiMenu.h"
 
 int main() {
+    //int* kocsog = new int[60];
     Run(MainMenu());
+    //char a;
+    //std::cin>>a;
 }

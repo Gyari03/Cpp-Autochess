@@ -1,5 +1,6 @@
 #ifndef NHF_REFORMED_TEAM_H
 #define NHF_REFORMED_TEAM_H
+#include "../List/List.hpp"
 #include "Piece.h"
 #include "Pieces/Queen.h"
 #include "Pieces/King.h"
@@ -14,13 +15,12 @@ enum TeamColor{White,Black};
 
 class Team {
 private:
+    List<Piece> pieces;
+    List<Move> teamMoves;
     TeamColor teamColor;
     Army army;
-    Piece** pieces;
 public:
-    void convert_army();
-
-
+   // Team(Army army;TeamColor color);
 
 };
 

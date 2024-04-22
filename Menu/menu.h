@@ -18,16 +18,7 @@ public:
     void newButton(const Button& extra);
     Button* getButton(int idx)const;
     bool getExit()const;
-
-    //visual függvények:
-    void idle();
-    void clear();
-    void show();
-    void input();
-
-    unsigned int getIdCounter()const{
-        return idCounter;
-    }
+    unsigned int getIdCounter()const{return idCounter;}
 };
 
 #endif //NHF_REFORMED_MENU_H

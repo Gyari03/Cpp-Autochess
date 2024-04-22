@@ -53,3 +53,4 @@ add_executable(NHF_REFORMED main.cpp
 
 )
 add_compile_definitions(MEMTRACE)
+#target_compile_options(NHF_REFORMED PRIVATE -Wall -Werror)
