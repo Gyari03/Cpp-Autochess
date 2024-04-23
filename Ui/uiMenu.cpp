@@ -8,13 +8,13 @@ uiMenu::~uiMenu(){
 
 void uiMenu::show(){
     this->clear();
-    for(int i=0;i<menu->getIdCounter();i++){
+    for(size_t i=0;i<menu->getIdCounter();i++){
         std::cout<<menu->getButton(i)->getId()<<")"<<menu->getButton(i)->getName()<<std::endl;
     }
 }
 
 bool uiMenu::input(){ //returnérték: bool->true:lejátszott függvényt false:hibás bemenet, nem játszott le függvényt:amit csak a refreshingidle-ben használunk fel
-    int choice;
+    size_t choice;
     std::cin>>choice;
     if(choice==0){
         menu->updateExit();
@@ -35,8 +35,6 @@ void uiMenu::idle(){
         input();
     }
 }
-
-
 
 void uiMenu::refreshingidle() {
     while(!(menu->getExit())){

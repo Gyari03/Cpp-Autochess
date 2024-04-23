@@ -16,4 +16,6 @@ void CreateArmy();
 
 void EditArmy(Army*);
 
+void ChooseArmy(Army*); //a paraméterként megkapott-ba tölti majd be az armyt
+
 #endif //NHF_REFORMED_BUTTONFUNCTIONS_H

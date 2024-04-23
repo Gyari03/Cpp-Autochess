@@ -28,7 +28,14 @@ void Exit() {
 }
 
 void NewGame(){
-    std::cout << "New game!!";
+    //Leírása:
+    //Kiválaszt mindkét oldalra 1-1 sereget, amik be lesznek töltve 1-1 army regiszterbe
+    //start parancsra elkezdődik a játék
+    Army* reg1;
+    Army* reg2;
+    Menu* newgame = new Menu;
+    newgame->newButton(Button("Team1",newgame->getIdCounter(),&ChooseArmy,reg1));
+    newgame->newButton(Button("Team1",newgame->getIdCounter(),&ChooseArmy,reg2));
 }
 
 void ArmyMenu(){
@@ -51,5 +58,10 @@ void CreateArmy(){
 void EditArmy(Army* army){
     Editor* newEditor = new Editor(army);
     Run(newEditor);
+
+}
+
+void ChooseArmy(Army* reg){
+    List<Army>* armies = ListofArmies("armies.txt");
 
 }

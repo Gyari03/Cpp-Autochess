@@ -116,7 +116,7 @@ public:
             return nullptr;
         }
         Node<T>* temp=head;
-        for(int i=0;i!=index;i++){
+        for(unsigned int i=0;i!=index;i++){
             temp=temp->next;
         }
         return temp->getData();

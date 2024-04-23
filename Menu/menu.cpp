@@ -24,7 +24,7 @@ void Menu::newButton(const Button& extra) {
         return;
     }
     Button *updatedButtons = new Button[idCounter];
-    for(int i=0;i<idCounter-1;i++){
+    for(unsigned int i=0;i<idCounter-1;i++){
         updatedButtons[i]=this->buttons[i]; //egyenlosegoperator?
     }
     updatedButtons[idCounter-1]=extra;

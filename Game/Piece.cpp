@@ -8,7 +8,7 @@
 
 #include <cctype>
 
-Piece::Piece(char name,int x,int y):name(name),x(x),y(y) {}
+Piece::Piece(char name,int x,int y):y(y),x(x),name(name) {}
 
 
 
