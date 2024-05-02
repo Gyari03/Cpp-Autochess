@@ -8,6 +8,7 @@
 #include "../Game/Army.h"
 #include "../Game/Piece.h"
 #include "../File Management/Filemanagement.h"
+#include "../Game/Game.h"
 
 Menu* MainMenu() {
     Menu* main=new Menu;
@@ -31,11 +32,14 @@ void NewGame(){
     //Leírása:
     //Kiválaszt mindkét oldalra 1-1 sereget, amik be lesznek töltve 1-1 army regiszterbe
     //start parancsra elkezdődik a játék
-    Army* reg1;
-    Army* reg2;
+    Army* reg1=nullptr;
+    Army* reg2=nullptr;
     Menu* newgame = new Menu;
     newgame->newButton(Button("Team1",newgame->getIdCounter(),&ChooseArmy,reg1));
-    newgame->newButton(Button("Team1",newgame->getIdCounter(),&ChooseArmy,reg2));
+    newgame->newButton(Button("Team2",newgame->getIdCounter(),&ChooseArmy,reg2));
+    newgame->newButton(Button("Play game",newgame->getIdCounter(),&Game));
+
+    Run(newgame);
 }
 
 void ArmyMenu(){
@@ -45,8 +49,9 @@ void ArmyMenu(){
     for(int i =0;i<armies->getSize();i++){
         Army* currentArmy = (*armies)[i];
        army->newButton(Button(currentArmy->getnameofArmy(),army->getIdCounter(),&EditArmy,currentArmy));
+
     }
-    refreshingRun(army);
+    refreshingRun(army); //nevek refreshelésével foglalkozzon újratöltés helhyett
     delete armies;
 }
 
@@ -62,6 +67,22 @@ void EditArmy(Army* army){
 }
 
 void ChooseArmy(Army* reg){
+    Menu* choice = new Menu;
     List<Army>* armies = ListofArmies("armies.txt");
+    for(int i=0;i<armies->getSize();i++){
+        Army* currentArmy = (*armies)[i];
+        choice->newButton(Button(currentArmy->getnameofArmy(),choice->getIdCounter(),&convert,currentArmy,reg));
+    }
+    Run(choice);
+    delete armies;
+}
 
+void convert(Army* from,Army* to){
+    to = from;
+}
+
+
+void Game(){
+   // class Game* game = new class Game;
+    //Run(game);
 }

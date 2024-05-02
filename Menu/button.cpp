@@ -7,19 +7,27 @@ Button::Button(const char* name,int id,void (*function)()):buttonFunction(functi
     this->id=id;
     this->name = new char[strlen(name)+1];
     strcpy(this->name,name);
- /*   this->function=function;
+ /*   this->fun=fun;
 
-    this->functionArmy=nullptr;*/
+    this->funArmy=nullptr;*/
 }
 
 Button::Button(const char *name, unsigned int id, void (*functionArmy)(Army *),Army* armyPtr):buttonFunction(functionArmy,armyPtr) {
     this->id=id;
     this->name = new char[strlen(name)+1];
     strcpy(this->name,name);
-    /*this->functionArmy = functionArmy;
+    /*this->funArmy = funArmy;
 
-    this->function = nullptr;*/
+    this->fun = nullptr;*/
 }
+
+Button::Button(const char *name, unsigned int id, void (*functionArmy)(Army *, Army *), Army *armyPtr1,Army* armyPtr2): buttonFunction(functionArmy,armyPtr1,armyPtr2) {
+    this->id=id;
+    this->name = new char[strlen(name)+1];
+    strcpy(this->name,name);
+}
+
+
 
 Button::~Button() {
     delete[] name;
@@ -29,8 +37,8 @@ Button::Button(const Button &other) {
     this->id=other.id;
     this->name=new char[strlen(other.name)+1];
     strcpy(this->name,other.name);
-    /*this->function=other.function;
-    this->functionArmy=other.functionArmy;*/
+    /*this->fun=other.fun;
+    this->funArmy=other.funArmy;*/
     this->buttonFunction=other.buttonFunction;
 }
 
@@ -40,8 +48,8 @@ Button &Button::operator=(const Button &other) {
         this->id=other.id;
         this->name=new char[strlen(other.name)+1];
         strcpy(this->name,other.name);
-      /*  this->function = other.function;
-        this->functionArmy=other.functionArmy;*/
+      /*  this->fun = other.fun;
+        this->funArmy=other.funArmy;*/
         this->buttonFunction=other.buttonFunction;
     }
     return *this;

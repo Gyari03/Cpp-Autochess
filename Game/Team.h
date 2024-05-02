@@ -18,7 +18,7 @@ private:
     List<Piece> pieces;
     List<Move> teamMoves;
     TeamColor teamColor;
-    Army army;
+    Army* army; //mutat a Game objekten belül a 2 armyra
 public:
    // Team(Army army;TeamColor color);
 

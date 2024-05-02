@@ -129,14 +129,14 @@ Egy menü tartalmaz egy dinamikusan foglalt `Button` tömböt.
 - ButtonFunction.h
   : Egy funktor, ami két típusú függvény pointert tartalmazhat:
 
-    - void function(*)()
+    - void fun(*)()
   : Egy sima üres paraméter-nélküli void függvény pointer
 
-    - void functionArmy(*)(Army*)
+    - void funArmy(*)(Army*)
   : Egy `Army*` paraméterű void függvény pointer(Ezt például az editor-nél használjuk, amikor megjeleníti a táblát egy függvényből és így kaphat egy meglévő sereget paraméterként).
     
-    - armyPointer
-  : Az az `Army*` amit átadunk paraméterül a functionArmy(*)(Army*)-nak.
+    - regArmy1
+  : Az az `Army*` amit átadunk paraméterül a funArmy(*)(Army*)-nak.
 
 - ButtonFunctions.h
   : *Nem keverendő a Buttonfunction.h-val.* Itt vannak eltárolva a függvénypointerek amiket a gombok létrehozásánal adunk át.

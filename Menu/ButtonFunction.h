@@ -5,14 +5,18 @@ class Army;
 
 class ButtonFunction{
 private:
-    void (*function)(); //megnyomaskor aktivalodott fuggveny
-    void (*functionArmy)(Army *army); //Army editelésre használt fv.
-    Army* armyPointer;
+    void (*fun)(); //megnyomaskor aktivalodott fuggveny
+    void (*funArmy)(Army *army); //Army editelésre használt fv.
+    void (*funArmyFor2)(Army* army1, Army* army2);
+    Army* regArmy1;
+    Army* regArmy2;
 
 public:
-    ButtonFunction():function(nullptr),functionArmy(nullptr),armyPointer(nullptr){}
-    ButtonFunction(void (*func)()):function(func),functionArmy(nullptr),armyPointer(nullptr){}
-    ButtonFunction(void (*funcArmy)(Army*),Army* armyPtr):function(nullptr),functionArmy(funcArmy),armyPointer(armyPtr){}
+    ButtonFunction(): fun(nullptr), funArmy(nullptr), funArmyFor2(nullptr) , regArmy1(nullptr), regArmy2(nullptr){}
+    ButtonFunction(void (*func)()): fun(func), funArmy(nullptr), funArmyFor2(nullptr) , regArmy1(nullptr), regArmy2(nullptr){}
+    ButtonFunction(void (*funcArmy)(Army*),Army* armyPtr): fun(nullptr), funArmy(funcArmy), funArmyFor2(nullptr) , regArmy1(armyPtr), regArmy2(nullptr){}
+    ButtonFunction(void (*funcArmy)(Army*,Army*),Army* armyPtr1,Army* armyPtr2): fun(nullptr), funArmy(nullptr), funArmyFor2(funcArmy), regArmy1(armyPtr1), regArmy2(armyPtr2){}
+    //ButtonFunction(const ButtonFunction& fun);
     void execute();
 
 };
