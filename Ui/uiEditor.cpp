@@ -1,6 +1,8 @@
 #include "uiEditor.h"
 #include "../Editor/Editor.h"
 
+#include "../Memtrace/memtrace.h"
+
 uiEditor::uiEditor(Editor *editor):editor(editor) {}
 
 uiEditor::~uiEditor() {
@@ -127,5 +129,7 @@ void Run(Editor* editorptr){
     else if(!(editorptr->getDelete())){ //ha nem lett elrendelve, hogy töröljék akkor mentsük le a .txt-be:
         editorptr->editArmy();
     }
+    //Új delete
+    //delete editorptr;
 }
 

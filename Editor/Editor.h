@@ -13,6 +13,7 @@ private:
 
 public:
     Editor();//Új army készítése
+    ~Editor();
     Editor(Army* army);//Meglévő szerkesztése
     Army* getArmy()const;
     Piece* searchfor(int x,int y);

@@ -17,7 +17,7 @@ void Army::setnameofArmy(const char *name) { //még kell egy felület ahol aktiv
     }
 }
 
-    int Army::getsizeofArmy() const {
+int Army::getsizeofArmy() const {
     return sizeofArmy;
 }
 

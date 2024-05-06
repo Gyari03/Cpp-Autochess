@@ -5,8 +5,10 @@
 #include "Pieces/Bishop.h"
 #include "Pieces/Horse.h"
 #include "Pieces/Pawn.h"
-
 #include <cctype>
+
+
+#include "../Memtrace/memtrace.h"
 
 Piece::Piece(char name,int x,int y):y(y),x(x),name(name) {}
 

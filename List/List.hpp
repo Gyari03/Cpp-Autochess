@@ -1,3 +1,6 @@
+#include "../Memtrace/memtrace.h"
+
+
 #ifndef NHF_REFORMED_LIST_HPP
 #define NHF_REFORMED_LIST_HPP
 
@@ -8,7 +11,10 @@ struct Node{
     Node<T>* previous;
     Node<T>* next;
 
-    Node(T* newData): data(newData), previous(nullptr), next(nullptr){}
+    Node(T* newData):data(newData),previous(nullptr), next(nullptr){
+//    T *dat = new T(newData);
+//    data = dat;
+    }
     ~Node(){delete data;}
     T* getData(){
         return data;
@@ -42,6 +48,19 @@ public:
         this->tail=newNode;
         size++;
     }
+    /*
+    void addtoList(Node<T>* node){
+        if(this->head==nullptr){
+            this->head = node;
+            this->tail = node;
+            size++;
+            return;
+        }
+        this->tail->next=node;
+        node->previous=this->tail;
+        this->tail=node;
+        size++;
+    }*/
 
     void deletefromList(T* todelete){//considering it exists in the list
         if(this->head==nullptr){return;}
@@ -107,11 +126,11 @@ public:
         return *this;
     }
 
-    int getSize(){
+    int getSize()const{
         return size;
     }
 
-    T* operator[](unsigned int index){
+    T* operator[](unsigned int index)const{
         if(index>=size){
             return nullptr;
         }
@@ -121,5 +140,7 @@ public:
         }
         return temp->getData();
     }
+
+
 };
 #endif //NHF_REFORMED_LIST_HPP

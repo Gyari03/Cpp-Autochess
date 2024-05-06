@@ -10,6 +10,8 @@
 #include "../File Management/Filemanagement.h"
 #include "../Game/Game.h"
 
+#include "../Memtrace/memtrace.h"
+
 Menu* MainMenu() {
     Menu* main=new Menu;
     main->newButton(Button("Play", main->getIdCounter(), &Play));
@@ -52,7 +54,7 @@ void ArmyMenu(){
 
     }
     refreshingRun(army); //nevek refreshelésével foglalkozzon újratöltés helhyett
-    delete armies;
+    delete armies; //memory leak talán itt //KURVA VALÓSZÍNŰ HOGY ITT VAN MEMORYLEAK AAAAAAAAAAAAAAAAAAAAAAAAAAAA
 }
 
 void CreateArmy(){

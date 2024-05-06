@@ -1,4 +1,5 @@
 #include "Editor.h"
+#include "../Memtrace/memtrace.h"
 
 Editor::Editor() {
     this->army = new Army;
@@ -6,8 +7,13 @@ Editor::Editor() {
     this->toDelete=false;
 }
 
+Editor::~Editor(){
+    //delete this->army;
+};
+
 Editor::Editor(Army *army) {
-    this->army=army; //ügyelj arra, hogy csak dinamikusan foglalt sereget kapjon
+    this->army = new Army(*army);
+    //this->army=army; //ügyelj arra, hogy csak dinamikusan foglalt sereget kapjon
     this->exit=false;
     this->toDelete=false;
 }

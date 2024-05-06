@@ -1,5 +1,7 @@
 #include "Filemanagement.h"
 
+#include "../Memtrace/memtrace.h"
+
 List<Army>* ListofArmies(const char* filename){
     int countofArmies;
     char nameofcurrentArmy[35];
@@ -126,7 +128,7 @@ void AppendArmy(Army* army,const char *filename){
     if (!file) {
         return;
     }
-    file<<std::endl; //std::ios_bas::app nem rak hozzá valamiért új sort... LEHET ÚJRA KELL ÍRNI AZ EGÉSZET
+    file<<std::endl;
     writeArmy(file,army);
 }
 

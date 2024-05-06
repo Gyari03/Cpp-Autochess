@@ -4,13 +4,20 @@
 #include "Menu/buttonfunctions.h"
 #include "Ui/ui.h"
 #include "Ui/uiMenu.h"
-
+#include "Memtrace/gtest_lite.h"
 #include "Memtrace/memtrace.h"
 
+//#define CPORTA
+
+#ifndef CPORTA
 int main() {
-    //int* kocsog = new int[60];
     Run(MainMenu());
-    //char a;
-    //kocsog[2]=3;
-    //std::cin>>a;
 }
+#endif
+
+#ifdef CPORTA
+int main(){
+    //tesztek
+}
+
+#endif
