@@ -28,7 +28,7 @@ public:
         Piece* proba = createPiece('K',1,2);
         return proba;
     }
-    //void setupBoard();
+    //void setupBoard(); //
 };
 
 
