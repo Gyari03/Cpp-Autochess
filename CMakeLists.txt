@@ -50,6 +50,8 @@ add_executable(NHF_REFORMED main.cpp
         "File Management/Filemanagement.cpp"
         Menu/ButtonFunction.cpp
         Menu/ButtonFunction.h
+        Game/Computer.h
+        Game/Computer.cpp
 
 )
 add_compile_definitions(MEMTRACE)

@@ -2,6 +2,7 @@
 #define NHF_REFORMED_GAME_H
 #include "Team.h"
 #include "Army.h"
+#include "Computer.h"
 
 
 
@@ -11,7 +12,7 @@ private:
     //A team nem biztos hogy kell hogy pointer legyen || vagy talán mégis hiszen dinamikusan akarjuk foglalni
     Army white;
     Army black;
-    //Computer computer;
+    Computer computer;
 
 public:
     Game(){
