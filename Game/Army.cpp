@@ -98,12 +98,12 @@ void copyArmy(Army* source, Army* destination) {
     }
 }
 
-void mirrorArmy(Army* army){
+void mirrorArmy(Army* army) {
     int currentY;
-    for(int i=0;i<army->getsizeofArmy();i++){
+    for (int i = 0; i < army->getsizeofArmy(); i++) {
         //x koordinátákat hagyjuk nem kell azt mozgatni
         currentY = army->getPiece(i)->getcoordY();
-        army->getPiece(i)->setcoordY(7-currentY);
+        army->getPiece(i)->setcoordY(  9-currentY)
         //army->getPiece(i)->setcoordY(7-currentY);
     }
 }

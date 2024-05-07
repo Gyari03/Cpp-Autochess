@@ -28,11 +28,10 @@ public:
         if(team[0]->getArmy()->getPiece(x,y)!=nullptr){
            return  team[0]->getArmy()->getPiece(x,y);
         }
-        else if(team[1]->getArmy()->getPiece(x,y)!=nullptr){
+        if(team[1]->getArmy()->getPiece(x,y)!=nullptr){
             return team[1]->getArmy()->getPiece(x,y);
         }
-        else
-            return nullptr;
+        return nullptr;
     }
 };
 
