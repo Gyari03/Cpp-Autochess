@@ -16,11 +16,12 @@ void uiGame::renderTable() {
         }
     }
     std::cout<<std::endl;
+    int count_Y=8;
     for(int y=0;y<8;y++){
-      //  if(y<4 ){
-      //      continue;
-      //  }
-        for(int i=0;i<4;i++){
+        if(y<4 ){
+            continue;
+        }
+        for(int i=0;i<8;i++){ //így nézett ki:         for(int i=0;i<4;i++){
             std::cout<<"#";
             if(i%4==0){
                 for(int j=0;j<8;j++){
@@ -44,7 +45,7 @@ void uiGame::renderTable() {
                     }
 
                     if(j==7){ //Y koordináta számozás
-                        std::cout<<"  "<<8-y;
+                        std::cout<<"  "<<count_Y--;
                     }
                 }
                 std::cout<<std::endl;
