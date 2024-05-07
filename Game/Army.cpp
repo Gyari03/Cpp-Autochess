@@ -103,7 +103,7 @@ void mirrorArmy(Army* army) {
     for (int i = 0; i < army->getsizeofArmy(); i++) {
         //x koordinátákat hagyjuk nem kell azt mozgatni
         currentY = army->getPiece(i)->getcoordY();
-        army->getPiece(i)->setcoordY(  9-currentY)
+        army->getPiece(i)->setcoordY(  9-currentY);
         //army->getPiece(i)->setcoordY(7-currentY);
     }
 }
