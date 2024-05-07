@@ -57,6 +57,15 @@ void Army::deletePiece(int x,int y) {
     }
 }
 
+Piece* Army::getPiece(int x, int y){ //megnézi hogy van-e a mezőn valaki
+    for (int i = 0; i < pieces.getSize(); ++i) {
+        if(pieces[i]->getcoordX()==x && pieces[i]->getcoordY()==y){
+            return pieces[i];
+        }
+    }
+    return nullptr;
+}
+
 
 
 Army::Army(const Army &army){
@@ -75,3 +84,25 @@ Army& Army::operator=(const Army& army) {
     return *this;
 }
 
+void copyArmy(Army* source, Army* destination) {
+    int currentX;
+    int currentY;
+    char currentName;
+    Piece* currentPiece;
+    for(int i = 0; i < source->getsizeofArmy(); i++) {
+        currentX = source->getPiece(i)->getcoordX();
+        currentY = source->getPiece(i)->getcoordY();
+        currentName = source->getPiece(i)->getname();
+        currentPiece = createPiece(currentName, currentX, currentY);
+        destination->addPiece(*currentPiece);
+    }
+}
+
+void mirrorArmy(Army* army){
+    int currentY;
+    for(int i=0;i<army->getsizeofArmy();i++){
+        //x koordinátákat hagyjuk nem kell azt mozgatni
+        currentY = army->getPiece(i)->getcoordY();
+        army->getPiece(i)->setcoordY(7-currentY);
+    }
+}

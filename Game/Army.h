@@ -19,22 +19,16 @@ public:
     void incrementsizeofArmy();
     void addPiece(Piece& newPiece);
     void deletePiece(int x,int y);
-    Piece* getPiece(int x,int y){ //megnézi hogy van-e a mezőn valaki
-        for (int i = 0; i < pieces.getSize(); ++i) {
-            if(pieces[i]->getcoordX()==x && pieces[i]->getcoordY()==y){
-                return pieces[i];
-            }
-        }
-        return nullptr;
-    }
-
+    Piece* getPiece(int x,int y);
     Army(const Army& army); //cpyconstructor
     Army& operator=(const Army& army);
-
-
     Piece* getPiece(int idx){ //fontos, hogy az index ne legyen több mint a mennyiségük
         return pieces[idx];
     }
 };
+
+void copyArmy(Army* source, Army* destination);
+
+void mirrorArmy(Army* army);
 
 #endif //NHF_REFORMED_ARMY_H

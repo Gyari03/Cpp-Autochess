@@ -4,8 +4,6 @@
 #include "Army.h"
 #include "Computer.h"
 
-
-
 class Game {
 private:
     Team* team[2];//Team pointerekből 2-őt tárol [0]:fehér [1]:fekete //A Gamekonstruktorból hozódik létre a 2 team a Team konstruktorokból(Army*,Szin)
@@ -19,14 +17,18 @@ public:
         for(size_t i=0;i<2;i++){
             team[i]=nullptr;
         }
+        computer = Computer(team[0],team[1]);
     }
-    Game(Army white,Army black);//rendes létrehozás
-    void setupBoard();
+    Game(Army* white,Army* black):white(*white),black(*black){
+        team[0] = new Team(white,White);
+        team[1] = new Team(black,Black);
+        computer  = Computer(team[0],team[1]);
+    }
     Piece* searchfor(int x,int y){
         Piece* proba = createPiece('K',1,2);
         return proba;
     }
-
+    //void setupBoard();
 };
 
 

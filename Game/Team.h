@@ -9,6 +9,7 @@
 #include "Pieces/Bishop.h"
 #include "Pieces/Rook.h"
 #include "Army.h"
+#include "Piece.h"
 
 enum TeamColor{White,Black};
 
@@ -18,13 +19,18 @@ private:
     List<Piece> pieces;
     List<Move> teamMoves;
     TeamColor teamColor;
-    Army* sourceArmy; //mutat a Game objekten belül a 2 armyra
-    Army* ownArmy;
+  //  Army* sourceArmy; //Ez az army a menüben fel lesz szabadítva, erre nem is tervezünk hivatkozni
+    Army* ownArmy; //Ez viszont egy újonnan lefoglalt army
 public:
-   void copyarmy(){
-
-   }
-
+    Team(Army* army,TeamColor color):teamColor(color){
+        copyArmy(army,ownArmy);
+        if(teamColor == Black){
+            mirrorArmy(ownArmy);
+        }
+    }
+    Army* getArmy()const{
+        return ownArmy;
+    }
 };
 
 
