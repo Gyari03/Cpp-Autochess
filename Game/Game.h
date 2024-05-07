@@ -25,10 +25,15 @@ public:
         computer  = Computer(team[0],team[1]);
     }
     Piece* searchfor(int x,int y){
-        Piece* proba = createPiece('K',1,2);
-        return proba;
+        if(team[0]->getArmy()->getPiece(x,y)!=nullptr){
+           return  team[0]->getArmy()->getPiece(x,y);
+        }
+        else if(team[1]->getArmy()->getPiece(x,y)!=nullptr){
+            return team[1]->getArmy()->getPiece(x,y);
+        }
+        else
+            return nullptr;
     }
-    //void setupBoard(); //
 };
 
 
