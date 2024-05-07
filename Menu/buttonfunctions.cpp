@@ -36,8 +36,8 @@ void NewGame(){
     //Leírása:
     //Kiválaszt mindkét oldalra 1-1 sereget, amik be lesznek töltve 1-1 army regiszterbe
     //start parancsra elkezdődik a játék
-    Army* reg1=nullptr;
-    Army* reg2=nullptr;
+    Army* reg1=new Army;
+    Army* reg2=new Army;
     Menu* newgame = new Menu;
     newgame->newButton(Button("Team1",newgame->getIdCounter(),&ChooseArmy,reg1));
     newgame->newButton(Button("Team2",newgame->getIdCounter(),&ChooseArmy,reg2));
@@ -74,7 +74,7 @@ void ChooseArmy(Army* reg){
     List<Army>* armies = ListofArmies("armies.txt");
     for(int i=0;i<armies->getSize();i++){
         Army* currentArmy = (*armies)[i];
-        choice->newButton(Button(currentArmy->getnameofArmy(),choice->getIdCounter(),&convert,currentArmy,reg));
+        choice->newButton(Button(currentArmy->getnameofArmy(),choice->getIdCounter(),&copyArmy,currentArmy,reg));
     }
     Run(choice);
     delete armies;

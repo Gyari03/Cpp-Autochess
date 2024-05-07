@@ -70,6 +70,8 @@ void uiGame::show() {
 //nincs
 bool uiGame::input() {
     //Majd a computer adja be az inputot, a felhasználó nem szól bele
+    char c;
+    std::cin>>c;
     return false;
 }
 

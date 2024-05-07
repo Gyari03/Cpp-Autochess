@@ -104,5 +104,6 @@ void mirrorArmy(Army* army){
         //x koordinátákat hagyjuk nem kell azt mozgatni
         currentY = army->getPiece(i)->getcoordY();
         army->getPiece(i)->setcoordY(7-currentY);
+        //army->getPiece(i)->setcoordY(7-currentY);
     }
 }

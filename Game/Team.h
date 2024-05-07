@@ -23,6 +23,7 @@ private:
     Army* ownArmy; //Ez viszont egy újonnan lefoglalt army
 public:
     Team(Army* army,TeamColor color):teamColor(color){
+        ownArmy = new Army;
         copyArmy(army,ownArmy);
         if(teamColor == Black){
             mirrorArmy(ownArmy);
