@@ -8,12 +8,12 @@ Editor::Editor() {
 }
 
 Editor::~Editor(){
-    //delete this->army;
+    //delete this->army; nem fog kelleni
 };
 
 Editor::Editor(Army *army) {
-    this->army = new Army(*army);
-    //this->army=army; //ügyelj arra, hogy csak dinamikusan foglalt sereget kapjon
+    //this->army = new Army(*army);
+    this->army=army; //ügyelj arra, hogy csak dinamikusan foglalt sereget kapjon
     this->exit=false;
     this->toDelete=false;
 }
