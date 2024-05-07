@@ -16,6 +16,7 @@ public:
     void renderTable();
     void idle() override;
 };
+void Run(Game* gameptr);
 
 
 #endif //NHF_REFORMED_UIGAME_H

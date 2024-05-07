@@ -63,14 +63,24 @@ void uiGame::renderTable() {
 
 
 void uiGame::show() {
-    // Implementation of show function
+    clear();
+    renderTable();
 }
 
+//nincs
 bool uiGame::input() {
-    // Implementation of input function
+    //Majd a computer adja be az inputot, a felhasználó nem szól bele
     return false;
 }
 
 void uiGame::idle() {
-    // Implementation of idle function
+    while(true){ //while(game_end!=true){...}
+        show();
+        input();
+    }
+}
+
+void Run(Game* gameptr){
+    uiGame game(gameptr);
+    game.idle();
 }

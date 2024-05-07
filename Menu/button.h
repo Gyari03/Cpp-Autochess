@@ -14,7 +14,7 @@ public:
     Button();
     Button(const char* name,int id,void (*function)());
     Button(const char* name,unsigned int id,void (*functionArmy)(Army*),Army* armyPtr);
-    Button(const char* name,unsigned int id,void (*functionArmy)(Army*,Army*),Army* armyPtr1,Army* armyPtr2);
+    Button(const char* name,unsigned int id,void (*functionArmy)(Army* first,Army* second),Army* armyPtr1,Army* armyPtr2);
   //  Button(const char* name,unsigned int id,ButtonFunction& function);
     ~Button();
     Button(const Button& other);

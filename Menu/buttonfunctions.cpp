@@ -9,6 +9,8 @@
 #include "../Game/Piece.h"
 #include "../File Management/Filemanagement.h"
 #include "../Game/Game.h"
+#include "../Ui/uiGame.h"
+
 
 #include "../Memtrace/memtrace.h"
 
@@ -39,8 +41,7 @@ void NewGame(){
     Menu* newgame = new Menu;
     newgame->newButton(Button("Team1",newgame->getIdCounter(),&ChooseArmy,reg1));
     newgame->newButton(Button("Team2",newgame->getIdCounter(),&ChooseArmy,reg2));
-    newgame->newButton(Button("Play game",newgame->getIdCounter(),&Game));
-
+    newgame->newButton(Button("Play game",newgame->getIdCounter(),&Gamesz,reg1,reg2));
     Run(newgame);
 }
 
@@ -84,7 +85,7 @@ void convert(Army* from,Army* to){
 }
 
 
-void Game(){
-   // class Game* game = new class Game;
-    //Run(game);
+void Gamesz(Army* reg1,Army* reg2){
+    Game* game = new Game(reg1,reg2);
+    Run(game);
 }

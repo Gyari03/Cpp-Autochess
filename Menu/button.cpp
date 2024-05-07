@@ -21,7 +21,7 @@ Button::Button(const char *name, unsigned int id, void (*functionArmy)(Army *),A
     this->fun = nullptr;*/
 }
 
-Button::Button(const char *name, unsigned int id, void (*functionArmy)(Army *, Army *), Army *armyPtr1,Army* armyPtr2): buttonFunction(functionArmy,armyPtr1,armyPtr2) {
+Button::Button(const char *name, unsigned int id, void (*functionArmy)(Army* first, Army* second), Army *armyPtr1,Army* armyPtr2): buttonFunction(functionArmy,armyPtr1,armyPtr2) {
     this->id=id;
     this->name = new char[strlen(name)+1];
     strcpy(this->name,name);
