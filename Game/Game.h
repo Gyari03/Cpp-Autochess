@@ -22,6 +22,10 @@ public:
     }
     Game(Army white,Army black);//rendes létrehozás
     void setupBoard();
+    Piece* searchfor(int x,int y){
+        Piece* proba = createPiece('K',1,2);
+        return proba;
+    }
 
 };
 

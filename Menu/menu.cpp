@@ -40,38 +40,3 @@ Button* Menu::getButton(int idx)const{
 bool Menu::getExit()const{
     return exit;//returnoli exit bool értékét
 }
-
-/*
-
-void Menu::clear() {
-#ifdef _WIN32
-    std::system("cls");
-#else
-    std::system("clear");
-#endif
-}
-
-void Menu::show(){
-    clear();
-    for(int i=0;i<this->idCounter;i++){
-        std::cout<<this->buttons[i].getId()<<")"<<this->buttons[i].getName()<<std::endl;
-    }
-
-}
-
-
-void Menu::input(){
-    int choice;
-    std::cin>>choice;
-    if(choice==0){exit=true;return;}
-    void(*FunctionPtr)() =this->buttons[choice-1].getFunction();
-    FunctionPtr();
-}
-
-void Menu::idle(){
-    while(!exit){
-        this->show();
-        this->input();
-    }
-}
-*/

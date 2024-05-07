@@ -18,9 +18,12 @@ private:
     List<Piece> pieces;
     List<Move> teamMoves;
     TeamColor teamColor;
-    Army* army; //mutat a Game objekten belül a 2 armyra
+    Army* sourceArmy; //mutat a Game objekten belül a 2 armyra
+    Army* ownArmy;
 public:
-   // Team(Army army;TeamColor color);
+   void copyarmy(){
+
+   }
 
 };
 

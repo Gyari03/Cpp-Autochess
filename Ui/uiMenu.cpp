@@ -45,8 +45,8 @@ void uiMenu::refreshingidle() {
 }
 
 void refreshingRun(Menu* menuPtr){
-    uiMenu menu(menuPtr);
-    menu.refreshingidle();
+        uiMenu menu(menuPtr);
+        menu.refreshingidle();
 }
 
 void Run(Menu* menuPtr){
