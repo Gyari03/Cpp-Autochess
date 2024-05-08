@@ -16,22 +16,18 @@ enum TeamColor{White,Black};
 
 class Team {
 private:
-    List<Piece> pieces;
+   // List<Piece> pieces;       TALÁN NEM KELL HISZEN EZEKRE AZ ARMYN KERESZTÜL HIVATKOZUNK
     List<Move> teamMoves;
     TeamColor teamColor;
   //  Army* sourceArmy; //Ez az army a menüben fel lesz szabadítva, erre nem is tervezünk hivatkozni
     Army* ownArmy; //Ez viszont egy újonnan lefoglalt army
 public:
-    Team(Army* army,TeamColor color):teamColor(color){
-        ownArmy = new Army;
-        copyArmy(army,ownArmy);
-        if(teamColor == Black){
-            mirrorArmy(ownArmy);
-        }
-    }
-    Army* getArmy()const{
-        return ownArmy;
-    }
+    Team(Army* army,TeamColor color);
+    Army* getArmy()const;
+ //  void collectTeamMoves(){
+ //
+ //  }
+
 };
 
 

@@ -19,6 +19,7 @@ public:
     Team* getTeam(size_t a);
     TeamColor getColorOfPiece(Piece* piece);
     bool occupied(int x,int y);
+    void collectTeamMoves();
 };
 
 

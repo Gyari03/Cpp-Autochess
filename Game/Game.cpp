@@ -42,3 +42,7 @@ bool Game::occupied(int x,int y) {
     }
     return false;
 }
+
+void Game::collectTeamMoves() {
+
+}

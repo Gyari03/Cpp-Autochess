@@ -8,7 +8,7 @@ private:
     char nameofArmy[35];
     int sizeofArmy; //nincs megcsinálva rendesen
     List<Piece> pieces;
-    List<Move> army_moves;
+ //   List<Move> army_moves; Teamben lesznek a lépések ezért innen kiszedem
 
 public:
     Army();
