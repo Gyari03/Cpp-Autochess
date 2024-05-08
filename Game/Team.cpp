@@ -8,11 +8,16 @@ Team::Team(Army* army,TeamColor color):teamColor(color){
     }
 }
 
-Army* Team::getArmy() const {
+Army* Team::getArmy()  {
     return ownArmy;
 }
 
-List<Move> Team::getTeamMoves()const{
+
+List<Move>& Team::getTeamMoves() {
     return teamMoves;
 }
+/*
+List<Move> Team::getTeamMoves()const{
+    return teamMoves;
+}*/
 

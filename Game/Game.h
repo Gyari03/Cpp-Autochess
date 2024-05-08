@@ -16,11 +16,13 @@ private:
 public:
     Game();
     Game(Army* white,Army* black);
+    bool getTurn()const;
     Piece* searchfor(int x,int y);
     Team* getTeam(size_t a);
     TeamColor getColorOfPiece(Piece* piece);
     bool occupied(int x,int y);
     void collectTeamMoves();
+    void makeMove();
 };
 
 

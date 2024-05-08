@@ -114,5 +114,6 @@ void mirrorArmy(Army* army) {
         currentY = army->getPiece(i)->getcoordY();
         army->getPiece(i)->setcoordY(  9-currentY);
         //army->getPiece(i)->setcoordY(7-currentY);
+        army->getPiece(i)->tolowercase();
     }
 }

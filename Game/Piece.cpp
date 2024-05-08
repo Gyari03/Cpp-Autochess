@@ -23,7 +23,7 @@ char Piece::getname() const {
     return name;
 }
 
-List<Move> Piece::getMoves() const {
+List<Move>& Piece::getMoves()  {
     return piece_moves;
 }
 

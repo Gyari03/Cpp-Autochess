@@ -20,8 +20,8 @@ private:
     Army* ownArmy; //Ez viszont egy újonnan lefoglalt army
 public:
     Team(Army* army,TeamColor color);
-    Army* getArmy()const;
-    List<Move> getTeamMoves()const;
+    Army* getArmy();
+    List<Move>& getTeamMoves();
 };
 
 

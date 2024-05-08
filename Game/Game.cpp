@@ -14,6 +14,10 @@ Game::Game(Army* white,Army* black):white(*white),black(*black),turn(true){
     computer  = Computer(team[0],team[1]);
 }
 
+bool Game::getTurn() const {
+    return turn;
+}
+
 Piece* Game::searchfor(int x, int y) {
     if(team[0]->getArmy()->getPiece(x,y)!=nullptr){
         return  team[0]->getArmy()->getPiece(x,y);
@@ -47,7 +51,7 @@ bool Game::occupied(int x,int y) {
 void Game::collectTeamMoves() {
     //Csapat beállítása
     Team* currentTeam;
-    if(turn==true){ currentTeam = team[0];}
+    if(turn){ currentTeam = team[0];}
     else{ currentTeam = team[1];}
 
     //Változók létrehozása
@@ -59,4 +63,8 @@ void Game::collectTeamMoves() {
        currentPieceMoves = currentTeam->getArmy()->getPiece(i)->getMoves();
         TeamMoves.consumeList(currentPieceMoves);
     }
+}
+
+void Game::makeMove() {
+
 }

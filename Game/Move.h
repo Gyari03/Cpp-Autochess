@@ -14,6 +14,9 @@ public:
     Move(Piece* from,int x,int y,char to=0);
     ~Move();
     void calculateweight();
+    bool operator>(const Move& other) const;
+   // bool operator<(const Move& other) const;
+   // bool operator==(const Move& other) const;
 };
 
 

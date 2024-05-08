@@ -20,3 +20,8 @@ void Move::calculateweight() {
         default: break;
     }
 }
+
+bool Move::operator>(const Move& other) const{
+    if(this->weight>other.weight){return true;}
+    else{return false;}
+}

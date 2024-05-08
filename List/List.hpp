@@ -163,5 +163,25 @@ public:
         }
         consumed.clear();
     }
+
+ //  void consumeList(List& consumed){ //List this(consumer) consumes the List consumed
+ //      if(consumed.head==nullptr){return;} //for(Node<T>* i=head;i!=nullptr;i=i->next){
+ //      for(Node<T>* i=consumed.head;i!=nullptr;i=i->next){
+ //          this->addtoList(i->data);
+ //      }
+ //      consumed.clear();
+ //  }
+
+    T* Maximum(){
+        T* maximum = nullptr;
+        if(this->size==0){return maximum;}
+        maximum = this->head->getData();
+        for(Node<T>* i=head->next;i!=nullptr;i=i->next){
+            if( (*(i->getData()))>(*maximum) ){maximum = i->getData();}
+        }
+        return maximum;
+    }
+
+
 };
 #endif //NHF_REFORMED_LIST_HPP
