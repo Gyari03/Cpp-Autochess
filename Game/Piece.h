@@ -29,24 +29,32 @@ public:
 
 Piece* createPiece(char name,int x,int y);
 
+//-----Move függvények-----
+bool checkAndAddMove(Game* game, Piece* from, int posX, int posY);
 
-
-//Move függvények
-
+//Észak,dél,kelet,nyugat
 void upwards(Piece* from,Game* game);
+void downwards(Piece* from,Game* game);
+void rightwards(Piece* from,Game* game);
+void leftwards(Piece* from,Game* game);
 
-void vertical();
+//ÉK,ÉNY,Dk,DNY
+void diagonalUpRight(Piece* from, Game* game);
+void diagonalUpLeft(Piece* from, Game* game);
+void diagonalDownRight(Piece* from, Game* game);
+void diagonalDownLeft(Piece* from, Game* game);
+
+//Az előzők kombinálva
 
 
+void orthogonal(Piece* from, Game* game);
+void diagonal(Piece* from, Game* game);
 
+//Különleges lépésmódok
+void pawnmove(Piece* from, Game* game);
+void horsemove(Piece* from, Game* game);
+void kingmove(Piece* from, Game* game);
 
-
-
-
-
-
-
-
-
+//-----Move függvények-----
 
 #endif //NHF_REFORMED_PIECE_H

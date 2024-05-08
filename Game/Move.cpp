@@ -15,5 +15,6 @@ void Move::calculateweight() {
         case 'R': weight=5;break;
         case 'Q': weight=8;break;
         case 'K': weight=9;break;
+        default: break;
     }
 }
