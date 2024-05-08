@@ -1,1 +1,7 @@
 #include "Queen.h"
+
+Queen::Queen(int x,int y):Piece('Q',x,y){}
+void Queen::calculateMoves(Game* game){
+    diagonal(this,game);
+    diagonal(this,game);
+}

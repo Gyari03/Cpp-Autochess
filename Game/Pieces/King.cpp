@@ -1,5 +1,6 @@
-//
-// Created by Felhasznalo on 2024. 03. 20..
-//
-
 #include "King.h"
+
+King::King(int x,int y):Piece('K',x,y){}
+void King::calculateMoves(Game* game){
+    kingmove(this,game);
+}

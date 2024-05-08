@@ -6,8 +6,8 @@ class Queen:public Piece {
 
 
 public:
-    Queen(int x,int y):Piece('Q',x,y){}
-    void calculateMoves() override{}
+    Queen(int x,int y);
+    void calculateMoves(Game* game) override;
 
 };
 

@@ -7,8 +7,8 @@ class Rook:public Piece {
 
 
 public:
-    Rook(int x,int y):Piece('R',x,y){}
-    void calculateMoves() override{}
+    Rook(int x,int y);
+    void calculateMoves(Game* game) override;
 
 };
 

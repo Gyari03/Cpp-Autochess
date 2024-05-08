@@ -8,9 +8,8 @@ class King:public Piece {
 
 
 public:
-    King(int x,int y):Piece('K',x,y){}
-    void calculateMoves() override{}
-
+    King(int x,int y);
+    void calculateMoves(Game* game) override;
 };
 
 

@@ -4,8 +4,8 @@
 
 class Bishop:public Piece{
 public:
-    Bishop(int x,int y):Piece('B',x,y){}
-    void calculateMoves() override;
+    Bishop(int x,int y);
+    void calculateMoves(Game* game) override;
 };
 
 

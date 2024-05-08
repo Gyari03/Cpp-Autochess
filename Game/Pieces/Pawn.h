@@ -6,9 +6,8 @@ class Pawn:public Piece {
 
 
 public:
-    Pawn(int x,int y):Piece('P',x,y){}
-    void calculateMoves() override{}
-
+    Pawn(int x,int y);
+    void calculateMoves(Game* game) override;
 };
 
 

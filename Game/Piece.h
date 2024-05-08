@@ -23,7 +23,7 @@ public:
     void setcoordX(int i);
     bool operator==(const Piece& other)const;
     void tolowercase();
-    void virtual calculateMoves()=0;
+    void virtual calculateMoves(Game* game)=0;
     void addMove(char to,int coord_x,int coord_y);
 };
 
@@ -38,7 +38,7 @@ void downwards(Piece* from,Game* game);
 void rightwards(Piece* from,Game* game);
 void leftwards(Piece* from,Game* game);
 
-//ÉK,ÉNY,Dk,DNY
+//ÉK,ÉNY,DK,DNY
 void diagonalUpRight(Piece* from, Game* game);
 void diagonalUpLeft(Piece* from, Game* game);
 void diagonalDownRight(Piece* from, Game* game);

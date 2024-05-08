@@ -4,8 +4,8 @@
 
 class Horse:public Piece {
 public:
-    Horse(int x,int y):Piece('H',x,y){}
-    void calculateMoves() override{}
+    Horse(int x,int y);
+    void calculateMoves(Game* game) override;
 };
 
 
