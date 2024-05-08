@@ -45,8 +45,6 @@ void diagonalDownRight(Piece* from, Game* game);
 void diagonalDownLeft(Piece* from, Game* game);
 
 //Az előzők kombinálva
-
-
 void orthogonal(Piece* from, Game* game);
 void diagonal(Piece* from, Game* game);
 
