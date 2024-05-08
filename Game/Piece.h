@@ -19,6 +19,7 @@ public:
     int getcoordY()const;
     int getcoordX()const;
     char getname()const;
+    List<Move> getMoves()const;
     void setcoordY(int j);
     void setcoordX(int i);
     bool operator==(const Piece& other)const;

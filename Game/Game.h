@@ -11,6 +11,7 @@ private:
     Army white;
     Army black;
     Computer computer;
+    bool turn; //true=fehér,false=fekete turnje jön
 
 public:
     Game();

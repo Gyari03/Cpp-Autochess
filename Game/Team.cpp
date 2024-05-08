@@ -11,3 +11,8 @@ Team::Team(Army* army,TeamColor color):teamColor(color){
 Army* Team::getArmy() const {
     return ownArmy;
 }
+
+List<Move> Team::getTeamMoves()const{
+    return teamMoves;
+}
+

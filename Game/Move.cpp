@@ -6,6 +6,8 @@ Move::Move(Piece *from, int x, int y, char to){
     calculateweight();
 }
 
+Move::~Move(){}
+
 void Move::calculateweight() {
     switch(this->to){
         case '0': weight=0;break;

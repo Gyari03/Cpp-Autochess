@@ -23,6 +23,10 @@ char Piece::getname() const {
     return name;
 }
 
+List<Move> Piece::getMoves() const {
+    return piece_moves;
+}
+
 void Piece::setcoordY(int j) {
     this->y=j;
 }

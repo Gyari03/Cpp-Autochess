@@ -1,13 +1,14 @@
 #include "Game.h"
+#include "../List/List.hpp"
 
-Game::Game(){
+Game::Game():turn(true){
     for(size_t i=0;i<2;i++){
         team[i]=nullptr;
     }
     computer = Computer(team[0],team[1]);
 }
 
-Game::Game(Army* white,Army* black):white(*white),black(*black){
+Game::Game(Army* white,Army* black):white(*white),black(*black),turn(true){
     team[0] = new Team(white,White);
     team[1] = new Team(black,Black);
     computer  = Computer(team[0],team[1]);
@@ -44,5 +45,18 @@ bool Game::occupied(int x,int y) {
 }
 
 void Game::collectTeamMoves() {
+    //Csapat beállítása
+    Team* currentTeam;
+    if(turn==true){ currentTeam = team[0];}
+    else{ currentTeam = team[1];}
 
+    //Változók létrehozása
+    List<Move> TeamMoves = currentTeam->getTeamMoves();
+    List<Move> currentPieceMoves;
+
+    //Az összes bábu lépéseinek a beleolvasztása a csapatlistába
+    for(int i=0; i < currentTeam->getArmy()->getsizeofArmy(); i++){
+       currentPieceMoves = currentTeam->getArmy()->getPiece(i)->getMoves();
+        TeamMoves.consumeList(currentPieceMoves);
+    }
 }

@@ -141,6 +141,27 @@ public:
         return temp->getData();
     }
 
+    void clear(){
+        while(head!=nullptr){
+            Node<T>* temp = head;
+            head = head->next;
+            delete temp;
+        }
+        //biztosra megyek vele
+        head->next=nullptr;
+        head->previous=nullptr;
+        tail = nullptr;
+        tail->next=nullptr;
+        tail->previous=nullptr;
+        size = 0;
+    }
 
+    void consumeList(List& consumed){ //List this(consumer) consumes the List consumed
+        if(consumed.head==nullptr){return;} //for(Node<T>* i=head;i!=nullptr;i=i->next){
+        for(Node<T>* i=consumed.head;i!=nullptr;i=i->next){
+            this->addtoList(i->data);
+        }
+        consumed.clear();
+    }
 };
 #endif //NHF_REFORMED_LIST_HPP
