@@ -48,7 +48,7 @@ bool Game::occupied(int x,int y) {
     return false;
 }
 
-void Game::collectTeamMoves() {
+void Game::collectTeamMoves() { //ww
     //Csapat beállítása
     Team* currentTeam;
     if(turn){ currentTeam = team[0];}
