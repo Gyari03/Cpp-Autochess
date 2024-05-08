@@ -66,6 +66,15 @@ Piece* Army::getPiece(int x, int y){ //megnézi hogy van-e a mezőn valaki
     return nullptr;
 }
 
+bool Army::partOfArmy(Piece *piece) {
+    for (int i = 0; i < pieces.getSize(); ++i) {
+        if(pieces[i]==piece){
+            return true;
+        }
+    }
+    return false;
+}
+
 
 
 Army::Army(const Army &army){

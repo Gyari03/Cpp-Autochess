@@ -8,6 +8,7 @@ private:
     char nameofArmy[35];
     int sizeofArmy; //nincs megcsinálva rendesen
     List<Piece> pieces;
+    List<Move> army_moves;
 
 public:
     Army();
@@ -20,6 +21,7 @@ public:
     void addPiece(Piece& newPiece);
     void deletePiece(int x,int y);
     Piece* getPiece(int x,int y);
+    bool partOfArmy(Piece* piece);
     Army(const Army& army); //cpyconstructor
     Army& operator=(const Army& army);
     Piece* getPiece(int idx){ //fontos, hogy az index ne legyen több mint a mennyiségük

@@ -7,11 +7,12 @@ class Move {
 private:
     Piece* from;
     int x, y; //to
+    char to;
     int weight;
 
 public:
-    void calcWeight();
-
+    Move(Piece* from,int x,int y,char to=0);
+    void calculateweight();
 };
 
 

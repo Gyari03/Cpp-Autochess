@@ -4,6 +4,8 @@
 #include "Move.h"
 
 
+class Game;
+
 class Piece { //absztrakt osztály
 private:
     int y,x;
@@ -22,9 +24,29 @@ public:
     bool operator==(const Piece& other)const;
     void tolowercase();
     void virtual calculateMoves()=0;
+    void addMove(char to,int coord_x,int coord_y);
 };
 
-
 Piece* createPiece(char name,int x,int y);
+
+
+
+//Move függvények
+
+void upwards(Piece* from,Game* game);
+
+void vertical();
+
+
+
+
+
+
+
+
+
+
+
+
 
 #endif //NHF_REFORMED_PIECE_H

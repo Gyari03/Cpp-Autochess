@@ -5,6 +5,8 @@
 #include "Pieces/Bishop.h"
 #include "Pieces/Horse.h"
 #include "Pieces/Pawn.h"
+#include "Game.h"
+
 #include <cctype>
 
 
@@ -61,3 +63,44 @@ Piece* createPiece(char name,int x,int y){
     }
     return piece;
 }
+
+void Piece::addMove(char to,int coord_x,int coord_y){
+    Move* addedMove = new Move(this,x,y,to);
+    this->piece_moves.addtoList(addedMove);
+}
+
+
+//Move függvények
+
+void upwards(Piece* from,Game* game){
+    int posX = from->getcoordX();
+    int posY = from->getcoordY();
+    TeamColor colorOfPiece = game->getColorOfPiece(from);
+
+    for(int i=posY;++i<=8;i++){
+        if(!(game->occupied(posX,i))){
+            from->addMove('0',posX,i);
+        }
+        else{//ha a mező occupied
+            Piece* other = game->searchfor(posX,i); //akivel ütközik
+            TeamColor colorOfOther = game->getColorOfPiece(other);
+            if(colorOfOther==colorOfPiece){return;}
+            else{
+                char nameOfOther =other->getname();
+                from->addMove(nameOfOther,posX,i);
+            }//na nem ugyanaz a csapat leütheti a másikat
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

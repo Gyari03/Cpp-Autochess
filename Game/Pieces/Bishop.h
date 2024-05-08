@@ -5,7 +5,7 @@
 class Bishop:public Piece{
 public:
     Bishop(int x,int y):Piece('B',x,y){}
-    void calculateMoves() override{}
+    void calculateMoves() override;
 };
 
 
