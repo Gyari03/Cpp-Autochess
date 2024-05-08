@@ -142,19 +142,24 @@ public:
     }
 
     void clear(){
+        if(head==nullptr){return;}
         while(head!=nullptr){
             Node<T>* temp = head;
             head = head->next;
             delete temp;
         }
         //biztosra megyek vele
-        head->next=nullptr;
-        head->previous=nullptr;
+       // head->next=nullptr;
+       // head->previous=nullptr;
         tail = nullptr;
-        tail->next=nullptr;
-        tail->previous=nullptr;
+       // tail->next=nullptr;
+       //tail->previous=nullptr;
         size = 0;
     }
+
+
+
+
 
     void consumeList(List& consumed){ //List this(consumer) consumes the List consumed
         if(consumed.head==nullptr){return;} //for(Node<T>* i=head;i!=nullptr;i=i->next){

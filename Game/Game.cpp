@@ -48,7 +48,7 @@ bool Game::occupied(int x,int y) {
     return false;
 }
 
-void Game::collectTeamMoves() { //ww
+void Game::collectTeamMoves() {  //Basically meg lett oldva, useless lett mert már a calculateMovesban meg van oldva
     //Csapat beállítása
     Team* currentTeam;
     if(turn){ currentTeam = team[0];}
@@ -64,7 +64,40 @@ void Game::collectTeamMoves() { //ww
         TeamMoves.consumeList(currentPieceMoves);
     }
 }
+//------------
+//Computer: calculatemove,decide move
+//Game: makemove
+//------------- A computer gondolkodik, a game cselekszik
 
 void Game::makeMove() {
+//computer.calculateMoves(this); ezt nem itt kell megoldani //összesítsd majd egy nagyobb fv.-ben
+    Move* move = computer.decideMove(this);
+    Piece* from = move->getPiece();
+    TeamColor fromColor = this->getColorOfPiece(from);
 
+    //Ellenséges+szöv csapat megállapítása
+    Team* enemy;
+    Team* ally;
+    if(fromColor==White){enemy = team[1];ally = team[0];}
+    else{enemy = team[0];ally = team[1];}
+
+    //X és Y coordináták
+    int coord_X = move->getX();
+    int coord_Y = move->getY();
+
+    if(this->occupied(coord_X,coord_Y)){
+        enemy->getArmy()->deletePiece(coord_X,coord_Y);
+    }
+    from->setcoordX(coord_X);
+    from->setcoordY(coord_Y);
+
+    //Csapat lépések kiűrítése
+    ally->getTeamMoves().clear();
+
+}
+
+void Game::playRound() {
+    computer.calculateMoves(this);
+    makeMove();
+    turn = !turn; //kör átadása
 }

@@ -1,4 +1,9 @@
 #include "uiGame.h"
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
 
 uiGame::uiGame(Game *game):game(game) {}
 
@@ -69,8 +74,7 @@ void uiGame::show() {
 //nincs
 bool uiGame::input() {
     //Majd a computer adja be az inputot, a felhasználó nem szól bele
-    char c;
-    std::cin>>c;
+    this->game->playRound();
     return false;
 }
 
@@ -78,10 +82,21 @@ void uiGame::idle() {
     while(true){ //while(game_end!=true){...}
         show();
         input();
+        sleepme(2000);
     }
 }
+
 
 void Run(Game* gameptr){
     uiGame game(gameptr);
     game.idle();
+}
+
+
+void sleepme(unsigned int ms) {
+#ifdef _WIN32
+    Sleep(ms);
+#else
+    usleep(ms * 1000);
+#endif
 }

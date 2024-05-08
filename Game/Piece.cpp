@@ -47,7 +47,7 @@ void Piece::tolowercase() {
 }
 
 void Piece::addMove(char to,int coord_x,int coord_y){
-    Move* addedMove = new Move(this,x,y,to);
+    Move* addedMove = new Move(this,coord_x,coord_y,to);
     this->piece_moves.addtoList(addedMove);
 }
 
@@ -96,8 +96,13 @@ void upwards(Piece* from,Game* game){
     int posY = from->getcoordY();
    // TeamColor colorOfPiece = game->getColorOfPiece(from);
 
-    for(int i=posY;++i<=8;i++) {
+  //  for(int i=posY;++i<=8;i++) {
+  //      if(checkAndAddMove(game,from,posX,i)){break;}
+  //  }
+    int i = posY;i++;
+    while(i<=8){
         if(checkAndAddMove(game,from,posX,i)){break;}
+        i++;
     }
 }
 
@@ -106,8 +111,13 @@ void downwards(Piece* from,Game* game){
     int posY = from->getcoordY();
   //  TeamColor colorOfPiece = game->getColorOfPiece(from);
 
-    for(int i=posY;--i>=0;i--){
+  //  for(int i=posY;--i>=1;i--){ //    for(int i=posY;--i>=0;i--){
+  //      if(checkAndAddMove(game,from,posX,i)){break;}
+  //  }
+    int i = posY;i--;
+    while(i>=1){
         if(checkAndAddMove(game,from,posX,i)){break;}
+        i--;
     }
 }
 
@@ -116,8 +126,13 @@ void rightwards(Piece* from,Game* game){
     int posY = from->getcoordY();
 //    TeamColor colorOfPiece = game->getColorOfPiece(from);
 
-    for(int i=posX;++i<=8;i++){
+ //   for(int i=posX;++i<=8;i++){
+ //       if(checkAndAddMove(game,from,i,posY)){break;}
+ //   }
+    int i = posX;i++;
+    while(i<=8){
         if(checkAndAddMove(game,from,i,posY)){break;}
+        i++;
     }
 }
 
@@ -126,8 +141,13 @@ void leftwards(Piece* from,Game* game) {
     int posY = from->getcoordY();
   //  TeamColor colorOfPiece = game->getColorOfPiece(from);
 
-    for(int i=posX;--i>=0;i--){
+ //   for(int i=posX;--i>=1;i--){ //    for(int i=posX;--i>=0;i--){
+  //      if(checkAndAddMove(game,from,i,posY)){break;}
+  //  }
+    int i = posX;i--;
+    while(i>=1){
         if(checkAndAddMove(game,from,i,posY)){break;}
+        i--;
     }
 }
 

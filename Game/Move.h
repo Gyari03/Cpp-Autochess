@@ -15,7 +15,10 @@ public:
     ~Move();
     void calculateweight();
     bool operator>(const Move& other) const;
-   // bool operator<(const Move& other) const;
+    Piece* getPiece()const;
+    int getX()const;
+    int getY()const;
+    // bool operator<(const Move& other) const;
    // bool operator==(const Move& other) const;
 };
 

@@ -18,5 +18,7 @@ public:
 };
 void Run(Game* gameptr);
 
+void sleepme(unsigned int ms);
+
 
 #endif //NHF_REFORMED_UIGAME_H
