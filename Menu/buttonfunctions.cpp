@@ -48,7 +48,7 @@ void NewGame(){
 void ArmyMenu(){
     Menu army;
     army.newButton(Button("Create new army",army.getIdCounter(),&CreateArmy));
-    List<Army> armies = ListofArmies("armies.txt");
+    List<Army> armies = Filemanagement::ListofArmies("armies.txt");
     for(int i = 0;i<armies.getSize();i++){
         Army* currentArmy = armies[i];
        army.newButton(Button(currentArmy->getnameofArmy(),army.getIdCounter(),&EditArmy,currentArmy));
@@ -71,7 +71,7 @@ void EditArmy(Army* army){
 
 void ChooseArmy(Army* reg){
     Menu choice;
-    List<Army> armies = ListofArmies("armies.txt");
+    List<Army> armies = Filemanagement::ListofArmies("armies.txt");
     for(int i=0;i<armies.getSize();i++){
         Army* currentArmy = armies[i];
         choice.newButton(Button(currentArmy->getnameofArmy(),choice.getIdCounter(),&Army::copyArmy,currentArmy,reg));

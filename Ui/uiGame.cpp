@@ -8,9 +8,7 @@
 
 uiGame::uiGame(Game *game):game(game) {}
 
-uiGame::~uiGame(){
-    //delete game;
-}
+uiGame::~uiGame(){}
 
 void uiGame::renderTable() {
     for(int i=0;i<8;i++){

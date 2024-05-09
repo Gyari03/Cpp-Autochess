@@ -16,7 +16,7 @@ void CreateArmy();
 
 void EditArmy(Army*);
 
-void ChooseArmy(Army*); //a paraméterként megkapott-ba tölti majd be az armyt
+void ChooseArmy(Army*); //a paraméterként megkapott paraméter-be tölti majd be az armyt amit választ
 
 void Gamesz(Army* reg1, Army* reg2);
 

@@ -2,7 +2,7 @@
 
 #include "../Memtrace/memtrace.h"
 
-List<Army> ListofArmies(const char* filename){
+List<Army> Filemanagement::ListofArmies(const char* filename){
     int countofArmies;
     char nameofcurrentArmy[35];
     int sizeofcurrentArmy;
@@ -34,7 +34,7 @@ List<Army> ListofArmies(const char* filename){
     return armies;
 }
 
-void readTillLine(std::ifstream& file, std::vector<std::string>& lines,const std::string& boundary){ //ha a boundary üres akkor a file legvégéig olvas
+void Filemanagement::readTillLine(std::ifstream& file, std::vector<std::string>& lines,const std::string& boundary){ //ha a boundary üres akkor a file legvégéig olvas
     std::string currentLine;
     while(std::getline(file,currentLine)){
         if(currentLine==boundary && !(boundary.empty())){
@@ -43,7 +43,7 @@ void readTillLine(std::ifstream& file, std::vector<std::string>& lines,const std
         lines.push_back(currentLine);
     }
 }
-void skipLines(std::ifstream& file,int numberofLines){ //piecesToSkip*3
+void Filemanagement::skipLines(std::ifstream& file,int numberofLines){ //piecesToSkip*3
     if(numberofLines==0){return;}
     std::string currentLine;
     for (int i = 0; i <= numberofLines; ++i) { //azért *3 mivel egy bábu 3 sorból áll
@@ -51,14 +51,14 @@ void skipLines(std::ifstream& file,int numberofLines){ //piecesToSkip*3
     }
 }
 
-void writeLines(std::ofstream& file,std::vector<std::string>& lines){
+void Filemanagement::writeLines(std::ofstream& file,std::vector<std::string>& lines){
     for(size_t i=0;i<lines.size();++i){
         file<<lines[i];
         file<<std::endl;
     }
 }
 
-void writeArmy(std::ofstream& file,Army* army){
+void Filemanagement::writeArmy(std::ofstream& file,Army* army){
     //   file<<std::endl;
     file<<army->getnameofArmy()<<std::endl;
     file<<army->getsizeofArmy()<<std::endl;
@@ -71,7 +71,7 @@ void writeArmy(std::ofstream& file,Army* army){
 }
 
 
-void overwriteline(const char* filename,std::string newLine,int lineNumber){
+void Filemanagement::overwriteline(const char* filename,std::string newLine,int lineNumber){
 
     std::ifstream readfile(filename);
     if(!readfile){return;}
@@ -98,7 +98,7 @@ void overwriteline(const char* filename,std::string newLine,int lineNumber){
     writefile.close();
 }
 
-void adjustStringNumber(std::string& string,bool increment){ //if increment true->increment, false->decrement
+void Filemanagement::adjustStringNumber(std::string& string,bool increment){ //if increment true->increment, false->decrement
     std::istringstream stringstream1(string);
     int number;
     stringstream1>>number;
@@ -109,7 +109,7 @@ void adjustStringNumber(std::string& string,bool increment){ //if increment true
     string = stringstream2.str();
 }
 
-void AppendArmy(Army* army,const char *filename){
+void Filemanagement::AppendArmy(Army* army,const char *filename){
 
     //Előző érték kiolvasása
     std::string countofArmies;
@@ -146,7 +146,7 @@ void AppendArmy(Army* army,const char *filename){
 //Army* army alapján beleírjuk a fileba
 //beleírjuk a második stringvectort a fileba
 //KÉSZ
-void EditArmy(Army* army,const char* filename){
+void Filemanagement::EditArmy(Army* army,const char* filename){
     std::ifstream readfile(filename);
     if(!readfile){return;}
 
@@ -181,7 +181,7 @@ void EditArmy(Army* army,const char* filename){
 //kiírjuk lines1-et és lines2-őt
 
 
-void DeleteArmy(Army* army,const char* filename){
+void Filemanagement::DeleteArmy(Army* army,const char* filename){
 
     std::ifstream readfile(filename);
     if(!readfile){return;}
@@ -209,3 +209,4 @@ void DeleteArmy(Army* army,const char* filename){
     writeLines(writefile,lines1);
     writeLines(writefile,lines2);
 }
+
