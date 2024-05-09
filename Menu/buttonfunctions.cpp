@@ -63,7 +63,7 @@ void CreateArmy(){
 }
 
 void EditArmy(Army* army){
-    Army* temp = new Army; //a seregeket a heapre akarjuk
+    Army* temp = new Army;
     Army::copyArmy(army,temp);
     Editor newEditor(temp);
     Run(&newEditor);
@@ -80,6 +80,6 @@ void ChooseArmy(Army* reg){
 }
 
 void Gamesz(Army* reg1,Army* reg2){
-    Game* game = new Game(reg1,reg2);
-    Run(game);
+    Game game = Game(reg1,reg2);
+    Run(&game);
 }

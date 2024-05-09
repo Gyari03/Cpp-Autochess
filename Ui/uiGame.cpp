@@ -9,7 +9,7 @@
 uiGame::uiGame(Game *game):game(game) {}
 
 uiGame::~uiGame(){
-    delete game;
+    //delete game;
 }
 
 void uiGame::renderTable() {
