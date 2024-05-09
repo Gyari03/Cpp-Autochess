@@ -23,6 +23,7 @@ private:
 
 public:
     Game();
+    ~Game();
     Game(Army* white,Army* black);
     bool getTurn()const;
     bool getEnd()const;

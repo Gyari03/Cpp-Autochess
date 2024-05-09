@@ -14,6 +14,11 @@ Game::Game(Army* white,Army* black):turn(true),endOfGame(false),result(DRAW){
     computer  = Computer();
 }
 
+Game::~Game(){
+    delete team[0];
+    delete team[1];
+}
+
 bool Game::getTurn() const {
     return turn;
 }

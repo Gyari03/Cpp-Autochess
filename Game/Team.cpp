@@ -11,7 +11,7 @@ Team::Team(Army* army,TeamColor color):teamColor(color){
 }
 
 Team::~Team(){
-
+    delete ownArmy;
 }
 
 Army* Team::getArmy()  {
