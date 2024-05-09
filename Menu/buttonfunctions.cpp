@@ -43,6 +43,11 @@ void NewGame(){
     newgame->newButton(Button("Team2",newgame->getIdCounter(),&ChooseArmy,reg2));
     newgame->newButton(Button("Play game",newgame->getIdCounter(),&Gamesz,reg1,reg2));
     Run(newgame);
+
+    //memóriafelszabadítása
+    delete reg1;
+    delete reg2;
+
 }
 
 void ArmyMenu(){
