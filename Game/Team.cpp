@@ -6,7 +6,7 @@ Team::Team(Army* army,TeamColor color):teamColor(color){
     ownArmy = new Army;
     Army::copyArmy(army,ownArmy);
     if(teamColor == Black){
-        mirrorArmy(ownArmy);
+        Army::mirrorArmy(ownArmy);
     }
 }
 
