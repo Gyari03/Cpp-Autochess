@@ -18,8 +18,6 @@ void EditArmy(Army*);
 
 void ChooseArmy(Army*); //a paraméterként megkapott-ba tölti majd be az armyt
 
-void convert(Army* from,Army* to);
-
 void Gamesz(Army* reg1, Army* reg2);
 
 #endif //NHF_REFORMED_BUTTONFUNCTIONS_H

@@ -68,12 +68,11 @@ void CreateArmy(){
 }
 
 void EditArmy(Army* army){
-    Army* temp = new Army;
-    Army::copyArmy(army,temp);
-    Editor newEditor(temp);  //= new Editor(army);
+    //Army* temp = new Army;
+    Army temp;
+    Army::copyArmy(army,&temp);
+    Editor newEditor(&temp);
     Run(&newEditor);
-   // delete newEditor;
-
 }
 
 void ChooseArmy(Army* reg){
@@ -85,11 +84,6 @@ void ChooseArmy(Army* reg){
     }
     Run(choice);
 }
-
-void convert(Army* from,Army* to){
-    to = from;
-}
-
 
 void Gamesz(Army* reg1,Army* reg2){
     Game* game = new Game(reg1,reg2);
