@@ -188,7 +188,6 @@ void pawnmove(Piece* from,Game* game){
     //ELŐRE LÉPÉS
     bool notOutOfBoundsY = (posY>=1)&&(posY<=8); //csak Y-ra kell nézni
     if ( (!(game->occupied(posX, posY))) && notOutOfBoundsY ) {
-        if(pos)
         from->addMove('0', posX, posY);
     }
 
