@@ -42,13 +42,13 @@ bool Editor::getDelete() const {
 }
 
 void Editor::saveArmy() {
-    AppendArmy(army,"armies.txt");
+    Filemanagement::AppendArmy(army,"armies.txt");
 }
 
 void Editor::editArmy() {
-    EditArmy(army,"armies.txt");
+    Filemanagement::EditArmy(army,"armies.txt");
 }
 
 void Editor::deleteArmy() {
-    DeleteArmy(army,"armies.txt");
+    Filemanagement::DeleteArmy(army,"armies.txt");
 }

@@ -10,88 +10,73 @@
 #include "../File Management/Filemanagement.h"
 #include "../Game/Game.h"
 #include "../Ui/uiGame.h"
-
-
 #include "../Memtrace/memtrace.h"
 
-Menu* MainMenu() {
-    Menu* main=new Menu;
-    main->newButton(Button("Play", main->getIdCounter(), &Play));
-    main->newButton(Button("Exit", main->getIdCounter(), &Exit));
-    return main;
+
+
+void ButtonFunctions::MainMenu() {
+    Menu main;
+    main.newButton(Button("Play", main.getIdCounter(), &Play));
+    main.newButton(Button("Exit", main.getIdCounter(), &Exit));
+    uiMenu::Run(&main);
 }
 
-void Play() {
-    Menu* play=new Menu;
-    play->newButton(Button("New game",play->getIdCounter(),&NewGame));
-    play->newButton(Button("Army editor",play->getIdCounter(),&ArmyMenu));
-    Run(play);
+void ButtonFunctions::Play() {
+    Menu play;
+    play.newButton(Button("New game",play.getIdCounter(),&NewGame));
+    play.newButton(Button("Army editor",play.getIdCounter(),&ArmyMenu));
+    uiMenu::Run(&play);
 }
 
-void Exit() {
+void ButtonFunctions::Exit() {
    exit(0);
 }
 
-void NewGame(){
-    //Leírása:
-    //Kiválaszt mindkét oldalra 1-1 sereget, amik be lesznek töltve 1-1 army regiszterbe
-    //start parancsra elkezdődik a játék
-    Army* reg1=new Army;
-    Army* reg2=new Army;
-    Menu* newgame = new Menu;
-    newgame->newButton(Button("Team1",newgame->getIdCounter(),&ChooseArmy,reg1));
-    newgame->newButton(Button("Team2",newgame->getIdCounter(),&ChooseArmy,reg2));
-    newgame->newButton(Button("Play game",newgame->getIdCounter(),&Gamesz,reg1,reg2));
-    Run(newgame);
-
-    //memóriafelszabadítása
-    delete reg1;
-    delete reg2;
-
+void ButtonFunctions::NewGame(){
+    Army reg1;
+    Army reg2;
+    Menu newgame;
+    newgame.newButton(Button("Team1",newgame.getIdCounter(),&ChooseArmy,&reg1));
+    newgame.newButton(Button("Team2",newgame.getIdCounter(),&ChooseArmy,&reg2));
+    newgame.newButton(Button("Play game", newgame.getIdCounter(), &PlayMatch, &reg1, &reg2));
+    uiMenu::Run(&newgame);
 }
 
-void ArmyMenu(){
-    Menu* army=new Menu;
-    army->newButton(Button("Create new army",army->getIdCounter(),&CreateArmy));
-    List<Army> armies = ListofArmies("armies.txt");
-    for(int i =0;i<armies.getSize();i++){
+void ButtonFunctions::ArmyMenu(){
+    Menu army;
+    army.newButton(Button("Create new army",army.getIdCounter(),&CreateArmy));
+    List<Army> armies = Filemanagement::ListofArmies("armies.txt");
+    for(int i = 0;i<armies.getSize();i++){
         Army* currentArmy = armies[i];
-       army->newButton(Button(currentArmy->getnameofArmy(),army->getIdCounter(),&EditArmy,currentArmy));
+       army.newButton(Button(currentArmy->getnameofArmy(),army.getIdCounter(),&EditArmy,currentArmy));
 
     }
-    refreshingRun(army);
+    uiMenu::refreshingRun(&army);
 }
 
-void CreateArmy(){
-    Editor* newEditor = new Editor;
-    Run(newEditor);
+void ButtonFunctions::CreateArmy(){
+    Editor newEditor;
+    uiEditor::Run(&newEditor);
 }
 
-void EditArmy(Army* army){
+void ButtonFunctions::EditArmy(Army* army){
     Army* temp = new Army;
     Army::copyArmy(army,temp);
-    Editor newEditor(temp);  //= new Editor(army);
-    Run(&newEditor);
-   // delete newEditor;
-
+    Editor newEditor(temp);
+    uiEditor::Run(&newEditor);
 }
 
-void ChooseArmy(Army* reg){
-    Menu* choice = new Menu;
-    List<Army> armies = ListofArmies("armies.txt");
+void ButtonFunctions::ChooseArmy(Army* reg){
+    Menu choice;
+    List<Army> armies = Filemanagement::ListofArmies("armies.txt");
     for(int i=0;i<armies.getSize();i++){
         Army* currentArmy = armies[i];
-        choice->newButton(Button(currentArmy->getnameofArmy(),choice->getIdCounter(),&Army::copyArmy,currentArmy,reg));
+        choice.newButton(Button(currentArmy->getnameofArmy(),choice.getIdCounter(),&Army::copyArmy,currentArmy,reg));
     }
-    Run(choice);
+    uiMenu::Run(&choice);
 }
 
-void convert(Army* from,Army* to){
-    to = from;
-}
-
-
-void Gamesz(Army* reg1,Army* reg2){
-    Game* game = new Game(reg1,reg2);
-    Run(game);
+void ButtonFunctions::PlayMatch(Army* reg1, Army* reg2){
+    Game game = Game(reg1,reg2);
+    uiGame::Run(&game);
 }

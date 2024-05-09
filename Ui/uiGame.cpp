@@ -8,9 +8,7 @@
 
 uiGame::uiGame(Game *game):game(game) {}
 
-uiGame::~uiGame(){
-    delete game;
-}
+uiGame::~uiGame(){}
 
 void uiGame::renderTable() {
     for(int i=0;i<8;i++){
@@ -82,19 +80,19 @@ void uiGame::idle() {
     while(!game->getEnd()){ //while(game_end!=true){...}
         show();
         input();
-        sleepme(100); //sleepme(2000);
+        delayMilliseconds(100); //delayMilliseconds(2000);
     }
     endScreen();
 }
 
 
-void Run(Game* gameptr){
+void uiGame::Run(Game* gameptr){
     uiGame game(gameptr);
     game.idle();
 }
 
 
-void sleepme(unsigned int ms) {
+void uiGame::delayMilliseconds(unsigned int ms) {
 #ifdef _WIN32
     Sleep(ms);
 #else
@@ -114,5 +112,5 @@ void uiGame::endScreen() {
     else{
         std::cout<<"Team 2 Wins!";
     }
-    sleepme(100); // sleepme(8000);
+    delayMilliseconds(100); // delayMilliseconds(8000);
 }

@@ -5,23 +5,17 @@
 #include <iostream>
 #include "../File Management/Filemanagement.h"
 
-
 class uiEditor:public ui {
 private:
     Editor* editor;
-
 public:
     uiEditor(Editor* editor);
     ~uiEditor();
-
     void show() override;
     bool input() override;
     void renderTable();
     void idle()override;
     void saveSequence();
+    static void Run(Editor* editorptr);
 };
-
-void Run(Editor* editorptr);
-
-
 #endif //NHF_REFORMED_UIEDITOR_H
