@@ -5,6 +5,8 @@
 #include <unistd.h>
 #endif
 
+#include "../Memtrace/memtrace.h"
+
 uiGame::uiGame(Game *game):game(game) {}
 
 uiGame::~uiGame(){
@@ -22,10 +24,7 @@ void uiGame::renderTable() {
     }
     std::cout<<std::endl;
     for(int y=0;y<8;y++){
-       // if(y<4 ){
-       //     continue;
-       // }
-        for(int i=0;i<4;i++){ //így nézett ki:         for(int i=0;i<4;i++){
+        for(int i=0;i<4;i++){
             std::cout<<"#";
             if(i%4==0){
                 for(int j=0;j<8;j++){
@@ -74,16 +73,19 @@ void uiGame::show() {
 //nincs
 bool uiGame::input() {
     //Majd a computer adja be az inputot, a felhasználó nem szól bele
+   // game->checkIfOver();
+
     this->game->playRound();
     return false;
 }
 
 void uiGame::idle() {
-    while(true){ //while(game_end!=true){...}
+    while(!game->getEnd()){ //while(game_end!=true){...}
         show();
         input();
         sleepme(2000);
     }
+    endScreen();
 }
 
 
@@ -99,4 +101,19 @@ void sleepme(unsigned int ms) {
 #else
     usleep(ms * 1000);
 #endif
+}
+
+void uiGame::endScreen() {
+    clear();
+    GameResult end = game->getResult();
+    if(end == DRAW) {
+        std::cout<<"Stalemate! The game ends in a draw.";
+    }
+    else if(end == TEAM1_WIN){
+        std::cout<<"Team 1 Wins!";
+    }
+    else{
+        std::cout<<"Team 2 Wins!";
+    }
+    sleepme(8000);
 }

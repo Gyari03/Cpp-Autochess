@@ -1,5 +1,6 @@
 #include "menu.h"
 #include <iostream>
+#include "../Memtrace/memtrace.h"
 
 Menu::Menu():idCounter(0),buttons(nullptr),exit(false){}
 

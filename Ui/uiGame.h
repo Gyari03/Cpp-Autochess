@@ -15,10 +15,12 @@ public:
     bool input() override;
     void renderTable();
     void idle() override;
+    void endScreen();
 };
+
+
 void Run(Game* gameptr);
 
 void sleepme(unsigned int ms);
-
 
 #endif //NHF_REFORMED_UIGAME_H

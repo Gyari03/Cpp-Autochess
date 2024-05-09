@@ -1,5 +1,6 @@
 #include "Move.h"
-//#include "Piece.h"
+
+#include "../Memtrace/memtrace.h"
 
 
 Move::Move(Piece *from, int x, int y, char to):from(from),x(x),y(y),to(to){

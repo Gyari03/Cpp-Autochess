@@ -1,5 +1,6 @@
 #include "Army.h"
 #include <iostream>
+#include "../Memtrace/memtrace.h"
 
 Army::Army():nameofArmy(""),sizeofArmy(0){}
 

@@ -1,14 +1,14 @@
 #include "Game.h"
 #include "../List/List.hpp"
 
-Game::Game():turn(true){
+Game::Game():turn(true),endOfGame(false),result(DRAW){
     for(size_t i=0;i<2;i++){
         team[i]=nullptr;
     }
     computer = Computer(team[0],team[1]);
 }
 
-Game::Game(Army* white,Army* black):white(*white),black(*black),turn(true){
+Game::Game(Army* white,Army* black):white(*white),black(*black),turn(true),endOfGame(false),result(DRAW){
     team[0] = new Team(white,White);
     team[1] = new Team(black,Black);
     computer  = Computer(team[0],team[1]);
@@ -16,6 +16,18 @@ Game::Game(Army* white,Army* black):white(*white),black(*black),turn(true){
 
 bool Game::getTurn() const {
     return turn;
+}
+
+bool Game::getEnd() const {
+    return endOfGame;
+}
+
+GameResult Game::getResult() const {
+    return result;
+}
+
+void Game::updateEnd() {
+    endOfGame= !endOfGame;
 }
 
 Piece* Game::searchfor(int x, int y) {
@@ -98,6 +110,46 @@ void Game::makeMove() {
 
 void Game::playRound() {
     computer.calculateMoves(this);
-    makeMove();
-    turn = !turn; //kör átadása
+    checkIfOver(); //vége van-e, akkor skippeljünk ki
+    if(!endOfGame){
+        makeMove();
+        turn = !turn; //kör átadása
+    }
+    else{
+        clearMovesBuffer();
+    }
 }
+
+void Game::checkIfOver() { //rakd bele a playroundba a calculatemoves után
+    //alapadatok
+    Team* current;
+    if(turn){current = team[0];}
+    else{current=team[1];}
+
+    //Ha a most jövő csapatnak 0 lépése maradt -> Döntetlen
+    if(current->getTeamMoves().getSize()==0){updateEnd();return;}//result=DRAW alapérték
+
+
+    //Ha egyik csapatban nincs király -> másik csapat a nyertes
+    if(current->countAmountOfKigns()==0){
+        if(current==team[0]){
+            updateEnd();
+            result = TEAM2_WIN;
+            return;
+        }
+        else{
+            updateEnd();
+            result = TEAM1_WIN;
+            return;
+        }
+    }
+}
+
+void Game::clearMovesBuffer() {
+    Team* current;
+    if(turn){current = team[0];}
+    else{current=team[1];}
+    current->getTeamMoves().clear();
+}
+
+

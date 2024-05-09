@@ -1,5 +1,6 @@
 #include "Computer.h"
 #include "Game.h"
+#include "../Memtrace/memtrace.h"
 
 Computer::Computer():white(nullptr),black(nullptr){}
 Computer::Computer(Team* white,Team* black):white(white),black(black){}

@@ -1,6 +1,8 @@
 #include "button.h"
 #include <cstring>
 
+#include "../Memtrace/memtrace.h"
+
 Button::Button():id(0),name(nullptr),buttonFunction(){}
 
 Button::Button(const char* name,int id,void (*function)()):buttonFunction(function) {

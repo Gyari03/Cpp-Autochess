@@ -20,9 +20,11 @@ private:
     Army* ownArmy; //Ez viszont egy újonnan lefoglalt army
 public:
     Team(Army* army,TeamColor color);
+    ~Team();
     Army* getArmy();
     List<Move>& getTeamMoves();
     Move* getRandomMove();
+    int countAmountOfKigns();
 };
 
 

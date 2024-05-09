@@ -1,5 +1,7 @@
 #include "ButtonFunction.h"
 
+#include "../Memtrace/memtrace.h"
+
 void ButtonFunction::execute() {
     if(fun != nullptr){fun();return;}
     else if(funArmy != nullptr){funArmy(regArmy1);return;}//mégis át kéne adni az armyt
