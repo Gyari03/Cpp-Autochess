@@ -4,7 +4,7 @@
 uiMenu::uiMenu(Menu *menu):menu(menu) {}
 
 uiMenu::~uiMenu(){
-    delete menu;
+    //delete menu;
 }
 
 void uiMenu::show(){

@@ -2,7 +2,7 @@
 #define NHF_REFORMED_BUTTONFUNCTIONS_H
 #include "../Game/Army.h"
 
-Menu* MainMenu();
+void MainMenu();
 
 void Play();
 
