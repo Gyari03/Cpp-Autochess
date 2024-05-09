@@ -94,7 +94,7 @@ Army& Army::operator=(const Army& army) {
     return *this;
 }
 
-void copyArmy(Army* source, Army* destination) {
+void Army::copyArmy(Army* source, Army* destination) {
     int currentX;
     int currentY;
     char currentName;
@@ -109,7 +109,7 @@ void copyArmy(Army* source, Army* destination) {
    // delete source;
 }
 
-void mirrorArmy(Army* army) {
+void Army::mirrorArmy(Army* army) {
     int currentY;
     for (int i = 0; i < army->getsizeofArmy(); i++) {
         //x koordinátákat hagyjuk nem kell azt mozgatni

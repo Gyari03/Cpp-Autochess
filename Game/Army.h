@@ -26,10 +26,11 @@ public:
     Piece* getPiece(int idx){ //fontos, hogy az index ne legyen több mint a mennyiségük
         return pieces[idx];
     }
+    static void copyArmy(Army* source, Army* destination);
+    static void mirrorArmy(Army* army);
 };
 
-void copyArmy(Army* source, Army* destination);
 
-void mirrorArmy(Army* army);
+
 
 #endif //NHF_REFORMED_ARMY_H

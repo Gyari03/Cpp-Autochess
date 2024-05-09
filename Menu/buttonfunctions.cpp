@@ -79,7 +79,7 @@ void ChooseArmy(Army* reg){
     List<Army>* armies = ListofArmies("armies.txt");
     for(int i=0;i<armies->getSize();i++){
         Army* currentArmy = (*armies)[i];
-        choice->newButton(Button(currentArmy->getnameofArmy(),choice->getIdCounter(),&copyArmy,currentArmy,reg));
+        choice->newButton(Button(currentArmy->getnameofArmy(),choice->getIdCounter(),&Army::copyArmy,currentArmy,reg));
     }
     Run(choice);
     delete armies;
