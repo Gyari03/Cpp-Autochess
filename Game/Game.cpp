@@ -42,7 +42,7 @@ bool Game::occupied(int x,int y) {
     if(this->team[0]->getArmy()->getPiece(x,y)!=nullptr){
         return true;
     }
-    if(this->team[0]->getArmy()->getPiece(x,y)!=nullptr){
+    if(this->team[1]->getArmy()->getPiece(x,y)!=nullptr){
         return true;
     }
     return false;

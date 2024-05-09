@@ -244,26 +244,26 @@ void horsemove(Piece* from, Game* game){
 
     //felfele
     if(posY+2<=8){//&& posX-2>=0 && posX+2<=8
-        if(posX-2>=1){checkAndAddMove(game,from,posX-2,posY+2);}
-        if(posX+2<=8){checkAndAddMove(game,from,posX+2,posY+2);}
+        if(posX-1>=1){checkAndAddMove(game,from,posX-1,posY+2);}
+        if(posX+1<=8){checkAndAddMove(game,from,posX+1,posY+2);}
     }
 
     //jobbra
     if(posX+2<=8){
-        if(posY-2>=1){checkAndAddMove(game,from,posX+2,posY-2);}
-        if(posY+2<=8){checkAndAddMove(game,from,posX+2,posY+2);}
+        if(posY-1>=1){checkAndAddMove(game,from,posX+2,posY-1);}
+        if(posY+1<=8){checkAndAddMove(game,from,posX+2,posY+1);}
     }
 
     //lefele
-    if(posY-2<=8){
-        if(posX-2>=1){checkAndAddMove(game,from,posX-2,posY-2);}
-        if(posX+2<=8){checkAndAddMove(game,from,posX+2,posY-2);}
+    if(posY-2>=1){ //    if(posY-2<=8){
+        if(posX-1>=1){checkAndAddMove(game,from,posX-1,posY-2);}
+        if(posX+1<=8){checkAndAddMove(game,from,posX+1,posY-2);}
     }
 
     //balra
-    if(posX-2<=8){
-        if(posY-2>=1){checkAndAddMove(game,from,posX-2,posY-2);}
-        if(posY+2<=8){checkAndAddMove(game,from,posX-2,posY+2);}
+    if(posX-2>=1){ //    if(posX-2<=8){
+        if(posY-1>=1){checkAndAddMove(game,from,posX-2,posY-1);}
+        if(posY+1<=8){checkAndAddMove(game,from,posX-2,posY+1);}
     }
 }
 

@@ -18,6 +18,7 @@ public:
     Piece* getPiece()const;
     int getX()const;
     int getY()const;
+    int getWeight()const;
     // bool operator<(const Move& other) const;
    // bool operator==(const Move& other) const;
 };

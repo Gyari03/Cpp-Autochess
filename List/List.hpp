@@ -11,14 +11,17 @@ struct Node{
     Node<T>* previous;
     Node<T>* next;
 
-    Node(T* newData):data(newData),previous(nullptr), next(nullptr){
-//    T *dat = new T(newData);
-//    data = dat;
-    }
+    Node(T* newData):data(newData),previous(nullptr), next(nullptr){}
     ~Node(){delete data;}
     T* getData(){
         return data;
     }
+    T* release(){
+        T* ptr = data;
+        data = nullptr;
+        return ptr;
+    }
+
 };
 
 template <class T>
@@ -36,10 +39,10 @@ public:
         }
     }
     void addtoList(T* newData){
-        Node<T>* newNode= new Node<T>(newData);
+        Node<T>* newNode= new Node<T>(newData); //sigtrap
         if(this->head==nullptr){
             this->head = newNode;
-            this->tail = newNode;
+            this->tail = newNode; //HEADFNEK ÉS TAILNEK NINCS KÖV. állítva
             size++;
             return;
         }
@@ -48,19 +51,6 @@ public:
         this->tail=newNode;
         size++;
     }
-    /*
-    void addtoList(Node<T>* node){
-        if(this->head==nullptr){
-            this->head = node;
-            this->tail = node;
-            size++;
-            return;
-        }
-        this->tail->next=node;
-        node->previous=this->tail;
-        this->tail=node;
-        size++;
-    }*/
 
     void deletefromList(T* todelete){//considering it exists in the list
         if(this->head==nullptr){return;}
@@ -148,34 +138,17 @@ public:
             head = head->next;
             delete temp;
         }
-        //biztosra megyek vele
-       // head->next=nullptr;
-       // head->previous=nullptr;
         tail = nullptr;
-       // tail->next=nullptr;
-       //tail->previous=nullptr;
         size = 0;
     }
-
-
-
-
 
     void consumeList(List& consumed){ //List this(consumer) consumes the List consumed
         if(consumed.head==nullptr){return;} //for(Node<T>* i=head;i!=nullptr;i=i->next){
         for(Node<T>* i=consumed.head;i!=nullptr;i=i->next){
-            this->addtoList(i->data);
+            this->addtoList(i->release());                       //            this->addtoList(i->data);
         }
         consumed.clear();
     }
-
- //  void consumeList(List& consumed){ //List this(consumer) consumes the List consumed
- //      if(consumed.head==nullptr){return;} //for(Node<T>* i=head;i!=nullptr;i=i->next){
- //      for(Node<T>* i=consumed.head;i!=nullptr;i=i->next){
- //          this->addtoList(i->data);
- //      }
- //      consumed.clear();
- //  }
 
     T* Maximum(){
         T* maximum = nullptr;

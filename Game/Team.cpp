@@ -1,4 +1,5 @@
 #include "Team.h"
+//#include <random>
 
 Team::Team(Army* army,TeamColor color):teamColor(color){
     ownArmy = new Army;
@@ -20,4 +21,9 @@ List<Move>& Team::getTeamMoves() {
 List<Move> Team::getTeamMoves()const{
     return teamMoves;
 }*/
-
+/*
+Move* Team::getRandomMove() {
+    int size = teamMoves.getSize();
+    int randIdx = rand() % size;
+    return teamMoves[randIdx];
+}*/

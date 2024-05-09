@@ -22,6 +22,7 @@ public:
     Team(Army* army,TeamColor color);
     Army* getArmy();
     List<Move>& getTeamMoves();
+  //  Move* getRandomMove();
 };
 
 

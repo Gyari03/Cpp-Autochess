@@ -43,3 +43,7 @@ int Move::getX() const {
 int Move::getY() const {
     return y;
 }
+
+int Move::getWeight() const {
+    return weight;
+}
