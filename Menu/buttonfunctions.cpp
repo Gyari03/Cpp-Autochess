@@ -63,15 +63,14 @@ void ArmyMenu(){
 }
 
 void CreateArmy(){
-    Editor* newEditor = new Editor;
-    Run(newEditor);
+    Editor newEditor;
+    Run(&newEditor);
 }
 
 void EditArmy(Army* army){
-    //Army* temp = new Army;
-    Army temp;
-    Army::copyArmy(army,&temp);
-    Editor newEditor(&temp);
+    Army* temp = new Army; //a seregeket a heapre akarjuk
+    Army::copyArmy(army,temp);
+    Editor newEditor(temp);
     Run(&newEditor);
 }
 

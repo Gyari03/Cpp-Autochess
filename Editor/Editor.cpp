@@ -8,7 +8,7 @@ Editor::Editor() {
 }
 
 Editor::~Editor(){
-    //delete this->army;
+    delete this->army;
 };
 
 Editor::Editor(Army *army) {
