@@ -23,11 +23,11 @@ Move* Computer::decideMove(Game *game) {
     Team* current;
     if(game->getTurn()){current=game->getTeam(0);}
     else{current = game->getTeam(1);}
-   // Move* ret = current->getTeamMoves().Maximum();
-  //  if(ret->getWeight()==0){ //A determinisztikusság megszüntetéséért felelős funkció
-      //  ret = current->getRandomMove();
-  //  }
-  //  return ret;
-    return current->getTeamMoves().Maximum();
+    Move* ret = current->getTeamMoves().Maximum();
+    if(ret->getWeight()==0){ //A determinisztikusság megszüntetéséért felelős funkció
+        ret = current->getRandomMove();
+    }
+    return ret;
+   // return current->getTeamMoves().Maximum();
 }
 

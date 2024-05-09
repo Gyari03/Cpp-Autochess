@@ -94,11 +94,6 @@ bool checkAndAddMove(Game* game, Piece* from, int posX, int posY) { //diagonáli
 void upwards(Piece* from,Game* game){
     int posX = from->getcoordX();
     int posY = from->getcoordY();
-   // TeamColor colorOfPiece = game->getColorOfPiece(from);
-
-  //  for(int i=posY;++i<=8;i++) {
-  //      if(checkAndAddMove(game,from,posX,i)){break;}
-  //  }
     int i = posY;i++;
     while(i<=8){
         if(checkAndAddMove(game,from,posX,i)){break;}
@@ -109,11 +104,6 @@ void upwards(Piece* from,Game* game){
 void downwards(Piece* from,Game* game){
     int posX = from->getcoordX();
     int posY = from->getcoordY();
-  //  TeamColor colorOfPiece = game->getColorOfPiece(from);
-
-  //  for(int i=posY;--i>=1;i--){ //    for(int i=posY;--i>=0;i--){
-  //      if(checkAndAddMove(game,from,posX,i)){break;}
-  //  }
     int i = posY;i--;
     while(i>=1){
         if(checkAndAddMove(game,from,posX,i)){break;}
@@ -124,11 +114,6 @@ void downwards(Piece* from,Game* game){
 void rightwards(Piece* from,Game* game){
     int posX = from->getcoordX();
     int posY = from->getcoordY();
-//    TeamColor colorOfPiece = game->getColorOfPiece(from);
-
- //   for(int i=posX;++i<=8;i++){
- //       if(checkAndAddMove(game,from,i,posY)){break;}
- //   }
     int i = posX;i++;
     while(i<=8){
         if(checkAndAddMove(game,from,i,posY)){break;}
@@ -139,11 +124,6 @@ void rightwards(Piece* from,Game* game){
 void leftwards(Piece* from,Game* game) {
     int posX = from->getcoordX();
     int posY = from->getcoordY();
-  //  TeamColor colorOfPiece = game->getColorOfPiece(from);
-
- //   for(int i=posX;--i>=1;i--){ //    for(int i=posX;--i>=0;i--){
-  //      if(checkAndAddMove(game,from,i,posY)){break;}
-  //  }
     int i = posX;i--;
     while(i>=1){
         if(checkAndAddMove(game,from,i,posY)){break;}
