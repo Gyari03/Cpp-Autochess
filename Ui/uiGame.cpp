@@ -4,7 +4,6 @@
 #else
 #include <unistd.h>
 #endif
-
 #include "../Memtrace/memtrace.h"
 
 uiGame::uiGame(Game *game):game(game) {}
@@ -83,7 +82,7 @@ void uiGame::idle() {
     while(!game->getEnd()){ //while(game_end!=true){...}
         show();
         input();
-        sleepme(2000);
+        sleepme(100); //sleepme(2000);
     }
     endScreen();
 }
@@ -115,5 +114,5 @@ void uiGame::endScreen() {
     else{
         std::cout<<"Team 2 Wins!";
     }
-    sleepme(8000);
+    sleepme(100); // sleepme(8000);
 }

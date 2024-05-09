@@ -2,9 +2,7 @@
 #include "Game.h"
 #include "../Memtrace/memtrace.h"
 
-Computer::Computer():white(nullptr),black(nullptr){}
-Computer::Computer(Team* white,Team* black):white(white),black(black){}
-
+Computer::Computer(){}
 void Computer::calculateMoves(Game* game){
     //Megállapítani hogy melyik csapat turnje van
     Team* current;

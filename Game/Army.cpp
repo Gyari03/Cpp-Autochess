@@ -106,6 +106,7 @@ void copyArmy(Army* source, Army* destination) {
         currentPiece = createPiece(currentName, currentX, currentY);
         destination->addPiece(*currentPiece);
     }
+   // delete source;
 }
 
 void mirrorArmy(Army* army) {

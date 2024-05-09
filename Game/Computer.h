@@ -4,8 +4,8 @@
 
 class Computer {
 private:
-    Team* white;
-    Team* black;
+    //Team* white;
+    //Team* black;
 public:
     Computer();
     Computer(Team* white,Team* black);

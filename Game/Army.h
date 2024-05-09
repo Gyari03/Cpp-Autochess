@@ -6,9 +6,8 @@
 class Army { //alapfelállás ami be van adva a csapatnak, majd ezt dinamikusan átmásolja magának
 private:
     char nameofArmy[35];
-    int sizeofArmy; //nincs megcsinálva rendesen
+    int sizeofArmy;
     List<Piece> pieces;
- //   List<Move> army_moves; Teamben lesznek a lépések ezért innen kiszedem
 
 public:
     Army();

@@ -5,13 +5,13 @@ Game::Game():turn(true),endOfGame(false),result(DRAW){
     for(size_t i=0;i<2;i++){
         team[i]=nullptr;
     }
-    computer = Computer(team[0],team[1]);
+    computer = Computer();
 }
 
 Game::Game(Army* white,Army* black):white(*white),black(*black),turn(true),endOfGame(false),result(DRAW){
     team[0] = new Team(white,White);
     team[1] = new Team(black,Black);
-    computer  = Computer(team[0],team[1]);
+    computer  = Computer();
 }
 
 bool Game::getTurn() const {
@@ -41,7 +41,7 @@ Piece* Game::searchfor(int x, int y) {
 }
 
 Team* Game::getTeam(size_t a){
-    if(a>2){return nullptr;}
+    if(a>=2){return nullptr;}
     return team[a];
 }
 
