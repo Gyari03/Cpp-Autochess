@@ -14,28 +14,25 @@
 
 
 
-void MainMenu() {
+void ButtonFunctions::MainMenu() {
     Menu main;
     main.newButton(Button("Play", main.getIdCounter(), &Play));
     main.newButton(Button("Exit", main.getIdCounter(), &Exit));
     Run(&main);
 }
 
-void Play() {
+void ButtonFunctions::Play() {
     Menu play;
     play.newButton(Button("New game",play.getIdCounter(),&NewGame));
     play.newButton(Button("Army editor",play.getIdCounter(),&ArmyMenu));
     Run(&play);
 }
 
-void Exit() {
+void ButtonFunctions::Exit() {
    exit(0);
 }
 
-void NewGame(){
-    //Leírása:
-    //Kiválaszt mindkét oldalra 1-1 sereget, amik be lesznek töltve 1-1 army regiszterbe
-    //start parancsra elkezdődik a játék
+void ButtonFunctions::NewGame(){
     Army reg1;
     Army reg2;
     Menu newgame;
@@ -45,7 +42,7 @@ void NewGame(){
     Run(&newgame);
 }
 
-void ArmyMenu(){
+void ButtonFunctions::ArmyMenu(){
     Menu army;
     army.newButton(Button("Create new army",army.getIdCounter(),&CreateArmy));
     List<Army> armies = Filemanagement::ListofArmies("armies.txt");
@@ -57,19 +54,19 @@ void ArmyMenu(){
     refreshingRun(&army);
 }
 
-void CreateArmy(){
+void ButtonFunctions::CreateArmy(){
     Editor newEditor;
     Run(&newEditor);
 }
 
-void EditArmy(Army* army){
+void ButtonFunctions::EditArmy(Army* army){
     Army* temp = new Army;
     Army::copyArmy(army,temp);
     Editor newEditor(temp);
     Run(&newEditor);
 }
 
-void ChooseArmy(Army* reg){
+void ButtonFunctions::ChooseArmy(Army* reg){
     Menu choice;
     List<Army> armies = Filemanagement::ListofArmies("armies.txt");
     for(int i=0;i<armies.getSize();i++){
@@ -79,7 +76,7 @@ void ChooseArmy(Army* reg){
     Run(&choice);
 }
 
-void Gamesz(Army* reg1,Army* reg2){
+void ButtonFunctions::Gamesz(Army* reg1,Army* reg2){
     Game game = Game(reg1,reg2);
     Run(&game);
 }

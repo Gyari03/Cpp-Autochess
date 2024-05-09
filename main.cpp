@@ -11,7 +11,7 @@
 
 #ifndef CPORTA
 int main() {
-    MainMenu();
+    ButtonFunctions::MainMenu();
 }
 #endif
 
