@@ -53,14 +53,13 @@ void NewGame(){
 void ArmyMenu(){
     Menu* army=new Menu;
     army->newButton(Button("Create new army",army->getIdCounter(),&CreateArmy));
-    List<Army>* armies = ListofArmies("armies.txt");
-    for(int i =0;i<armies->getSize();i++){
-        Army* currentArmy = (*armies)[i];
+    List<Army> armies = ListofArmies("armies.txt");
+    for(int i =0;i<armies.getSize();i++){
+        Army* currentArmy = armies[i];
        army->newButton(Button(currentArmy->getnameofArmy(),army->getIdCounter(),&EditArmy,currentArmy));
 
     }
-    refreshingRun(army); //nevek refreshelésével foglalkozzon újratöltés helhyett
-    delete armies; //memory leak talán itt //KURVA VALÓSZÍNŰ HOGY ITT VAN MEMORYLEAK AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    refreshingRun(army);
 }
 
 void CreateArmy(){
@@ -69,20 +68,22 @@ void CreateArmy(){
 }
 
 void EditArmy(Army* army){
-    Editor* newEditor = new Editor(army);
-    Run(newEditor);
+    Army* temp = new Army;
+    Army::copyArmy(army,temp);
+    Editor newEditor(temp);  //= new Editor(army);
+    Run(&newEditor);
+   // delete newEditor;
 
 }
 
 void ChooseArmy(Army* reg){
     Menu* choice = new Menu;
-    List<Army>* armies = ListofArmies("armies.txt");
-    for(int i=0;i<armies->getSize();i++){
-        Army* currentArmy = (*armies)[i];
+    List<Army> armies = ListofArmies("armies.txt");
+    for(int i=0;i<armies.getSize();i++){
+        Army* currentArmy = armies[i];
         choice->newButton(Button(currentArmy->getnameofArmy(),choice->getIdCounter(),&Army::copyArmy,currentArmy,reg));
     }
     Run(choice);
-    delete armies;
 }
 
 void convert(Army* from,Army* to){

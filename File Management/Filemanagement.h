@@ -11,7 +11,7 @@
 
 
 //Kiolvasás
-List<Army>* ListofArmies(const char* filename);
+List<Army> ListofArmies(const char* filename);
 
 void readTillLine(std::ifstream& file, std::vector<std::string>& lines,const std::string& boundary="");
 

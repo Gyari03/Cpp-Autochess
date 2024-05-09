@@ -8,7 +8,7 @@ Game::Game():turn(true),endOfGame(false),result(DRAW){
     computer = Computer();
 }
 
-Game::Game(Army* white,Army* black):white(*white),black(*black),turn(true),endOfGame(false),result(DRAW){
+Game::Game(Army* white,Army* black):turn(true),endOfGame(false),result(DRAW){
     team[0] = new Team(white,White);
     team[1] = new Team(black,Black);
     computer  = Computer();

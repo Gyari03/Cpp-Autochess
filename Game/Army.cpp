@@ -1,6 +1,7 @@
 #include "Army.h"
 #include <iostream>
 #include "../Memtrace/memtrace.h"
+#include <cstring>
 
 Army::Army():nameofArmy(""),sizeofArmy(0){}
 
@@ -95,6 +96,7 @@ Army& Army::operator=(const Army& army) {
 }
 
 void Army::copyArmy(Army* source, Army* destination) {
+    strcpy(destination->nameofArmy,source->nameofArmy);
     int currentX;
     int currentY;
     char currentName;

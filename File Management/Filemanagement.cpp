@@ -2,34 +2,35 @@
 
 #include "../Memtrace/memtrace.h"
 
-List<Army>* ListofArmies(const char* filename){
+List<Army> ListofArmies(const char* filename){
     int countofArmies;
     char nameofcurrentArmy[35];
     int sizeofcurrentArmy;
+    List<Army> armies;
 
     std::ifstream file(filename);
-    if (!file) {
-        return nullptr;
-    }
-    List<Army> *armies = new List<Army>;
-    file >> countofArmies;
-    for (int i = 0; i < countofArmies; i++) {
-        Army *newArmy = new Army;
+    if (file.is_open()) {
+        file >> countofArmies;
+        for (int i = 0; i < countofArmies; i++) {
+            Army *newArmy = new Army;
 
-        file >> nameofcurrentArmy;
-        newArmy->setnameofArmy(nameofcurrentArmy);
+            file >> nameofcurrentArmy;
+            newArmy->setnameofArmy(nameofcurrentArmy);
 
-        file >> sizeofcurrentArmy;
-        for (int j = 0; j < sizeofcurrentArmy; j++) {
-            char piece_name;
-            int piece_x, piece_y;
-            file >> piece_name;
-            file >> piece_x;
-            file >> piece_y;
-            newArmy->addPiece(*createPiece(piece_name, piece_x, piece_y));
+            file >> sizeofcurrentArmy;
+            for (int j = 0; j < sizeofcurrentArmy; j++) {
+                char piece_name;
+                int piece_x, piece_y;
+                file >> piece_name;
+                file >> piece_x;
+                file >> piece_y;
+                newArmy->addPiece(*createPiece(piece_name, piece_x, piece_y));
+            }
+            armies.addtoList(newArmy);
         }
-        armies->addtoList(newArmy);
+        file.close();
     }
+    file.close();
     return armies;
 }
 
