@@ -17,7 +17,7 @@ class Team {
 private:
     List<Move> teamMoves;
     TeamColor teamColor;
-    Army* ownArmy; //Ez viszont egy újonnan lefoglalt army
+    Army* ownArmy;
 public:
     Team(Army* army,TeamColor color);
     ~Team();

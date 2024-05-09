@@ -12,6 +12,6 @@ public:
     static void CreateArmy();
     static void EditArmy(Army*);
     static void ChooseArmy(Army*); //a paraméterként megkapott paraméter-be tölti majd be az armyt amit választ
-    static void Gamesz(Army* reg1, Army* reg2);
+    static void PlayMatch(Army* reg1, Army* reg2);
 };
 #endif //NHF_REFORMED_BUTTONFUNCTIONS_H

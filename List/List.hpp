@@ -21,7 +21,6 @@ struct Node{
         data = nullptr;
         return ptr;
     }
-
 };
 
 template <class T>
@@ -39,10 +38,10 @@ public:
         }
     }
     void addtoList(T* newData){
-        Node<T>* newNode= new Node<T>(newData); //sigtrap
+        Node<T>* newNode= new Node<T>(newData);
         if(this->head==nullptr){
             this->head = newNode;
-            this->tail = newNode; //HEADFNEK ÉS TAILNEK NINCS KÖV. állítva
+            this->tail = newNode;
             size++;
             return;
         }
@@ -143,9 +142,9 @@ public:
     }
 
     void consumeList(List& consumed){ //List this(consumer) consumes the List consumed
-        if(consumed.head==nullptr){return;} //for(Node<T>* i=head;i!=nullptr;i=i->next){
+        if(consumed.head==nullptr){return;}
         for(Node<T>* i=consumed.head;i!=nullptr;i=i->next){
-            this->addtoList(i->release());                       //            this->addtoList(i->data);
+            this->addtoList(i->release());
         }
         consumed.clear();
     }

@@ -44,12 +44,12 @@ void uiMenu::refreshingidle() {
     }
 }
 
-void refreshingRun(Menu* menuPtr){
+void uiMenu::refreshingRun(Menu* menuPtr){
         uiMenu menu(menuPtr);
         menu.refreshingidle();
 }
 
-void Run(Menu* menuPtr){
+void uiMenu::Run(Menu* menuPtr){
     uiMenu menu(menuPtr);
     menu.idle();
 }

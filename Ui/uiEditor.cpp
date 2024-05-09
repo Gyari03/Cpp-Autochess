@@ -115,7 +115,7 @@ void uiEditor::saveSequence() { //az inputot egyszerre használjuk a névre és 
     }
 }
 
-void Run(Editor* editorptr){
+void uiEditor::Run(Editor* editorptr){
     bool newlymade = false;
     if(strcmp(editorptr->getArmy()->getnameofArmy(),"")==0){ //az alapján hogy a név üres ellenőrizzük, hogy új-e a sereg
         newlymade = true;
@@ -129,7 +129,5 @@ void Run(Editor* editorptr){
     else if(!(editorptr->getDelete())){ //ha nem lett elrendelve, hogy töröljék akkor mentsük le a .txt-be:
         editorptr->editArmy();
     }
-    //Új delete
-    //delete editorptr;
 }
 

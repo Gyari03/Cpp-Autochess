@@ -15,9 +15,11 @@ public:
     bool input() override;
     void idle() override;
     void refreshingidle();
+    static void Run(Menu* menu);
+    static void refreshingRun(Menu* menuPtr);
 };
-void Run(Menu* menu);
-void refreshingRun(Menu* menuPtr);
+
+
 
 
 #endif //NHF_REFORMED_UIMENU_H
