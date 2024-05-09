@@ -36,17 +36,21 @@ void NewGame(){
     //Leírása:
     //Kiválaszt mindkét oldalra 1-1 sereget, amik be lesznek töltve 1-1 army regiszterbe
     //start parancsra elkezdődik a játék
-    Army* reg1=new Army;
-    Army* reg2=new Army;
+
+    //Army* reg1=new Army;
+    //Army* reg2=new Army;
+    Army reg1;
+    Army reg2;
+
     Menu newgame;
-    newgame.newButton(Button("Team1",newgame.getIdCounter(),&ChooseArmy,reg1));
-    newgame.newButton(Button("Team2",newgame.getIdCounter(),&ChooseArmy,reg2));
-    newgame.newButton(Button("Play game",newgame.getIdCounter(),&Gamesz,reg1,reg2));
+    newgame.newButton(Button("Team1",newgame.getIdCounter(),&ChooseArmy,&reg1));
+    newgame.newButton(Button("Team2",newgame.getIdCounter(),&ChooseArmy,&reg2));
+    newgame.newButton(Button("Play game",newgame.getIdCounter(),&Gamesz,&reg1,&reg2));
     Run(&newgame);
 
     //memóriafelszabadítása
-    delete reg1;
-    delete reg2;
+    //delete reg1;
+    //delete reg2;
 
 }
 
