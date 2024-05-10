@@ -126,7 +126,7 @@ Egy menü tartalmaz egy dinamikusan foglalt `Button` tömböt.
   - buttonFunction
   : Ez egy funktor osztály, ez tartalmazza a függvény pointert.
 
-- ButtonFunction.h
+- ButtonFunctionHandler.h
   : Egy funktor, ami két típusú függvény pointert tartalmazhat:
 
     - void fun(*)()

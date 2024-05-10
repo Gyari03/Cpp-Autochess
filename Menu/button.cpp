@@ -58,7 +58,7 @@ const char* Button::getName()const{
     return name;
 }
 
-ButtonFunction Button::getFunction()const {
+ButtonFunctionHandler Button::getFunction()const {
     return this->buttonFunction;
 }
 

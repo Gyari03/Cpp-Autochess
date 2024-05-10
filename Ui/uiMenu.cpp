@@ -25,7 +25,7 @@ bool uiMenu::handleInput(){ //returnérték: bool->true:lejátszott függvényt 
     else if(choice>menu->getIdCounter() || choice<0){
         return false;
     }
-    ButtonFunction function = menu->getButton(choice-1)->getFunction();
+    ButtonFunctionHandler function = menu->getButton(choice - 1)->getFunction();
     function.execute();
     return true;
 }

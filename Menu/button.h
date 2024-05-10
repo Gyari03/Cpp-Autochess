@@ -1,13 +1,13 @@
 #ifndef NHF_REFORMED_BUTTON_H
 #define NHF_REFORMED_BUTTON_H
 #include "../Game/Army.h"
-#include "ButtonFunction.h"
+#include "ButtonFunctionHandler.h"
 
 class Button{
 private:
     size_t id; //majd a menu szamlalo jelenlegi erteket kapja meg
     char* name; //parameterkent kapott nev
-    ButtonFunction buttonFunction;
+    ButtonFunctionHandler buttonFunction;
 
 public:
     Button();
@@ -20,6 +20,6 @@ public:
     void setId(size_t id);
     size_t getId()const;
     const char* getName()const;
-    ButtonFunction getFunction()const;
+    ButtonFunctionHandler getFunction()const;
 };
 #endif //NHF_REFORMED_BUTTON_H

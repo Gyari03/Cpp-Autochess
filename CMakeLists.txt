@@ -48,8 +48,8 @@ add_executable(NHF_REFORMED main.cpp
         Memtrace/memtrace.cpp
         "File Management/Filemanagement.h"
         "File Management/Filemanagement.cpp"
-        Menu/ButtonFunction.cpp
-        Menu/ButtonFunction.h
+        Menu/ButtonFunctionHandler.cpp
+        Menu/ButtonFunctionHandler.h
         Game/Computer.h
         Game/Computer.cpp
 
