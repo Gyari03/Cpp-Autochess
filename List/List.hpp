@@ -1,9 +1,6 @@
 #include "../Memtrace/memtrace.h"
-
-
 #ifndef NHF_REFORMED_LIST_HPP
 #define NHF_REFORMED_LIST_HPP
-
 
 template <class T>
 struct Node{
@@ -28,15 +25,17 @@ class List {
 private:
     Node<T>* head;
     Node<T>* tail;
-    unsigned int size;
+    size_t size;
 public:
     List() : head(nullptr), tail(nullptr), size(0) {}
+
     ~List(){
         for(Node<T>* i=head;i!=nullptr;i=i->next){
             if(i->previous!=nullptr){delete i->previous;}
             if(i==tail){delete i;break;}
         }
     }
+
     void addtoList(T* newData){
         Node<T>* newNode= new Node<T>(newData);
         if(this->head==nullptr){
@@ -80,7 +79,6 @@ public:
         }
     }
 
-    //copy constr. and copy=
     List(const List& list){
         if(list.head==nullptr){
             this->head=nullptr;
@@ -119,12 +117,12 @@ public:
         return size;
     }
 
-    T* operator[](unsigned int index)const{
+    T* operator[](size_t index)const{
         if(index>=size){
             return nullptr;
         }
         Node<T>* temp=head;
-        for(unsigned int i=0;i!=index;i++){
+        for(size_t i=0;i!=index;i++){
             temp=temp->next;
         }
         return temp->getData();
@@ -158,7 +156,5 @@ public:
         }
         return maximum;
     }
-
-
 };
 #endif //NHF_REFORMED_LIST_HPP

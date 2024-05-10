@@ -38,9 +38,9 @@ void uiEditor::renderTable(){
                 std::cout<<std::endl;
             }
             else if(i%4==2){
-                for(int j=0;j<8;j++){ //x+1 és 8-y a konvertálandóak
+                for(int j=0;j<8;j++){ //destinationX+1 és 8-destinationY a konvertálandóak
                     if(editor->searchfor(j+1,8-y)!=nullptr){
-                        std::cout<<"    "<<editor->searchfor(j+1,8-y)->getname()<<"    #";
+                        std::cout << "    " << editor->searchfor(j + 1, 8 - y)->getName() << "    #";
                     }
                     else if(editor->searchfor(j+1,8-y)==nullptr){
                         std::cout<<"         #";
@@ -63,12 +63,12 @@ void uiEditor::renderTable(){
     std::cout<<std::endl;
 }
 
-void uiEditor::show(){
-    clear();
+void uiEditor::display(){
+    clearScreen();
     renderTable();
 }
 
-bool uiEditor::input(){
+bool uiEditor::handleInput(){
 
     char name;
     int x,y;
@@ -89,25 +89,25 @@ bool uiEditor::input(){
         this->editor->getArmy()->deletePiece(x,y);
         return true;
     }
-    this->editor->getArmy()->addPiece(*createPiece(name,x,y));
+    this->editor->getArmy()->addPiece(*Piece::createPiece(name,x,y));
     return true;
 }
 
 void uiEditor::idle(){
     while(!(editor->getExit())){
-        show();
-        input();
+        display();
+        handleInput();
     }
 }
 
 void uiEditor::saveSequence() { //az inputot egyszerre használjuk a névre és a Y/N választásra
-    clear();
+    clearScreen();
     char input[35];
-    std::cout<<"Would you like to save this army?(Y/N)"<<std::endl;
+    std::cout<<"Would you like destinationPieceName save this army?(Y/N)"<<std::endl;
     std::cin>>input;
     if(input[0]=='Y'||input[0]=='y'){
-        clear();
-        std::cout<<"Give a name to this army: ";
+        clearScreen();
+        std::cout<<"Give a name destinationPieceName this army: ";
         std::cin>>input;
         editor->getArmy()->setnameofArmy(input);
         //AppendArmy(editor->getArmy(),"armies.txt");

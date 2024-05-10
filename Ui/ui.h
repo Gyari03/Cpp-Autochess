@@ -1,19 +1,14 @@
 #ifndef NHF_REFORMED_UI_H
 #define NHF_REFORMED_UI_H
 
-
 class ui {
-private:
-
-protected:
-
 public:
     ui(){}
-    virtual void show()=0;
-    virtual bool input()=0;
+    virtual void display()=0;
+    virtual bool handleInput()=0;
     virtual void idle()=0;
-    void clear();
+
+    static void clearScreen();
+    static void delayMilliseconds(unsigned int ms);
 };
-
-
 #endif //NHF_REFORMED_UI_H

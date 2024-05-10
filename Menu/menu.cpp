@@ -2,42 +2,44 @@
 #include <iostream>
 #include "../Memtrace/memtrace.h"
 
-Menu::Menu():idCounter(0),buttons(nullptr),exit(false){}
+Menu::Menu(): idCounter(0), buttonArray(nullptr), exitRequested(false){}
 
 Menu::~Menu(){
-    delete[] buttons;
+    delete[] buttonArray;
 }
 
 void Menu::incrementCounter() {
     idCounter++;
 }
 
-void Menu::updateExit() { //csak az exit gombnak
-    exit=true;
+void Menu::updateExit() { //csak az exitRequested gombnak
+    exitRequested=true;
 }
 
-void Menu::newButton(const Button& extra) {
+void Menu::addButton(const Button& extra) {
     this->incrementCounter();
     if(idCounter==1){
-        this->buttons=new Button[idCounter];
-        this->buttons[0]=extra; //copyconstructor illetve egyenloseg
-        buttons[0].setId(idCounter);
+        this->buttonArray=new Button[idCounter];
+        this->buttonArray[0]=extra; //copyconstructor illetve egyenloseg
+        buttonArray[0].setId(idCounter);
         return;
     }
     Button *updatedButtons = new Button[idCounter];
     for(unsigned int i=0;i<idCounter-1;i++){
-        updatedButtons[i]=this->buttons[i]; //egyenlosegoperator?
+        updatedButtons[i]=this->buttonArray[i]; //egyenlosegoperator?
     }
     updatedButtons[idCounter-1]=extra;
     updatedButtons[idCounter-1].setId(idCounter);
-    delete[] this->buttons;
-    this->buttons=updatedButtons;
+    delete[] this->buttonArray;
+    this->buttonArray=updatedButtons;
 }
 
 Button* Menu::getButton(int idx)const{
-    return &buttons[idx];
+    return &buttonArray[idx];
 }
 
 bool Menu::getExit()const{
-    return exit;//returnoli exit bool értékét
+    return exitRequested;//returnoli exitRequested bool értékét
 }
+
+size_t Menu::getIdCounter()const{return idCounter;}

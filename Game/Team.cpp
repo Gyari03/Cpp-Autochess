@@ -32,7 +32,7 @@ Move* Team::getRandomMove() {
 int Team::countAmountOfKigns() {
     int ret = 0;
     for(int i=0;i<ownArmy->getsizeofArmy();i++){
-        char temp = ownArmy->getPiece(i)->getname();
+        char temp = ownArmy->getPiece(i)->getName();
         if(temp == 'k' || temp == 'K'){ret++;}
     }
     return ret;

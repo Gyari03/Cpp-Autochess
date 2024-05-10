@@ -9,15 +9,13 @@
 
 //#define CPORTA
 
-#ifndef CPORTA
 int main() {
+    std::srand(std::time(nullptr)); //random seed beállítása
+#ifndef CPORTA
     ButtonFunctions::MainMenu();
-}
-#endif
-
-#ifdef CPORTA
-int main(){
+#else
     //tesztek
-}
-
 #endif
+    return 0;
+
+}

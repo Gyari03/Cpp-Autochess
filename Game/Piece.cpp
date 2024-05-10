@@ -9,17 +9,17 @@
 #include <cctype>
 #include "../Memtrace/memtrace.h"
 
-Piece::Piece(char name,int x,int y):y(y),x(x),name(name) {}
+Piece::Piece(char name, int coordX, int coordY): y(coordY), x(coordX), name(name) {}
 
-int Piece::getcoordY() const {
+int Piece::getCoordY() const {
     return y;
 }
 
-int Piece::getcoordX() const {
+int Piece::getCoordX() const {
     return x;
 }
 
-char Piece::getname() const {
+char Piece::getName() const {
     return name;
 }
 
@@ -27,31 +27,31 @@ List<Move>& Piece::getMoves()  {
     return piece_moves;
 }
 
-void Piece::setcoordY(int j) {
-    this->y=j;
+void Piece::setCoordY(int newY) {
+    this->y=newY;
 }
 
-void Piece::setcoordX(int i) {
-    this->x=i;
+void Piece::setCoordX(int newX) {
+    this->x=newX;
 }
 
-bool Piece::operator==(const Piece &other)const{
-    if(this->y==other.y && this->x==other.x)
+bool Piece::operator==(const Piece &otherPiece)const{
+    if(this->y == otherPiece.y && this->x == otherPiece.x)
         return true;
     else
         return false;
 }
 
-void Piece::tolowercase() {
+void Piece::toLowercase() {
     name = (char)tolower(name);
 }
 
-void Piece::addMove(char to,int coord_x,int coord_y){
-    Move* addedMove = new Move(this,coord_x,coord_y,to);
+void Piece::addMove(char destinationPieceName, int coordX, int coordY){
+    Move* addedMove = new Move(this, coordX, coordY, destinationPieceName);
     this->piece_moves.addtoList(addedMove);
 }
 
-Piece* createPiece(char name,int x,int y){
+Piece* Piece::createPiece(char name,int x,int y){
     name = (char) toupper(name);
     Piece *piece=nullptr;
     //hiba kezelés kiindexelés esetén:
@@ -70,18 +70,18 @@ Piece* createPiece(char name,int x,int y){
 
 //Move függvények
 
-bool checkAndAddMove(Game* game, Piece* from, int posX, int posY) { //diagonális, felfele lefele, balra jobbra jó lesz ez a függvény
+bool Piece::checkAndAddMove(Game* game, Piece* originPiece, int posX, int posY) { //diagonális, felfele lefele, balra jobbra jó lesz ez a függvény
     if (!(game->occupied(posX, posY))) {
-        from->addMove('0', posX, posY);
+        originPiece->addMove('0', posX, posY);
     }
     else {
-        Piece* other = game->searchfor(posX, posY);
+        Piece* other = game->searchFor(posX, posY);
         TeamColor colorOfOther = game->getColorOfPiece(other);
-        TeamColor colorOfPiece = game->getColorOfPiece(from);
+        TeamColor colorOfPiece = game->getColorOfPiece(originPiece);
 
         if (colorOfOther != colorOfPiece) {
-            char nameOfOther = other->getname();
-            from->addMove(nameOfOther, posX, posY);
+            char nameOfOther = other->getName();
+            originPiece->addMove(nameOfOther, posX, posY);
             return true; // Ha talált ilyen lépést, jelzi a kilépést
         }
         else{//Van másik bábu de mivel szövetséges nem üti le, viszont ki akarunk lépni
@@ -91,95 +91,95 @@ bool checkAndAddMove(Game* game, Piece* from, int posX, int posY) { //diagonáli
     return false; // Ha nem talált ilyen lépést, folytatja a ciklust
 }
 
-void upwards(Piece* from,Game* game){
-    int posX = from->getcoordX();
-    int posY = from->getcoordY();
+void Piece::upwards(Piece* originPiece, Game* game){
+    int posX = originPiece->getCoordX();
+    int posY = originPiece->getCoordY();
     int i = posY;i++;
     while(i<=8){
-        if(checkAndAddMove(game,from,posX,i)){break;}
+        if(checkAndAddMove(game, originPiece, posX, i)){break;}
         i++;
     }
 }
 
-void downwards(Piece* from,Game* game){
-    int posX = from->getcoordX();
-    int posY = from->getcoordY();
+void Piece::downwards(Piece* originPiece, Game* game){
+    int posX = originPiece->getCoordX();
+    int posY = originPiece->getCoordY();
     int i = posY;i--;
     while(i>=1){
-        if(checkAndAddMove(game,from,posX,i)){break;}
+        if(checkAndAddMove(game, originPiece, posX, i)){break;}
         i--;
     }
 }
 
-void rightwards(Piece* from,Game* game){
-    int posX = from->getcoordX();
-    int posY = from->getcoordY();
+void Piece::rightwards(Piece* originPiece, Game* game){
+    int posX = originPiece->getCoordX();
+    int posY = originPiece->getCoordY();
     int i = posX;i++;
     while(i<=8){
-        if(checkAndAddMove(game,from,i,posY)){break;}
+        if(checkAndAddMove(game, originPiece, i, posY)){break;}
         i++;
     }
 }
 
-void leftwards(Piece* from,Game* game) {
-    int posX = from->getcoordX();
-    int posY = from->getcoordY();
+void Piece::leftwards(Piece* originPiece, Game* game) {
+    int posX = originPiece->getCoordX();
+    int posY = originPiece->getCoordY();
     int i = posX;i--;
     while(i>=1){
-        if(checkAndAddMove(game,from,i,posY)){break;}
+        if(checkAndAddMove(game, originPiece, i, posY)){break;}
         i--;
     }
 }
 
-void diagonalUpRight(Piece* from,Game* game){ //Y nő, X nő
-    int posX = from->getcoordX();
-    int posY = from->getcoordY();
-   // TeamColor colorOfPiece = game->getColorOfPiece(from);
+void Piece::diagonalUpRight(Piece* originPiece, Game* game){ //Y nő, X nő
+    int posX = originPiece->getCoordX();
+    int posY = originPiece->getCoordY();
+   // TeamColor colorOfPiece = game->getColorOfPiece(originPiece);
     posY++;posX++;
     while(posX<=8 && posY<=8){
-        if(checkAndAddMove(game,from,posX,posY)){break;}
+        if(checkAndAddMove(game, originPiece, posX, posY)){break;}
         posY++;posX++;
     }
 }
 
-void diagonalUpLeft(Piece* from, Game* game){ //Y nő, X csökken
-    int posX = from->getcoordX();
-    int posY = from->getcoordY();
-   // TeamColor colorOfPiece = game->getColorOfPiece(from);
+void Piece::diagonalUpLeft(Piece* originPiece, Game* game){ //Y nő, X csökken
+    int posX = originPiece->getCoordX();
+    int posY = originPiece->getCoordY();
+   // TeamColor colorOfPiece = game->getColorOfPiece(originPiece);
     posY++;posX--;
     while(posX>=1 && posY<=8){
-        if(checkAndAddMove(game,from,posX,posY)){break;}
+        if(checkAndAddMove(game, originPiece, posX, posY)){break;}
         posY++;posX--;
     }
 }
 
-void diagonalDownRight(Piece* from, Game* game){ //Y csökken, X nő
-    int posX = from->getcoordX();
-    int posY = from->getcoordY();
-   // TeamColor colorOfPiece = game->getColorOfPiece(from);
+void Piece::diagonalDownRight(Piece* originPiece, Game* game){ //Y csökken, X nő
+    int posX = originPiece->getCoordX();
+    int posY = originPiece->getCoordY();
+   // TeamColor colorOfPiece = game->getColorOfPiece(originPiece);
     posY--;posX++;
     while(posX<=8 && posY>=1){
-        if(checkAndAddMove(game,from,posX,posY)){break;}
+        if(checkAndAddMove(game, originPiece, posX, posY)){break;}
         posY--;posX++;
     }
 }
 
-void diagonalDownLeft(Piece* from, Game* game){ //Y csökken, X csökken
-    int posX = from->getcoordX();
-    int posY = from->getcoordY();
-  //  TeamColor colorOfPiece = game->getColorOfPiece(from);
+void Piece::diagonalDownLeft(Piece* originPiece, Game* game){ //Y csökken, X csökken
+    int posX = originPiece->getCoordX();
+    int posY = originPiece->getCoordY();
+  //  TeamColor colorOfPiece = game->getColorOfPiece(originPiece);
     posY--;posX--;
     while(posX>=1 && posY>=1){
-        if(checkAndAddMove(game,from,posX,posY)){break;}
+        if(checkAndAddMove(game, originPiece, posX, posY)){break;}
         posY--;posX--;
     }
 }
 
-void pawnmove(Piece* from,Game* game){
+void Piece::pawnMove(Piece* originPiece, Game* game){
     //alapvető adatok
-    int posX = from->getcoordX();
-    int posY = from->getcoordY();
-    TeamColor colorOfPiece = game->getColorOfPiece(from);
+    int posX = originPiece->getCoordX();
+    int posY = originPiece->getCoordY();
+    TeamColor colorOfPiece = game->getColorOfPiece(originPiece);
 
     //eldönteni, hogy fehér vagy fekete és azáltal az irányát megadni a lépésnek
     if(colorOfPiece==White){posY++;}
@@ -188,7 +188,7 @@ void pawnmove(Piece* from,Game* game){
     //ELŐRE LÉPÉS
     bool notOutOfBoundsY = (posY>=1)&&(posY<=8); //csak Y-ra kell nézni
     if ( (!(game->occupied(posX, posY))) && notOutOfBoundsY ) {
-        from->addMove('0', posX, posY);
+        originPiece->addMove('0', posX, posY);
     }
 
     //Balra ütés beállítása
@@ -196,11 +196,11 @@ void pawnmove(Piece* from,Game* game){
 
     //Balra ütés
     if(game->occupied(posX, posY)){
-        Piece* other = game->searchfor(posX,posY);
+        Piece* other = game->searchFor(posX, posY);
         TeamColor colorOfOther = game->getColorOfPiece(other);
         if(colorOfOther!=colorOfPiece){
-            char nameOfOther= other->getname();
-            from->addMove(nameOfOther,posX,posY);
+            char nameOfOther= other->getName();
+            originPiece->addMove(nameOfOther, posX, posY);
         }
     }
 
@@ -209,87 +209,87 @@ void pawnmove(Piece* from,Game* game){
 
     //Jobbra ütés
     if(game->occupied(posX, posY)){
-        Piece* other = game->searchfor(posX,posY);
+        Piece* other = game->searchFor(posX, posY);
         TeamColor colorOfOther = game->getColorOfPiece(other);
         if(colorOfOther!=colorOfPiece){
-            char nameOfOther= other->getname();
-            from->addMove(nameOfOther,posX,posY);
+            char nameOfOther= other->getName();
+            originPiece->addMove(nameOfOther, posX, posY);
         }
     }
 }
 
-void horsemove(Piece* from, Game* game){
+void Piece::horseMove(Piece* originPiece, Game* game){
     //alapadatok
-    int posX = from->getcoordX();
-    int posY = from->getcoordY();
+    int posX = originPiece->getCoordX();
+    int posY = originPiece->getCoordY();
 
     //felfele
     if(posY+2<=8){//&& posX-2>=0 && posX+2<=8
-        if(posX-1>=1){checkAndAddMove(game,from,posX-1,posY+2);}
-        if(posX+1<=8){checkAndAddMove(game,from,posX+1,posY+2);}
+        if(posX-1>=1){checkAndAddMove(game, originPiece, posX - 1, posY + 2);}
+        if(posX+1<=8){checkAndAddMove(game, originPiece, posX + 1, posY + 2);}
     }
 
     //jobbra
     if(posX+2<=8){
-        if(posY-1>=1){checkAndAddMove(game,from,posX+2,posY-1);}
-        if(posY+1<=8){checkAndAddMove(game,from,posX+2,posY+1);}
+        if(posY-1>=1){checkAndAddMove(game, originPiece, posX + 2, posY - 1);}
+        if(posY+1<=8){checkAndAddMove(game, originPiece, posX + 2, posY + 1);}
     }
 
     //lefele
     if(posY-2>=1){ //    if(posY-2<=8){
-        if(posX-1>=1){checkAndAddMove(game,from,posX-1,posY-2);}
-        if(posX+1<=8){checkAndAddMove(game,from,posX+1,posY-2);}
+        if(posX-1>=1){checkAndAddMove(game, originPiece, posX - 1, posY - 2);}
+        if(posX+1<=8){checkAndAddMove(game, originPiece, posX + 1, posY - 2);}
     }
 
     //balra
     if(posX-2>=1){ //    if(posX-2<=8){
-        if(posY-1>=1){checkAndAddMove(game,from,posX-2,posY-1);}
-        if(posY+1<=8){checkAndAddMove(game,from,posX-2,posY+1);}
+        if(posY-1>=1){checkAndAddMove(game, originPiece, posX - 2, posY - 1);}
+        if(posY+1<=8){checkAndAddMove(game, originPiece, posX - 2, posY + 1);}
     }
 }
 
-void kingmove(Piece* from, Game* game){
+void Piece::kingMove(Piece* originPiece, Game* game){
     //alapadatok
-    int posX = from->getcoordX();
-    int posY = from->getcoordY();
+    int posX = originPiece->getCoordX();
+    int posY = originPiece->getCoordY();
 
     //felfele
     if(posY+1<=8){
-        checkAndAddMove(game,from,posX,posY+1);
-        if(posX+1<=8){checkAndAddMove(game,from,posX+1,posY+1);}
-        if(posX-1>=1){checkAndAddMove(game,from,posX-1,posY+1);}
+        checkAndAddMove(game, originPiece, posX, posY + 1);
+        if(posX+1<=8){checkAndAddMove(game, originPiece, posX + 1, posY + 1);}
+        if(posX-1>=1){checkAndAddMove(game, originPiece, posX - 1, posY + 1);}
     }
 
     //jobbra
     if(posX+1<=8){
-        checkAndAddMove(game,from,posX+1,posY);
+        checkAndAddMove(game, originPiece, posX + 1, posY);
         //a másik kettő már be van szedve a felfele és lefele részekből
     }
 
     //lefele
     if(posY-1>=1){
-        checkAndAddMove(game,from,posX,posY-1);
-        if(posX+1<=8){checkAndAddMove(game,from,posX+1,posY-1);}
-        if(posX-1>=1){checkAndAddMove(game,from,posX-1,posY-1);}
+        checkAndAddMove(game, originPiece, posX, posY - 1);
+        if(posX+1<=8){checkAndAddMove(game, originPiece, posX + 1, posY - 1);}
+        if(posX-1>=1){checkAndAddMove(game, originPiece, posX - 1, posY - 1);}
     }
 
     //balra
     if(posX-1>=1){
-        checkAndAddMove(game,from,posX-1,posY);
+        checkAndAddMove(game, originPiece, posX - 1, posY);
         //a másik kettő már be van szedve a felfele és lefele részekből
     }
 }
 
-void orthogonal(Piece* from, Game* game){
-    upwards(from,game);
-    downwards(from,game);
-    rightwards(from,game);
-    leftwards(from,game);
+void Piece::orthogonal(Piece* originPiece, Game* game){
+    upwards(originPiece, game);
+    downwards(originPiece, game);
+    rightwards(originPiece, game);
+    leftwards(originPiece, game);
 }
 
-void diagonal(Piece* from, Game* game){
-    diagonalDownLeft(from,game);
-    diagonalDownRight(from,game);
-    diagonalUpLeft(from,game);
-    diagonalUpRight(from,game);
+void Piece::diagonal(Piece* originPiece, Game* game){
+    diagonalDownLeft(originPiece, game);
+    diagonalDownRight(originPiece, game);
+    diagonalUpLeft(originPiece, game);
+    diagonalUpRight(originPiece, game);
 }

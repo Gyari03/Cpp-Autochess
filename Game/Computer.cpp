@@ -6,7 +6,7 @@ Computer::Computer(){}
 void Computer::calculateMoves(Game* game){
     //Megállapítani hogy melyik csapat turnje van
     Team* current;
-    if(game->getTurn()){current=game->getTeam(0);}
+    if(game->isWhiteTurn()){ current=game->getTeam(0);}
     else{current = game->getTeam(1);}
 
     //Bábuk egyenkénti lépéseinek összeszámlálása
@@ -20,7 +20,7 @@ void Computer::calculateMoves(Game* game){
 
 Move* Computer::decideMove(Game *game) {
     Team* current;
-    if(game->getTurn()){current=game->getTeam(0);}
+    if(game->isWhiteTurn()){ current=game->getTeam(0);}
     else{current = game->getTeam(1);}
     Move* ret = current->getTeamMoves().Maximum();
     if(ret->getWeight()==0){ //A determinisztikusság megszüntetéséért felelős funkció

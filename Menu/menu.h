@@ -7,18 +7,18 @@
 
 class Menu{
 private:
-    unsigned int idCounter; //lehet hogy actually meretnek is lehet hasznalni
-    Button* buttons;
-    bool exit;
+    size_t idCounter; //    unsigned int idCounter;
+    Button* buttonArray;
+    bool exitRequested;
 public:
     Menu();
     ~Menu();
     void incrementCounter();
     void updateExit();
-    void newButton(const Button& extra);
+    void addButton(const Button& extra);
     Button* getButton(int idx)const;
     bool getExit()const;
-    unsigned int getIdCounter()const{return idCounter;}
+    size_t getIdCounter()const; //    unsigned int getIdCounter()const{return idCounter;}
 };
 
 #endif //NHF_REFORMED_MENU_H

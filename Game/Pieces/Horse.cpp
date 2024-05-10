@@ -4,5 +4,5 @@
 Horse::Horse(int x,int y):Piece('H',x,y){}
 
 void Horse::calculateMoves(Game* game) {
-    horsemove(this,game);
+    horseMove(this, game);
 }

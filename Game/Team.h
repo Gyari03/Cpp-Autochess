@@ -26,6 +26,4 @@ public:
     Move* getRandomMove();
     int countAmountOfKigns();
 };
-
-
 #endif //NHF_REFORMED_TEAM_H

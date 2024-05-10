@@ -24,7 +24,7 @@ List<Army> Filemanagement::ListofArmies(const char* filename){
                 file >> piece_name;
                 file >> piece_x;
                 file >> piece_y;
-                newArmy->addPiece(*createPiece(piece_name, piece_x, piece_y));
+                newArmy->addPiece(*Piece::createPiece(piece_name, piece_x, piece_y));
             }
             armies.addtoList(newArmy);
         }
@@ -63,9 +63,9 @@ void Filemanagement::writeArmy(std::ofstream& file,Army* army){
     file<<army->getnameofArmy()<<std::endl;
     file<<army->getsizeofArmy()<<std::endl;
     for (int i = 0; i < army->getsizeofArmy(); ++i) {
-        file<<army->getPiece(i)->getname()<<std::endl;
-        file<<army->getPiece(i)->getcoordX()<<std::endl;
-        file<<army->getPiece(i)->getcoordY();
+        file << army->getPiece(i)->getName() << std::endl;
+        file << army->getPiece(i)->getCoordX() << std::endl;
+        file<< army->getPiece(i)->getCoordY();
         file<<std::endl;
     }
 }
@@ -124,7 +124,7 @@ void Filemanagement::AppendArmy(Army* army,const char *filename){
     overwriteline(filename,countofArmies,1);
 
 
-    //append to the end of the file
+    //append destinationPieceName the end of the file
     std::ofstream file(filename,std::ios_base::app);
     if (!file) {
         return;

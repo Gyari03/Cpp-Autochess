@@ -16,15 +16,14 @@
 
 void ButtonFunctions::MainMenu() {
     Menu main;
-    main.newButton(Button("Play", main.getIdCounter(), &Play));
-    main.newButton(Button("Exit", main.getIdCounter(), &Exit));
+    main.addButton(Button("Play \n0)Exit", main.getIdCounter(), &Play));
     uiMenu::Run(&main);
 }
 
 void ButtonFunctions::Play() {
     Menu play;
-    play.newButton(Button("New game",play.getIdCounter(),&NewGame));
-    play.newButton(Button("Army editor",play.getIdCounter(),&ArmyMenu));
+    play.addButton(Button("New game", play.getIdCounter(), &NewGame));
+    play.addButton(Button("Army editor", play.getIdCounter(), &ArmyMenu));
     uiMenu::Run(&play);
 }
 
@@ -36,19 +35,19 @@ void ButtonFunctions::NewGame(){
     Army reg1;
     Army reg2;
     Menu newgame;
-    newgame.newButton(Button("Team1",newgame.getIdCounter(),&ChooseArmy,&reg1));
-    newgame.newButton(Button("Team2",newgame.getIdCounter(),&ChooseArmy,&reg2));
-    newgame.newButton(Button("Play game", newgame.getIdCounter(), &PlayMatch, &reg1, &reg2));
+    newgame.addButton(Button("Team1", newgame.getIdCounter(), &ChooseArmy, &reg1));
+    newgame.addButton(Button("Team2", newgame.getIdCounter(), &ChooseArmy, &reg2));
+    newgame.addButton(Button("Play game", newgame.getIdCounter(), &PlayMatch, &reg1, &reg2));
     uiMenu::Run(&newgame);
 }
 
 void ButtonFunctions::ArmyMenu(){
     Menu army;
-    army.newButton(Button("Create new army",army.getIdCounter(),&CreateArmy));
+    army.addButton(Button("Create new army", army.getIdCounter(), &CreateArmy));
     List<Army> armies = Filemanagement::ListofArmies("armies.txt");
     for(int i = 0;i<armies.getSize();i++){
         Army* currentArmy = armies[i];
-       army.newButton(Button(currentArmy->getnameofArmy(),army.getIdCounter(),&EditArmy,currentArmy));
+        army.addButton(Button(currentArmy->getnameofArmy(), army.getIdCounter(), &EditArmy, currentArmy));
 
     }
     uiMenu::refreshingRun(&army);
@@ -71,7 +70,7 @@ void ButtonFunctions::ChooseArmy(Army* reg){
     List<Army> armies = Filemanagement::ListofArmies("armies.txt");
     for(int i=0;i<armies.getSize();i++){
         Army* currentArmy = armies[i];
-        choice.newButton(Button(currentArmy->getnameofArmy(),choice.getIdCounter(),&Army::copyArmy,currentArmy,reg));
+        choice.addButton(Button(currentArmy->getnameofArmy(), choice.getIdCounter(), &Army::copyArmy, currentArmy, reg));
     }
     uiMenu::Run(&choice);
 }

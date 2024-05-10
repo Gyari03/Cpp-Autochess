@@ -36,11 +36,11 @@ void uiGame::renderTable() {
                 std::cout<<std::endl;
             }
             else if(i%4==2){
-                for(int j=0;j<8;j++){ //x+1 és 8-y a konvertálandóak
-                    if(game->searchfor(j+1,8-y)!=nullptr){
-                        std::cout<<"    "<<game->searchfor(j+1,8-y)->getname()<<"    #";
+                for(int j=0;j<8;j++){ //destinationX+1 és 8-destinationY a konvertálandóak
+                    if(game->searchFor(j + 1, 8 - y) != nullptr){
+                        std::cout << "    " << game->searchFor(j + 1, 8 - y)->getName() << "    #";
                     }
-                    else if(game->searchfor(j+1,8-y)==nullptr){
+                    else if(game->searchFor(j + 1, 8 - y) == nullptr){
                         std::cout<<"         #";
                     }
 
@@ -62,13 +62,13 @@ void uiGame::renderTable() {
 }
 
 
-void uiGame::show() {
-    clear();
+void uiGame::display() {
+    clearScreen();
     renderTable();
 }
 
 //nincs
-bool uiGame::input() {
+bool uiGame::handleInput() {
     //Majd a computer adja be az inputot, a felhasználó nem szól bele
    // game->checkIfOver();
 
@@ -78,9 +78,13 @@ bool uiGame::input() {
 
 void uiGame::idle() {
     while(!game->getEnd()){ //while(game_end!=true){...}
-        show();
-        input();
-        delayMilliseconds(100); //delayMilliseconds(2000);
+        display();
+        handleInput();
+        #ifndef CPORTA
+            delayMilliseconds(1000);
+        #else
+            delayMilliseconds(10);
+        #endif
     }
     endScreen();
 }
@@ -91,17 +95,8 @@ void uiGame::Run(Game* gameptr){
     game.idle();
 }
 
-
-void uiGame::delayMilliseconds(unsigned int ms) {
-#ifdef _WIN32
-    Sleep(ms);
-#else
-    usleep(ms * 1000);
-#endif
-}
-
 void uiGame::endScreen() {
-    clear();
+    clearScreen();
     GameResult end = game->getResult();
     if(end == DRAW) {
         std::cout<<"Stalemate! The game ends in a draw.";
@@ -112,5 +107,9 @@ void uiGame::endScreen() {
     else{
         std::cout<<"Team 2 Wins!";
     }
-    delayMilliseconds(100); // delayMilliseconds(8000);
+    #ifndef CPORTA
+        delayMilliseconds(8000);
+    #else
+        delayMilliseconds(100);
+    #endif
 }

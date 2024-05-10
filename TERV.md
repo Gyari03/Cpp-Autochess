@@ -68,12 +68,12 @@ Minden Run() függvény az alábbi elven működik:
 ```cpp
 void uiMenu::idle(){
     while(!(menu->getExit())){
-        show();     //Megjelenítés
-        input();    //Bemenet várása
+        display();     //Megjelenítés
+        handleInput();    //Bemenet várása
     }               //Ismétlés
 }
 ```
-Az input()-ból következhet az is, hogy belelép egy újabb függvénybe, hiszen ez a modell arra épül, hogy:
+Az handleInput()-ból következhet az is, hogy belelép egy újabb függvénybe, hiszen ez a modell arra épül, hogy:
 1. Küld egy üzenetet a program a felhasználónak `Megjelenítés`
 2. A felhasználó válaszol a gépnek `Bemenet`
 3. Reagál a gép rá `Megjelenítés újból`
@@ -98,20 +98,20 @@ Egy menü tartalmaz egy dinamikusan foglalt `Button` tömböt.
   - idCounter
     : Számon tartja a tömb méretét, kioszt egy sorszámot minden bejövő új gombnak a menüben.
 
-  - buttons
+  - buttonArray
     : A gombok tömbje.
   
-  - exit
+  - exitRequested
     : Ez egy bool érték.Ha a program utasítást kapott arra, hogy kilépjen a jelenlegi menüből, akkor igazzá tevődik, egyébként addig hamis.
   
   - incrementCounter()
   : Megnöveli 1-el az idCountert.
   
   - updateExit()
-  : Igazzá teszi az exit boolt.
+  : Igazzá teszi az exitRequested boolt.
 
-  - newButton(Button&)
-  : Paraméterként kap egy `Button&` referenciát(Ami nincsen dinamikusan foglalva), viszont majd amikor átmásolja magába az értéket, akkor belerakja a dinamikusan foglalt buttons tömbbe.
+  - addButton(Button&)
+  : Paraméterként kap egy `Button&` referenciát(Ami nincsen dinamikusan foglalva), viszont majd amikor átmásolja magába az értéket, akkor belerakja a dinamikusan foglalt buttonArray tömbbe.
 
 - Button.h
   : Ezekből van felépítve egy menü. Van benne egy függvénypointer ami akkor fut le, ha a gomb ki van választva a menüben.
@@ -126,7 +126,7 @@ Egy menü tartalmaz egy dinamikusan foglalt `Button` tömböt.
   - buttonFunction
   : Ez egy funktor osztály, ez tartalmazza a függvény pointert.
 
-- ButtonFunction.h
+- ButtonFunctionHandler.h
   : Egy funktor, ami két típusú függvény pointert tartalmazhat:
 
     - void fun(*)()
@@ -151,13 +151,13 @@ Egy menü tartalmaz egy dinamikusan foglalt `Button` tömböt.
     - army
   : Annak a seregnek a pointere amit szerkeszt. Ha új sereget hozunk létre, akkor a paraméter nélküli konstruktor új sereget hoz létre és nem meglévőt von be.
 
-    - exit
+    - exitRequested
   : Ez egy bool érték, ami akkor lesz igaz, ha a felhasználó ki akar lépni.
 
   - toDelete
   : Ennek a boolnak akkor lesz igaz az értéke, ha a felhasználó a `uiEditor`-on keresztül kiadta a sereg törlésére a parancsot.
 
-  - searchfor(int x, int y)
+  - searchFor(int destinationX, int destinationY)
   : Egy függvény ami egy `Piece*`-el tér vissza ha az alábbi koordinátákon talál bábut a seregben.
 
   - saveArmy()
@@ -182,8 +182,8 @@ Egy menü tartalmaz egy dinamikusan foglalt `Button` tömböt.
 2. sorban: A legelső sereg neve  (ez jelöli, hogy a következő tartomény hozzá tartozik)
 3. sorban: Az első sereg bábuinak a darabszáma
 4. sorban: Az első sereg első bábujának betűjele(bábuknak 1 db charból álló azonosítója van)
-5. sorban: Az első sereg első bábujának x koordinátája a táblán
-6. sorban: Az első sereg első bábujának y koordinátája a táblán
+5. sorban: Az első sereg első bábujának destinationX koordinátája a táblán
+6. sorban: Az első sereg első bábujának destinationY koordinátája a táblán
 7. sorban: Az első sereg második bábujának betűjele
 ...És így tovább
 
@@ -230,7 +230,7 @@ Van egy abszrakt `ui` osztályunk amiből származik 3 osztály is, amik mind k�
 
 A céljuk az, hogy a Felhasználó és program közötti oda-vissza kommunkációt fenntartsa.
 
-Mivel ezek erősen egybefüggnek a Run() működésével, ezért már részletesen kitértem az idle(),show(),input() függvények működésére. Ehelyett inkább kitérek a táblával foglalkozó függvényre és az érvényes inputokra az `ui` classokon belül.
+Mivel ezek erősen egybefüggnek a Run() működésével, ezért már részletesen kitértem az idle(),display(),handleInput() függvények működésére. Ehelyett inkább kitérek a táblával foglalkozó függvényre és az érvényes inputokra az `ui` classokon belül.
 
 Fontos kiemelni, hogy **minden** ui osztályban a bemeneteknél a `0` az azt jelenti, hogy kilép a jelenlegi folyamatból eggyel kijjebb.
 
@@ -240,16 +240,16 @@ Fontos kiemelni, hogy **minden** ui osztályban a bemeneteknél a `0` az azt jel
   : Ez a függvény felelős azért, hogy megjelenítéséért az `Editor`-ből származó sereget a táblán.
   ![tablaszerk.png](tablaszerk.png)
   
-  - show()
+  - display()
 : Ez a függvény a válasz a felhasználó bememetére.
    
   ```cpp
-    void uiEditor::show(){ 
-    clear();            //Minden táblarajzolás előtt letörli a konzolt.
+    void uiEditor::display(){ 
+    clearScreen();            //Minden táblarajzolás előtt letörli a konzolt.
     renderTable();      //Előbbi függvény
     }
     ```
-  - clear()
+  - clearScreen()
 : Letörli a konzolt mielőtt újra felrajzolna. Meg van oldva, hogy mind linux-ra és mind windows rendszerekre egyaránt működjön.
   
   - idle()
@@ -258,26 +258,26 @@ Fontos kiemelni, hogy **minden** ui osztályban a bemeneteknél a `0` az azt jel
   ```cpp
     void uiEditor::idle(){
         while(!(editor->getExit())){
-        show();
-        input();
+        display();
+        handleInput();
         }
     }
 
   ```
   
-  - input()
+  - handleInput()
 : Ez a függvény kapja meg a bemeneteket és küldi el a programnak.
 
 
 | Bemenet |                     Válasz                     |
 |:-------:|:----------------------------------------------:|
-|  K`XY`  |  King bábu létrehozása      (x,y) koordinátán  |
-|  Q`XY`  |  Queen bábu létrehozsa     (x,y) koordinátán   |
-|  R`XY`  |    Rook bábu létrehozása  (x,y) koordinátán    |
-|  H`XY`  | Horse bábu létrehozása      (x,y) koordinátán  |
-|  B`XY`  | Bishop bábu létrehozása      (x,y) koordinátán |
-|  P`XY`  | Pawn bábu létrehozása       (x,y) koordinátán  |
-|  D`XY`  |    Bábu törlése           (x,y) koordinátán    |
+|  K`XY`  |  King bábu létrehozása      (destinationX,destinationY) koordinátán  |
+|  Q`XY`  |  Queen bábu létrehozsa     (destinationX,destinationY) koordinátán   |
+|  R`XY`  |    Rook bábu létrehozása  (destinationX,destinationY) koordinátán    |
+|  H`XY`  | Horse bábu létrehozása      (destinationX,destinationY) koordinátán  |
+|  B`XY`  | Bishop bábu létrehozása      (destinationX,destinationY) koordinátán |
+|  P`XY`  | Pawn bábu létrehozása       (destinationX,destinationY) koordinátán  |
+|  D`XY`  |    Bábu törlése           (destinationX,destinationY) koordinátán    |
 | delete  |                 Sereg törlése                  |
 |    0    |            Kilépés a szerkesztőből             |
 
@@ -305,11 +305,11 @@ A listához lehet hozzáadni új tagot, törölni, illetve indexelni is.
 * Piece.h
 : Absztrakt bábu class. Magában értelmetlen, de ez egy seregben heterogén kollekció formájában fellelhető lesz, mert 6 másik class is származik a Piece classból.
   
-  * x
-: Bábu x koordinátája.
+  * destinationX
+: Bábu destinationX koordinátája.
 
-  * y
-: Bábu y koordinátája.
+  * destinationY
+: Bábu destinationY koordinátája.
 
   * name
 : Egyetlen char, ami a bábu betűjele.
@@ -358,14 +358,14 @@ A listához lehet hozzáadni új tagot, törölni, illetve indexelni is.
 * Move
 : Egy bábu ebben a típusban tárolja a lépéseit.
 
-  * from
+  * originPiece
 : Egy `Piece*` ami azt tárolja, hogy kitől léphető meg az adott lépés.
 
-  * x
-: Az x koordináta ahova léphet.
+  * destinationX
+: Az destinationX koordináta ahova léphet.
 
-  * y
-: Az y koordináta ahova léphet
+  * destinationY
+: Az destinationY koordináta ahova léphet
 
   * calcWeight()
 : A függvény ami kiszámolja a lépés súlyát, attól függően, hogy milyen bábu áll azon a mezőn ahova léphet. Királytól lefele csökkenőben a súly értéke.

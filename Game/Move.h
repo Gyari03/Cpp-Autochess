@@ -5,23 +5,19 @@ class Piece;
 
 class Move {
 private:
-    Piece* from;
-    int x, y; //to
-    char to;
+    Piece* originPiece;
+    int destinationX, destinationY;
+    char destinationPieceName;
     int weight;
 
 public:
-    Move(Piece* from,int x,int y,char to=0);
+    Move(Piece* originPiece, int coordX, int coordY, char destinationPieceName=0);
     ~Move();
-    void calculateweight();
-    bool operator>(const Move& other) const;
+    void calculateWeight();
+    bool operator>(const Move& otherMove) const;
     Piece* getPiece()const;
-    int getX()const;
-    int getY()const;
+    int getCoordX()const;
+    int getCoordY()const;
     int getWeight()const;
-    // bool operator<(const Move& other) const;
-   // bool operator==(const Move& other) const;
 };
-
-
 #endif //NHF_REFORMED_MOVE_H

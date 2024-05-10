@@ -7,14 +7,14 @@ uiMenu::~uiMenu(){
     //delete menu;
 }
 
-void uiMenu::show(){
-    this->clear();
+void uiMenu::display(){
+    this->clearScreen();
     for(size_t i=0;i<menu->getIdCounter();i++){
         std::cout<<menu->getButton(i)->getId()<<")"<<menu->getButton(i)->getName()<<std::endl;
     }
 }
 
-bool uiMenu::input(){ //returnérték: bool->true:lejátszott függvényt false:hibás bemenet, nem játszott le függvényt:amit csak a refreshingidle-ben használunk fel
+bool uiMenu::handleInput(){ //returnérték: bool->true:lejátszott függvényt false:hibás bemenet, nem játszott le függvényt:amit csak a refreshingidle-ben használunk fel
     size_t choice;
     std::cin>>choice;
     if(choice==0){
@@ -25,22 +25,22 @@ bool uiMenu::input(){ //returnérték: bool->true:lejátszott függvényt false:
     else if(choice>menu->getIdCounter() || choice<0){
         return false;
     }
-    ButtonFunction function = menu->getButton(choice-1)->getFunction();
+    ButtonFunctionHandler function = menu->getButton(choice - 1)->getFunction();
     function.execute();
     return true;
 }
 
 void uiMenu::idle(){
     while(!(menu->getExit())){
-        show();
-        input();
+        display();
+        handleInput();
     }
 }
 
 void uiMenu::refreshingidle() {
     while(!(menu->getExit())){
-        show();
-        if(input()){menu->updateExit();} //input mellékhatása egy bool
+        display();
+        if(handleInput()){menu->updateExit();} //handleInput mellékhatása egy bool
     }
 }
 
