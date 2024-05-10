@@ -39,10 +39,10 @@ void uiEditor::renderTable(){
             }
             else if(i%4==2){
                 for(int j=0;j<8;j++){ //destinationX+1 és 8-destinationY a konvertálandóak
-                    if(editor->searchfor(j+1,8-y)!=nullptr){
-                        std::cout << "    " << editor->searchfor(j + 1, 8 - y)->getName() << "    #";
+                    if(editor->searchFor(j+1,8-y)!=nullptr){
+                        std::cout << "    " << editor->searchFor(j + 1, 8 - y)->getName() << "    #";
                     }
-                    else if(editor->searchfor(j+1,8-y)==nullptr){
+                    else if(editor->searchFor(j+1,8-y)==nullptr){
                         std::cout<<"         #";
                     }
 
