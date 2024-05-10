@@ -80,7 +80,11 @@ void uiGame::idle() {
     while(!game->getEnd()){ //while(game_end!=true){...}
         show();
         input();
-        delayMilliseconds(100); //delayMilliseconds(2000);
+        #ifndef CPORTA
+            delayMilliseconds(1000);
+        #else
+            delayMilliseconds(10);
+        #endif
     }
     endScreen();
 }
@@ -112,5 +116,9 @@ void uiGame::endScreen() {
     else{
         std::cout<<"Team 2 Wins!";
     }
-    delayMilliseconds(100); // delayMilliseconds(8000);
+    #ifndef CPORTA
+        delayMilliseconds(8000);
+    #else
+        delayMilliseconds(100);
+    #endif
 }

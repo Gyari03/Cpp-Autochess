@@ -15,7 +15,6 @@ public:
     Button(const char* name,int id,void (*function)());
     Button(const char* name,unsigned int id,void (*functionArmy)(Army*),Army* armyPtr);
     Button(const char* name,unsigned int id,void (*functionArmy)(Army* first,Army* second),Army* armyPtr1,Army* armyPtr2);
-  //  Button(const char* name,unsigned int id,ButtonFunction& function);
     ~Button();
     Button(const Button& other);
     Button& operator=(const Button& other);
@@ -23,7 +22,6 @@ public:
     unsigned int getId()const;
     const char* getName()const;
     ButtonFunction getFunction()const;
-
 };
 
 #endif //NHF_REFORMED_BUTTON_H

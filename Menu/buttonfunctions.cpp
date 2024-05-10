@@ -16,8 +16,7 @@
 
 void ButtonFunctions::MainMenu() {
     Menu main;
-    main.newButton(Button("Play", main.getIdCounter(), &Play));
-    main.newButton(Button("Exit", main.getIdCounter(), &Exit));
+    main.newButton(Button("Play \n0)Exit", main.getIdCounter(), &Play));
     uiMenu::Run(&main);
 }
 
