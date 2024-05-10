@@ -99,14 +99,14 @@ void Game::makeMove() {
     else{enemy = team[0];ally = team[1];}
 
     //X és Y coordináták
-    int coord_X = move->getX();
-    int coord_Y = move->getY();
+    int coord_X = move->getCoordX();
+    int coord_Y = move->getCoordY();
 
     if(this->occupied(coord_X,coord_Y)){
         enemy->getArmy()->deletePiece(coord_X,coord_Y);
     }
-    from->setcoordX(coord_X);
-    from->setcoordY(coord_Y);
+    from->setCoordX(coord_X);
+    from->setCoordY(coord_Y);
 
     //Csapat lépések kiűrítése
     ally->getTeamMoves().clear();

@@ -4,5 +4,5 @@
 
 Pawn::Pawn(int x,int y):Piece('P',x,y){}
 void Pawn::calculateMoves(Game* game){
-    pawnmove(this,game);
+    pawnMove(this, game);
 }

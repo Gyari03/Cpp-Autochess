@@ -38,7 +38,7 @@ void uiGame::renderTable() {
             else if(i%4==2){
                 for(int j=0;j<8;j++){ //x+1 és 8-y a konvertálandóak
                     if(game->searchfor(j+1,8-y)!=nullptr){
-                        std::cout<<"    "<<game->searchfor(j+1,8-y)->getname()<<"    #";
+                        std::cout << "    " << game->searchfor(j + 1, 8 - y)->getName() << "    #";
                     }
                     else if(game->searchfor(j+1,8-y)==nullptr){
                         std::cout<<"         #";

@@ -40,7 +40,7 @@ void uiEditor::renderTable(){
             else if(i%4==2){
                 for(int j=0;j<8;j++){ //x+1 és 8-y a konvertálandóak
                     if(editor->searchfor(j+1,8-y)!=nullptr){
-                        std::cout<<"    "<<editor->searchfor(j+1,8-y)->getname()<<"    #";
+                        std::cout << "    " << editor->searchfor(j + 1, 8 - y)->getName() << "    #";
                     }
                     else if(editor->searchfor(j+1,8-y)==nullptr){
                         std::cout<<"         #";
@@ -89,7 +89,7 @@ bool uiEditor::input(){
         this->editor->getArmy()->deletePiece(x,y);
         return true;
     }
-    this->editor->getArmy()->addPiece(*createPiece(name,x,y));
+    this->editor->getArmy()->addPiece(*Piece::createPiece(name,x,y));
     return true;
 }
 
