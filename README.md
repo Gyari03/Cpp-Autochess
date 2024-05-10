@@ -43,7 +43,7 @@ Itt tudja majd a felhasználó létrehozni új seregeket vagy szerkeszteni/tör�
 ## Sereg készítése/szerkesztése
 Ha a felhasználó sereget szeretne készíteni, az army editoron belül tudja.
 A szerkesztőn belül egy 8x4-es tábla fogadja a felhasználót ahol a megfelelő koordináták és egy adott betűnek a leírásával létre tud hozni egy bábut a seregen belül az alábbi formátumban:
-**K54**, ahol 'K' az angol King szóból a királyt jelenti, az '5' x koordináta, '4' pedig y koordináta.
+**K54**, ahol 'K' az angol King szóból a királyt jelenti, az '5' destinationX koordináta, '4' pedig destinationY koordináta.
 ### Bábuk jelölése:
 * King: **K**
 * Queen: **Q**

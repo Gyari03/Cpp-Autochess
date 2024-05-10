@@ -6,20 +6,20 @@
 
 class Button{
 private:
-    unsigned int id; //majd a menu szamlalo jelenlegi erteket kapja meg
+    size_t id; //majd a menu szamlalo jelenlegi erteket kapja meg
     char* name; //parameterkent kapott nev
     ButtonFunction buttonFunction;
 
 public:
     Button();
-    Button(const char* name,int id,void (*function)());
-    Button(const char* name,unsigned int id,void (*functionArmy)(Army*),Army* armyPtr);
-    Button(const char* name,unsigned int id,void (*functionArmy)(Army* first,Army* second),Army* armyPtr1,Army* armyPtr2);
+    Button(const char* name,size_t id,void (*function)());
+    Button(const char* name,size_t id,void (*functionArmy)(Army*),Army* armyPtr);
+    Button(const char* name,size_t id,void (*functionArmy)(Army* first,Army* second),Army* armyPtr1,Army* armyPtr2);
     ~Button();
     Button(const Button& other);
     Button& operator=(const Button& other);
-    void setId(unsigned int id);
-    unsigned int getId()const;
+    void setId(size_t id);
+    size_t getId()const;
     const char* getName()const;
     ButtonFunction getFunction()const;
 };

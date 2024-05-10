@@ -124,7 +124,7 @@ void Filemanagement::AppendArmy(Army* army,const char *filename){
     overwriteline(filename,countofArmies,1);
 
 
-    //append to the end of the file
+    //append destinationPieceName the end of the file
     std::ofstream file(filename,std::ios_base::app);
     if (!file) {
         return;

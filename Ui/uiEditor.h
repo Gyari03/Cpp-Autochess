@@ -11,8 +11,8 @@ private:
 public:
     uiEditor(Editor* editor);
     ~uiEditor();
-    void show() override;
-    bool input() override;
+    void display() override;
+    bool handleInput() override;
     void renderTable();
     void idle()override;
     void saveSequence();

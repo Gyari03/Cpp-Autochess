@@ -3,14 +3,14 @@
 #include "../Memtrace/memtrace.h"
 
 
-Move::Move(Piece *originPiece, int coordX, int coordY, char destinationPieceName): from(originPiece), x(coordX), y(coordY), to(destinationPieceName){
+Move::Move(Piece *originPiece, int coordX, int coordY, char destinationPieceName): originPiece(originPiece), destinationX(coordX), destinationY(coordY), destinationPieceName(destinationPieceName){
     calculateWeight();
 }
 
 Move::~Move(){}
 
 void Move::calculateWeight() {
-    switch(this->to){
+    switch(this->destinationPieceName){
         case '0': weight=0;break;
         case 'p':
         case 'P': weight=1;break;
@@ -34,15 +34,15 @@ bool Move::operator>(const Move& otherMove) const{
 }
 
 Piece* Move::getPiece()const{
-    return from;
+    return originPiece;
 }
 
 int Move::getCoordX() const {
-    return x;
+    return destinationX;
 }
 
 int Move::getCoordY() const {
-    return y;
+    return destinationY;
 }
 
 int Move::getWeight() const {

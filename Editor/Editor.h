@@ -25,6 +25,4 @@ public:
     void editArmy(); //már létrehozott army mentése
     void deleteArmy(); //már létrehozott army törlése
 };
-
-
 #endif //NHF_REFORMED_EDITOR_H

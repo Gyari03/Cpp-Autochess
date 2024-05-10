@@ -75,7 +75,7 @@ bool Piece::checkAndAddMove(Game* game, Piece* originPiece, int posX, int posY) 
         originPiece->addMove('0', posX, posY);
     }
     else {
-        Piece* other = game->searchfor(posX, posY);
+        Piece* other = game->searchFor(posX, posY);
         TeamColor colorOfOther = game->getColorOfPiece(other);
         TeamColor colorOfPiece = game->getColorOfPiece(originPiece);
 
@@ -196,7 +196,7 @@ void Piece::pawnMove(Piece* originPiece, Game* game){
 
     //Balra ütés
     if(game->occupied(posX, posY)){
-        Piece* other = game->searchfor(posX,posY);
+        Piece* other = game->searchFor(posX, posY);
         TeamColor colorOfOther = game->getColorOfPiece(other);
         if(colorOfOther!=colorOfPiece){
             char nameOfOther= other->getName();
@@ -209,7 +209,7 @@ void Piece::pawnMove(Piece* originPiece, Game* game){
 
     //Jobbra ütés
     if(game->occupied(posX, posY)){
-        Piece* other = game->searchfor(posX,posY);
+        Piece* other = game->searchFor(posX, posY);
         TeamColor colorOfOther = game->getColorOfPiece(other);
         if(colorOfOther!=colorOfPiece){
             char nameOfOther= other->getName();

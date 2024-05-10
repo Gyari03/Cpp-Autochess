@@ -18,19 +18,13 @@ public:
     void setsizeofArmy(int size);
     void incrementsizeofArmy();
     void addPiece(Piece& newPiece);
-    void deletePiece(int x,int y);
-    Piece* getPiece(int x,int y);
+    void deletePiece(int coordX, int coordY);
+    Piece* getPiece(int coordX, int coordY);
     bool partOfArmy(Piece* piece);
     Army(const Army& army); //cpyconstructor
     Army& operator=(const Army& army);
-    Piece* getPiece(int idx){ //fontos, hogy az index ne legyen több mint a mennyiségük
-        return pieces[idx];
-    }
+    Piece* getPiece(size_t idx);
     static void copyArmy(Army* source, Army* destination);
     static void mirrorArmy(Army* army);
 };
-
-
-
-
 #endif //NHF_REFORMED_ARMY_H

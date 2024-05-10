@@ -1,14 +1,14 @@
 #include "Game.h"
 #include "../List/List.hpp"
 
-Game::Game():turn(true),endOfGame(false),result(DRAW){
+Game::Game(): WhiteTurn(true), endOfGame(false), result(DRAW){
     for(size_t i=0;i<2;i++){
         team[i]=nullptr;
     }
     computer = Computer();
 }
 
-Game::Game(Army* white,Army* black):turn(true),endOfGame(false),result(DRAW){
+Game::Game(Army* white,Army* black): WhiteTurn(true), endOfGame(false), result(DRAW){
     team[0] = new Team(white,White);
     team[1] = new Team(black,Black);
     computer  = Computer();
@@ -19,8 +19,8 @@ Game::~Game(){
     delete team[1];
 }
 
-bool Game::getTurn() const {
-    return turn;
+bool Game::isWhiteTurn() const {
+    return WhiteTurn;
 }
 
 bool Game::getEnd() const {
@@ -35,7 +35,7 @@ void Game::updateEnd() {
     endOfGame= !endOfGame;
 }
 
-Piece* Game::searchfor(int x, int y) {
+Piece* Game::searchFor(int x, int y) {
     if(team[0]->getArmy()->getPiece(x,y)!=nullptr){
         return  team[0]->getArmy()->getPiece(x,y);
     }
@@ -65,29 +65,7 @@ bool Game::occupied(int x,int y) {
     return false;
 }
 
-void Game::collectTeamMoves() {  //Basically meg lett oldva, useless lett mert már a calculateMovesban meg van oldva
-    //Csapat beállítása
-    Team* currentTeam;
-    if(turn){ currentTeam = team[0];}
-    else{ currentTeam = team[1];}
-
-    //Változók létrehozása
-    List<Move> TeamMoves = currentTeam->getTeamMoves();
-    List<Move> currentPieceMoves;
-
-    //Az összes bábu lépéseinek a beleolvasztása a csapatlistába
-    for(int i=0; i < currentTeam->getArmy()->getsizeofArmy(); i++){
-       currentPieceMoves = currentTeam->getArmy()->getPiece(i)->getMoves();
-        TeamMoves.consumeList(currentPieceMoves);
-    }
-}
-//------------
-//Computer: calculatemove,decide move
-//Game: makemove
-//------------- A computer gondolkodik, a game cselekszik
-
 void Game::makeMove() {
-//computer.calculateMoves(this); ezt nem itt kell megoldani //összesítsd majd egy nagyobb fv.-ben
     Move* move = computer.decideMove(this);
     Piece* from = move->getPiece();
     TeamColor fromColor = this->getColorOfPiece(from);
@@ -118,7 +96,7 @@ void Game::playRound() {
     checkIfOver(); //vége van-e, akkor skippeljünk ki
     if(!endOfGame){
         makeMove();
-        turn = !turn; //kör átadása
+        WhiteTurn = !WhiteTurn; //kör átadása
     }
     else{
         clearMovesBuffer();
@@ -128,7 +106,7 @@ void Game::playRound() {
 void Game::checkIfOver() { //rakd bele a playroundba a calculatemoves után
     //alapadatok
     Team* current;
-    if(turn){current = team[0];}
+    if(WhiteTurn){ current = team[0];}
     else{current=team[1];}
 
     //Ha a most jövő csapatnak 0 lépése maradt -> Döntetlen
@@ -152,7 +130,7 @@ void Game::checkIfOver() { //rakd bele a playroundba a calculatemoves után
 
 void Game::clearMovesBuffer() {
     Team* current;
-    if(turn){current = team[0];}
+    if(WhiteTurn){ current = team[0];}
     else{current=team[1];}
     current->getTeamMoves().clear();
 }

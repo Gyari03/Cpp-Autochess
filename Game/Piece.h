@@ -9,6 +9,7 @@ class Piece {
 private:
     int y,x;
     char name;
+
 protected:
     List<Move> piece_moves;
 

@@ -5,9 +5,9 @@ class Piece;
 
 class Move {
 private:
-    Piece* from;
-    int x, y;
-    char to;
+    Piece* originPiece;
+    int destinationX, destinationY;
+    char destinationPieceName;
     int weight;
 
 public:
