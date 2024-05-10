@@ -1,6 +1,5 @@
 #ifndef NHF_REFORMED_BUTTON_H
 #define NHF_REFORMED_BUTTON_H
-
 #include "../Game/Army.h"
 #include "ButtonFunction.h"
 
@@ -23,5 +22,4 @@ public:
     const char* getName()const;
     ButtonFunction getFunction()const;
 };
-
 #endif //NHF_REFORMED_BUTTON_H

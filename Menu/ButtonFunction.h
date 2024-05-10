@@ -19,6 +19,4 @@ public:
     ButtonFunction(void (*funcArmy)(Army*,Army*),Army* armyPtr1,Army* armyPtr2): fun(nullptr), funArmy(nullptr), funArmyFor2(funcArmy), regArmy1(armyPtr1), regArmy2(armyPtr2){}
     void execute();
 };
-
-
 #endif //NHF_REFORMED_BUTTONFUNCTION_H

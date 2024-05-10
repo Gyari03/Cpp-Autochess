@@ -3,7 +3,7 @@
 #include "Piece.h"
 #include <cstring>
 
-class Army { //alapfelállás ami be van adva a csapatnak, majd ezt dinamikusan átmásolja magának
+class Army {
 private:
     char nameofArmy[35];
     int sizeofArmy;
