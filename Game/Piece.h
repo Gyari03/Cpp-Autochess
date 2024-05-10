@@ -26,28 +26,19 @@ public:
     void toLowercase();
     void virtual calculateMoves(Game* game)=0;
     void addMove(char destinationPieceName, int coordX, int coordY);
-
     static Piece* createPiece(char name,int x,int y);
     static bool checkAndAddMove(Game* game, Piece* originPiece, int posX, int posY);
-
-//Észak,dél,kelet,nyugat
-    static void upwards(Piece* originPiece, Game* game);
+    static void upwards(Piece* originPiece, Game* game);//Észak,dél,kelet,nyugat
     static void downwards(Piece* originPiece, Game* game);
     static void rightwards(Piece* originPiece, Game* game);
     static void leftwards(Piece* originPiece, Game* game);
-
-//ÉK,ÉNY,DK,DNY
-    static void diagonalUpRight(Piece* originPiece, Game* game);
+    static void diagonalUpRight(Piece* originPiece, Game* game);//ÉK,ÉNY,DK,DNY
     static void diagonalUpLeft(Piece* originPiece, Game* game);
     static void diagonalDownRight(Piece* originPiece, Game* game);
     static void diagonalDownLeft(Piece* originPiece, Game* game);
-
-//Az előzők kombinálva
-    static void orthogonal(Piece* originPiece, Game* game);
+    static void orthogonal(Piece* originPiece, Game* game);//Az előzők kombinálva
     static void diagonal(Piece* originPiece, Game* game);
-
-//Különleges lépésmódok
-    static void pawnMove(Piece* originPiece, Game* game);
+    static void pawnMove(Piece* originPiece, Game* game);//Különleges lépésmódok
     static void horseMove(Piece* originPiece, Game* game);
     static void kingMove(Piece* originPiece, Game* game);
 };
