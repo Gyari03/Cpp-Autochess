@@ -1,8 +1,12 @@
 #include "Filemanagement.h"
-
 #include "../Memtrace/memtrace.h"
 
 List<Army> Filemanagement::ListofArmies(const char* filename){
+    if(ifFileNonExistentCreate(filename)){
+        char defaultCountofArmies = '0';
+        std::ofstream writeFile(filename);
+        writeFile<<defaultCountofArmies<<std::endl;
+    }
     int countofArmies;
     char nameofcurrentArmy[35];
     int sizeofcurrentArmy;
@@ -208,5 +212,20 @@ void Filemanagement::DeleteArmy(Army* army,const char* filename){
     std::ofstream writefile(filename);
     writeLines(writefile,lines1);
     writeLines(writefile,lines2);
+}
+
+bool Filemanagement::ifFileNonExistentCreate(const char* filename){
+    bool returnValue = false;
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::ofstream newFile(filename);
+        if (!newFile.is_open()) {
+            //throw std::runtime_error("Hiba a fajl letrehozasa kozben.");  Fajl throw
+        }
+        newFile.close();
+        returnValue = true;
+    }
+    file.close();
+    return returnValue;
 }
 

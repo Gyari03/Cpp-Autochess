@@ -16,6 +16,7 @@ public:
     static void DeleteArmy(Army* army,const char* filename);
 
 private:
+    static bool ifFileNonExistentCreate(const char* filename);
     static void readTillLine(std::ifstream& file, std::vector<std::string>& lines,const std::string& boundary="");
     static void skipLines(std::ifstream& file,int numberofLines);
     static void writeLines(std::ofstream& file,std::vector<std::string>& lines);
