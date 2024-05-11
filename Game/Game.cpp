@@ -45,9 +45,9 @@ Piece* Game::searchFor(int x, int y) {
     return nullptr;
 }
 
-Team* Game::getTeam(size_t a){
-    if(a>=2){return nullptr;}
-    return team[a];
+Team* Game::getTeam(size_t idx){
+    if(idx >= 2){return nullptr;}
+    return team[idx];
 }
 
 TeamColor Game::getColorOfPiece(Piece *piece) { //csak úgy hasdználjuk hogy fix benne legyen a játékban
@@ -103,7 +103,7 @@ void Game::playRound() {
     }
 }
 
-void Game::checkIfOver() { //rakd bele a playroundba a calculatemoves után
+void Game::checkIfOver() {
     //alapadatok
     Team* current;
     if(WhiteTurn){ current = team[0];}

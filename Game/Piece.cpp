@@ -70,7 +70,7 @@ Piece* Piece::createPiece(char name,int x,int y){
 
 //Move függvények
 
-bool Piece::checkAndAddMove(Game* game, Piece* originPiece, int posX, int posY) { //diagonális, felfele lefele, balra jobbra jó lesz ez a függvény
+bool Piece::checkAndAddMove(Game* game, Piece* originPiece, int posX, int posY) {
     if (!(game->occupied(posX, posY))) {
         originPiece->addMove('0', posX, posY);
     }

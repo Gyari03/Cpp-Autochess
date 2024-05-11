@@ -1,19 +1,24 @@
+/**
+ * @file List.hpp
+ * @brief A generikus listát tartalmazó .hpp
+ */
+
 #include "../Memtrace/memtrace.h"
 #ifndef NHF_REFORMED_LIST_HPP
 #define NHF_REFORMED_LIST_HPP
 
 template <class T>
 struct Node{
-    T *data;
-    Node<T>* previous;
-    Node<T>* next;
+    T *data;                /**< Adat pointere */
+    Node<T>* previous;      /**< Előző Node-ra mutató pointer */
+    Node<T>* next;          /**< Következő Node-ra mutató pointer */
 
-    Node(T* newData):data(newData),previous(nullptr), next(nullptr){}
-    ~Node(){delete data;}
-    T* getData(){
+    Node(T* newData):data(newData),previous(nullptr),next(nullptr){} /**< Konstruktor*/
+    ~Node(){delete data;}   /**< Destruktor, felszabadítja az adatot */
+    T* getData(){           /**< Adat lekérése */
         return data;
     }
-    T* release(){
+    T* release(){           /**< Adat felszabadítása és visszaadása */
         T* ptr = data;
         data = nullptr;
         return ptr;
@@ -23,12 +28,19 @@ struct Node{
 template <class T>
 class List {
 private:
-    Node<T>* head;
-    Node<T>* tail;
-    size_t size;
+    Node<T>* head;      /**< lista eleje pointer */
+    Node<T>* tail;      /**< lista vége pointer */
+    size_t size;        /**< lista mérete */
 public:
+
+    /**
+     * Konstruktor: inicializálja az alapadatokat.
+     */
     List() : head(nullptr), tail(nullptr), size(0) {}
 
+    /**
+     * Destruktor: felszabadítja a lista elemeit.
+     */
     ~List(){
         for(Node<T>* i=head;i!=nullptr;i=i->next){
             if(i->previous!=nullptr){delete i->previous;}
@@ -36,6 +48,9 @@ public:
         }
     }
 
+    /**
+     * Új elem hozzáadása a listához.
+     */
     void addtoList(T* newData){
         Node<T>* newNode= new Node<T>(newData);
         if(this->head==nullptr){
@@ -50,9 +65,11 @@ public:
         size++;
     }
 
-    void deletefromList(T* todelete){//considering it exists in the list
+    /**
+     * Elem törlése a listából.
+     */
+    void deletefromList(T* todelete){
         if(this->head==nullptr){return;}
-        //Új tag hozzáadásánál, ha már létezik ott tag akkor kitöröljük onnan az előzőt
         for(Node<T>* i=head;i!=nullptr;i=i->next){
             if(i->data==todelete){
                 if(size==1){
@@ -79,6 +96,9 @@ public:
         }
     }
 
+    /**
+     * Másoló konstruktor: létrehoz egy új listát a paraméterként kapott listából.
+     */
     List(const List& list){
         if(list.head==nullptr){
             this->head=nullptr;
@@ -92,6 +112,9 @@ public:
         }
     }
 
+    /**
+     * Értékadó operátor: másolja a paraméterként kapott lista elemeit az aktuális listába.
+     */
     List& operator=(const List& list){
         if(this != &list) {
             if (this->head != nullptr) {
@@ -113,10 +136,16 @@ public:
         return *this;
     }
 
+    /**
+     * Lista méretének lekérése.
+     */
     int getSize()const{
         return size;
     }
 
+    /**
+     * Indexelő operátor: visszaadja az adott indexű elemet.
+     */
     T* operator[](size_t index)const{
         if(index>=size){
             return nullptr;
@@ -128,6 +157,9 @@ public:
         return temp->getData();
     }
 
+    /**
+     * Lista elemeinek felszabadítása.
+     */
     void clear(){
         if(head==nullptr){return;}
         while(head!=nullptr){
@@ -139,7 +171,10 @@ public:
         size = 0;
     }
 
-    void consumeList(List& consumed){ //List this(consumer) consumes the List consumed
+    /**
+     * A lista elemeinek átvétele egy másik listából.(Elfogyasztja a másikat)
+     */
+    void consumeList(List& consumed){ 
         if(consumed.head==nullptr){return;}
         for(Node<T>* i=consumed.head;i!=nullptr;i=i->next){
             this->addtoList(i->release());
@@ -147,6 +182,9 @@ public:
         consumed.clear();
     }
 
+    /**
+     * Lista maximumának keresése.
+     */
     T* Maximum(){
         T* maximum = nullptr;
         if(this->size==0){return maximum;}

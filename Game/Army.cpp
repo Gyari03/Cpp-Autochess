@@ -32,7 +32,6 @@ void Army::incrementsizeofArmy() {
 }
 
 
-//Ezt ui-n belül függvénybe foglalni: 1)Megnézni létezik ilyen, ha igen:kitörölni 2)beilleszteni helyére
 void Army::addPiece(Piece& newPiece) {
 
     //hibakezelés túl nagy index esetén:
@@ -112,7 +111,6 @@ void Army::copyArmy(Army* source, Army* destination) {
         currentPiece = Piece::createPiece(currentName, currentX, currentY);
         destination->addPiece(*currentPiece);
     }
-   // delete source;
 }
 
 void Army::mirrorArmy(Army* army) {
@@ -121,7 +119,6 @@ void Army::mirrorArmy(Army* army) {
         //destinationX koordinátákat hagyjuk nem kell azt mozgatni
         currentY = army->getPiece(i)->getCoordY();
         army->getPiece(i)->setCoordY(9 - currentY);
-        //army->getPiece(i)->setCoordY(7-currentY);
         army->getPiece(i)->toLowercase();
     }
 }

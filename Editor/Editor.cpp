@@ -21,8 +21,8 @@ Army* Editor::getArmy()const {
     return army;
 }
 
-Piece* Editor::searchfor(int x,int y){
-    return army->getPiece(x,y);
+Piece* Editor::searchFor(int coordX, int coordY){
+    return army->getPiece(coordX, coordY);
 }
 
 void Editor::updateExit() {

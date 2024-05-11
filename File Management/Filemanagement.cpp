@@ -1,8 +1,12 @@
 #include "Filemanagement.h"
-
 #include "../Memtrace/memtrace.h"
 
 List<Army> Filemanagement::ListofArmies(const char* filename){
+    if(ifFileNonExistentCreate(filename)){
+        char defaultCountofArmies = '0';
+        std::ofstream writeFile(filename);
+        writeFile<<defaultCountofArmies<<std::endl;
+    }
     int countofArmies;
     char nameofcurrentArmy[35];
     int sizeofcurrentArmy;
@@ -59,7 +63,6 @@ void Filemanagement::writeLines(std::ofstream& file,std::vector<std::string>& li
 }
 
 void Filemanagement::writeArmy(std::ofstream& file,Army* army){
-    //   file<<std::endl;
     file<<army->getnameofArmy()<<std::endl;
     file<<army->getsizeofArmy()<<std::endl;
     for (int i = 0; i < army->getsizeofArmy(); ++i) {
@@ -133,19 +136,6 @@ void Filemanagement::AppendArmy(Army* army,const char *filename){
     writeArmy(file,army);
 }
 
-
-//ALGORITMUS LEÍRÁSA
-//Beolvassuk a sorokat
-//Név alapján kikeressük az armyt-t akikt editelünk
-//Kiolvassuk utána, hogy hány bábu van
-//Ebből tudjuk, hogy hány sort kell majd ignorálni
-//a beolvasás második részét egy 2. stringvectorba tároljuk
-//bezárjuk a beolvasást
-//írásra megnyitjuk:
-//Beleírjuk az első stringvector tartalmát, ami az editelendő armi előtt megáll
-//Army* army alapján beleírjuk a fileba
-//beleírjuk a második stringvectort a fileba
-//KÉSZ
 void Filemanagement::EditArmy(Army* army,const char* filename){
     std::ifstream readfile(filename);
     if(!readfile){return;}
@@ -170,16 +160,6 @@ void Filemanagement::EditArmy(Army* army,const char* filename){
     writeLines(writefile,lines2); //lines2 beírása
 
 }
-
-
-//ALGORITMUS LEÍRÁSA
-//overwriteline az elsőt: 1-el csökkentjük
-//Megint lesz lines1 és lines2
-//lines1 a kitörlendő nevéig megy
-//skippeljük az armyt
-//lines2 beolvasása
-//kiírjuk lines1-et és lines2-őt
-
 
 void Filemanagement::DeleteArmy(Army* army,const char* filename){
 
@@ -208,5 +188,20 @@ void Filemanagement::DeleteArmy(Army* army,const char* filename){
     std::ofstream writefile(filename);
     writeLines(writefile,lines1);
     writeLines(writefile,lines2);
+}
+
+bool Filemanagement::ifFileNonExistentCreate(const char* filename){
+    bool returnValue = false;
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::ofstream newFile(filename);
+        if (!newFile.is_open()) {
+            //throw std::runtime_error("Hiba a fajl letrehozasa kozben.");  Fajl throw
+        }
+        newFile.close();
+        returnValue = true;
+    }
+    file.close();
+    return returnValue;
 }
 

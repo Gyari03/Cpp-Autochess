@@ -52,6 +52,8 @@ add_executable(NHF_REFORMED main.cpp
         Menu/ButtonFunctionHandler.h
         Game/Computer.h
         Game/Computer.cpp
+        Exception/Error.cpp
+        Exception/Error.h
 
 )
 add_compile_definitions(MEMTRACE)
