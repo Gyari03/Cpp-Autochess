@@ -3,9 +3,7 @@
 
 uiMenu::uiMenu(Menu *menu):menu(menu) {}
 
-uiMenu::~uiMenu(){
-    //delete menu;
-}
+uiMenu::~uiMenu(){}
 
 void uiMenu::display(){
     this->clearScreen();
@@ -14,7 +12,7 @@ void uiMenu::display(){
     }
 }
 
-bool uiMenu::handleInput(){ //returnérték: bool->true:lejátszott függvényt false:hibás bemenet, nem játszott le függvényt:amit csak a refreshingidle-ben használunk fel
+bool uiMenu::handleInput(){ //returnérték: bool->true:lejátszott függvényt          false:hibás bemenet, nem játszott le függvényt:amit csak a refreshingidle-ben használunk fel
     size_t choice;
     std::cin>>choice;
     if(choice==0){

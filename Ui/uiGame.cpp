@@ -67,11 +67,7 @@ void uiGame::display() {
     renderTable();
 }
 
-//nincs
 bool uiGame::handleInput() {
-    //Majd a computer adja be az inputot, a felhasználó nem szól bele
-   // game->checkIfOver();
-
     this->game->playRound();
     return false;
 }
