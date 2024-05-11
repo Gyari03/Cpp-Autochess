@@ -27,6 +27,5 @@ Move* Computer::decideMove(Game *game) {
         ret = current->getRandomMove();
     }
     return ret;
-   // return current->getTeamMoves().Maximum();
 }
 

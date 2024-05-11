@@ -20,13 +20,13 @@ void Menu::addButton(const Button& extra) {
     this->incrementCounter();
     if(idCounter==1){
         this->buttonArray=new Button[idCounter];
-        this->buttonArray[0]=extra; //copyconstructor illetve egyenloseg
+        this->buttonArray[0]=extra; 
         buttonArray[0].setId(idCounter);
         return;
     }
     Button *updatedButtons = new Button[idCounter];
     for(unsigned int i=0;i<idCounter-1;i++){
-        updatedButtons[i]=this->buttonArray[i]; //egyenlosegoperator?
+        updatedButtons[i]=this->buttonArray[i];
     }
     updatedButtons[idCounter-1]=extra;
     updatedButtons[idCounter-1].setId(idCounter);

@@ -27,10 +27,6 @@ void ButtonFunctions::Play() {
     uiMenu::Run(&play);
 }
 
-void ButtonFunctions::Exit() {
-   exit(0);
-}
-
 void ButtonFunctions::NewGame(){
     Army reg1;
     Army reg2;
