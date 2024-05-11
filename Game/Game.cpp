@@ -50,7 +50,7 @@ Team* Game::getTeam(size_t idx){
     return team[idx];
 }
 
-TeamColor Game::getColorOfPiece(Piece *piece) { //csak úgy hasdználjuk hogy fix benne legyen a játékban
+TeamColor Game::getColorOfPiece(Piece *piece) { //csak úgy használjuk hogy fix benne legyen a játékban
     if(this->team[0]->getArmy()->partOfArmy(piece)){return White;}
     else{return Black;}
 }//throw probléma ha nem találja
