@@ -22,7 +22,7 @@ public:
      * @brief Error objektumnak a konstruktora adott hibaüzenettel.
      * @param message Hibaüzenet.
      */
-    Error(std::string& message);
+    Error(const std::string& message);
 
 
     /**
