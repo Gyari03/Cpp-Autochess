@@ -6,7 +6,6 @@
 uiEditor::uiEditor(Editor *editor):editor(editor) {}
 
 uiEditor::~uiEditor() {
-    //delete editor;
 }
 
 void uiEditor::renderTable(){
