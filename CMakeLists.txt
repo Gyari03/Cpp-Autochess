@@ -54,6 +54,7 @@ add_executable(NHF_REFORMED main.cpp
         Game/Computer.cpp
         Exception/Error.cpp
         Exception/Error.h
+        Memtrace/gtest_lite.h
 
 )
 add_compile_definitions(MEMTRACE)
