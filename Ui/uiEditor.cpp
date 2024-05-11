@@ -1,5 +1,6 @@
 #include "uiEditor.h"
 #include "../Editor/Editor.h"
+#include "../Exception/Error.h"
 
 #include "../Memtrace/memtrace.h"
 
@@ -68,18 +69,22 @@ void uiEditor::display(){
 }
 
 bool uiEditor::handleInput(){
-
     char name;
     int x,y;
-
     std::string input;
+
     std::cin>>input;
     name = input[0];
+
+    if (!strchr("KBQHPROD0", toupper(name))) {throw Error("Invalid first character input");} //hibakezelés
+
     if(name=='0'){editor->updateExit();return true;}//kilépés
-    x = input.substr(1, 1)[0] - '0';
-    y = input.substr(2, 1)[0] - '0';
+    x = input[1] - '0';
+    y = input[2] - '0';
+    if(strchr("09",input[1]) || strchr("09",input[2])){throw Error("Invalid X-Y coordinate input");} //hibakezelés
     if(name=='d'|| name=='D'){
         if(input=="delete") {
+            if(strcmp(editor->getArmy()->getnameofArmy(),"")==0){throw Error("Cannot delete non-existent army");} //hibakezelés
             editor->updateExit();
             editor->updateDelete();
             editor->deleteArmy();
@@ -93,23 +98,31 @@ bool uiEditor::handleInput(){
 }
 
 void uiEditor::idle(){
+    display();
     while(!(editor->getExit())){
-        display();
-        handleInput();
+        try{
+            handleInput();
+            display();
+        }catch(const std::exception& e){std::cout << "Error:" << e.what() <<std::endl;}
     }
 }
 
 void uiEditor::saveSequence() { //az inputot egyszerre használjuk a névre és a Y/N választásra
-    clearScreen();
-    char input[35];
-    std::cout<<"Would you like destinationPieceName save this army?(Y/N)"<<std::endl;
-    std::cin>>input;
+    char input[36];
+
+    do{
+        clearScreen();
+        std::cout<<"Would you like to save this army?(Y/N)"<<std::endl;
+        std::cin>>input;
+    }
+    while(!strchr("YN",toupper(input[0])));
+
+
     if(input[0]=='Y'||input[0]=='y'){
         clearScreen();
-        std::cout<<"Give a name destinationPieceName this army: ";
+        std::cout<<"Give a name to this army: ";
         std::cin>>input;
         editor->getArmy()->setnameofArmy(input);
-        //AppendArmy(editor->getArmy(),"armies.txt");
         editor->saveArmy();
     }
 }
