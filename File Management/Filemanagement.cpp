@@ -1,4 +1,5 @@
 #include "Filemanagement.h"
+#include "../Exception/Error.h"
 #include "../Memtrace/memtrace.h"
 
 List<Army> Filemanagement::ListofArmies(const char* filename){
@@ -113,6 +114,22 @@ void Filemanagement::adjustStringNumber(std::string& string,bool increment){ //i
 }
 
 void Filemanagement::AppendArmy(Army* army,const char *filename){
+
+    //Megkeresni, hogy van-e ilyen név:
+    std::ifstream readfile(filename);
+    std::vector<std::string> wholeFile;
+    std::vector<std::string> untilArmyIfAlreadyExists;
+    readTillLine(readfile,wholeFile);
+    readfile.close();
+
+    readfile.open(filename);
+    readTillLine(readfile,untilArmyIfAlreadyExists,army->getnameofArmy());
+    readfile.close();
+    if(wholeFile.size()!=untilArmyIfAlreadyExists.size()){//it means the name already exists
+        throw Error("Given input is an already existing army");
+    }
+
+
 
     //Előző érték kiolvasása
     std::string countofArmies;

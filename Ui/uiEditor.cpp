@@ -120,10 +120,18 @@ void uiEditor::saveSequence() { //az inputot egyszerre használjuk a névre és 
 
     if(input[0]=='Y'||input[0]=='y'){
         clearScreen();
+        bool noErrorsOccurred = false;
+
         std::cout<<"Give a name to this army: ";
-        std::cin>>input;
-        editor->getArmy()->setnameofArmy(input);
-        editor->saveArmy();
+        while(!noErrorsOccurred){
+            try{
+                std::cin>>input;
+                if(isdigit(input[0])){throw Error("Number as first character of army name is forbidden");}
+                editor->getArmy()->setnameofArmy(input);
+                editor->saveArmy();
+                noErrorsOccurred=true;       //Ha throw történik ez nem fut le.
+            }catch(const std::exception& e){std::cout << "Error:" << e.what() <<std::endl;}
+        }
     }
 }
 
