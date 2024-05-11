@@ -11,8 +11,7 @@
 
 
 /**
- * @brief 
- * 
+ * @brief Menü class, gombokat tárol.
  */
 class Menu{
 private:
