@@ -1,6 +1,6 @@
 #include "uiMenu.h"
-#include "../Memtrace/memtrace.h"
 #include "../Exception/Error.h"
+#include "../Memtrace/memtrace.h"
 
 uiMenu::uiMenu(Menu *menu):menu(menu) {}
 

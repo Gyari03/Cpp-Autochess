@@ -109,10 +109,6 @@ void Game::checkIfOver() {
     if(WhiteTurn){ current = team[0];}
     else{current=team[1];}
 
-    //Ha a most jövő csapatnak 0 lépése maradt -> Döntetlen
-    if(current->getTeamMoves().getSize()==0){updateEnd();return;}//result=DRAW alapérték
-
-
     //Ha egyik csapatban nincs király -> másik csapat a nyertes
     if(current->countAmountOfKigns()==0){
         if(current==team[0]){
@@ -126,6 +122,9 @@ void Game::checkIfOver() {
             return;
         }
     }
+
+    //Ha a most jövő csapatnak 0 lépése maradt -> Döntetlen
+    if(current->getTeamMoves().getSize()==0){updateEnd();}//result=DRAW alapérték
 }
 
 void Game::clearMovesBuffer() {
