@@ -13,7 +13,7 @@ void Menu::incrementCounter() {
 }
 
 void Menu::updateExit() { //csak az exitRequested gombnak
-    exitRequested=true;
+    exitRequested=!exitRequested;
 }
 
 void Menu::addButton(const Button& extra) {
