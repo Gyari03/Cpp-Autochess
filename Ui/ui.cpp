@@ -7,7 +7,9 @@
 #endif
 
 void ui::clearScreen(){
-#ifdef _WIN32
+#ifdef CPORTA
+    return; //Ha tesztekkel dolgozunk akkor hagyjuk ki a képenyő tisztítását mert sír a jporta a system hívásoktól
+#elif _WIN32
     std::system("cls");
 #else
     std::system("clear");

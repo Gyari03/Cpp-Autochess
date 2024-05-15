@@ -98,7 +98,7 @@ Piece* Army::getPiece(size_t idx){ //fontos, hogy az index ne legyen több mint 
     return pieces[idx];
 }
 
-void Army::copyArmy(Army* source, Army* destination) {
+void Army::copyArmy(Army* source, Army* destination,std::ostream& os,std::istream& is) {
     strcpy(destination->nameofArmy,source->nameofArmy);
     int currentX;
     int currentY;

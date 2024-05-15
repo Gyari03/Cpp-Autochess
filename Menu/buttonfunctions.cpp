@@ -12,70 +12,70 @@
 #include "../Ui/uiGame.h"
 #include "../Memtrace/memtrace.h"
 
+//(std::ostream& os,std::istream& is)
 
-
-void ButtonFunctions::MainMenu() {
+void ButtonFunctions::MainMenu(std::ostream& os,std::istream& is) {
     Menu main;
-    main.addButton(Button("Play \n0)Exit", main.getIdCounter(), &Play));
-    uiMenu::Run(&main);
+    main.addButton(Button("Play \n0)Exit", main.getIdCounter(), &Play,os,is));
+    uiMenu::Run(&main,std::cout,std::cin);
 }
 
-void ButtonFunctions::Play() {
+void ButtonFunctions::Play(std::ostream& os,std::istream& is) {
     Menu play;
-    play.addButton(Button("New game", play.getIdCounter(), &NewGame));
-    play.addButton(Button("Army editor", play.getIdCounter(), &ArmyMenu));
-    uiMenu::Run(&play);
+    play.addButton(Button("New game", play.getIdCounter(), &NewGame,os,is));
+    play.addButton(Button("Army editor", play.getIdCounter(), &ArmyMenu,os,is));
+    uiMenu::Run(&play,std::cout,std::cin);
 }
 
-void ButtonFunctions::NewGame(){
+void ButtonFunctions::NewGame(std::ostream& os,std::istream& is){
     Army reg1;
     Army reg2;
     Menu newgame;
-    newgame.addButton(Button("Team1", newgame.getIdCounter(), &ChooseArmy, &reg1));
-    newgame.addButton(Button("Team2", newgame.getIdCounter(), &ChooseArmy, &reg2));
-    newgame.addButton(Button("Play game", newgame.getIdCounter(), &PlayMatch, &reg1, &reg2));
-    uiMenu::Run(&newgame);
+    newgame.addButton(Button("Team1", newgame.getIdCounter(), &ChooseArmy, &reg1,os,is));
+    newgame.addButton(Button("Team2", newgame.getIdCounter(), &ChooseArmy, &reg2,os,is));
+    newgame.addButton(Button("Play game", newgame.getIdCounter(), &PlayMatch, &reg1, &reg2,os,is));
+    uiMenu::Run(&newgame,std::cout,std::cin);
 }
 
-void ButtonFunctions::ArmyMenu(){
+void ButtonFunctions::ArmyMenu(std::ostream& os,std::istream& is){
     Menu army;
-    army.addButton(Button("Create new army", army.getIdCounter(), &CreateArmy));
+    army.addButton(Button("Create new army", army.getIdCounter(), &CreateArmy,os,is));
     List<Army> armies = Filemanagement::ListofArmies("armies.dat");
     for(int i = 0;i<armies.getSize();i++){
         Army* currentArmy = armies[i];
-        army.addButton(Button(currentArmy->getnameofArmy(), army.getIdCounter(), &EditArmy, currentArmy));
+        army.addButton(Button(currentArmy->getnameofArmy(), army.getIdCounter(), &EditArmy, currentArmy,os,is));
 
     }
-    uiMenu::refreshingRun(&army);
+    uiMenu::refreshingRun(&army,std::cout,std::cin);
 }
 
-void ButtonFunctions::CreateArmy(){
+void ButtonFunctions::CreateArmy(std::ostream& os,std::istream& is){
     Editor newEditor;
-    uiEditor::Run(&newEditor);
+    uiEditor::Run(&newEditor,std::cout,std::cin);
 }
 
-void ButtonFunctions::EditArmy(Army* army){
+void ButtonFunctions::EditArmy(Army* army,std::ostream& os,std::istream& is){
     Army* temp = new Army;
     Army::copyArmy(army,temp);
     Editor newEditor(temp);
-    uiEditor::Run(&newEditor);
+    uiEditor::Run(&newEditor,std::cout,std::cin);
 }
 
-void ButtonFunctions::ChooseArmy(Army* reg){
+void ButtonFunctions::ChooseArmy(Army* reg,std::ostream& os,std::istream& is){
     Menu choice;
     List<Army> armies = Filemanagement::ListofArmies("armies.dat");
     for(int i=0;i<armies.getSize();i++){
         Army* currentArmy = armies[i];
-        choice.addButton(Button(currentArmy->getnameofArmy(), choice.getIdCounter(), &Army::copyArmy, currentArmy, reg));
+        choice.addButton(Button(currentArmy->getnameofArmy(), choice.getIdCounter(), &Army::copyArmy, currentArmy, reg,os,is));
     }
-    uiMenu::Run(&choice);
+    uiMenu::Run(&choice,std::cout,std::cin);
 }
 
-void ButtonFunctions::PlayMatch(Army* reg1, Army* reg2){
+void ButtonFunctions::PlayMatch(Army* reg1, Army* reg2,std::ostream& os,std::istream& is){
     Game game = Game(reg1,reg2);
-    uiGame::Run(&game);
+    uiGame::Run(&game,std::cout,std::cin);
 }
 
-void ButtonFunctions::tesztfuggveny(std::ostream &os) {
+void ButtonFunctions::tesztfuggveny(std::ostream &os,std::istream& is) {
     os<<"Lefutottam!";
 }

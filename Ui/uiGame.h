@@ -16,8 +16,8 @@ class uiGame:public ui {
 private:
     Game* game;         /**< A játék, amit meg szeretnénk jeleníteni */
 public:
-    uiGame(Game* game); /**< Konstruktor játékobjektummal paraméterként */
-    ~uiGame();          /**< Destruktor */
+    uiGame(Game* game,std::ostream& os,std::istream& is);     /**< Konstruktor játékobjektummal paraméterként */
+    ~uiGame();                                                /**< Destruktor */
 
     /**
      * @brief A játék megjelenítőfüggvénye.
@@ -57,6 +57,6 @@ public:
      * Létrehoz neki egy uiGame objektumot és azt berakja idle() pozícióba.
      * @param gameptr A játékra mutató pointer
      */
-    static void Run(Game* gameptr);
+    static void Run(Game* gameptr,std::ostream& os,std::istream& is);
 };
 #endif //NHF_REFORMED_UIGAME_H

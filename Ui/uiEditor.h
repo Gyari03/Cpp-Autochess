@@ -18,7 +18,7 @@ class uiEditor:public ui {
 private:
     Editor* editor;                         /**<Az editor, amit meg szeretnénk jeleníteni */
 public:
-    uiEditor(Editor* editor);               /**<Konstruktor editorrel paraméterként */
+    uiEditor(Editor* editor,std::ostream& os,std::istream& is);               /**<Konstruktor editorrel paraméterként */
     ~uiEditor();                            /**<Destruktor */
     
     /**
@@ -66,6 +66,6 @@ public:
      * Ha egy már alapból létrehozott seregből lépünk ki akkor az automatikusan mentésre kerül.
      * @param editorptr Az editorre mutató pointer
      */
-    static void Run(Editor* editorptr);
+    static void Run(Editor* editorptr,std::ostream& os,std::istream& is);
 };
 #endif //NHF_REFORMED_UIEDITOR_H

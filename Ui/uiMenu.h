@@ -15,7 +15,7 @@ class uiMenu:public ui {
 private:
     Menu* menu;         /**< A menü, amit meg szeretnénk jeleníteni */
 public:
-    uiMenu(Menu* menu); /**< Konstruktor menüobjektummal paraméterként */
+    uiMenu(Menu* menu,std::ostream& os,std::istream& is); /**< Konstruktor menüobjektummal paraméterként */
     ~uiMenu();          /**< Destruktor */
 
     /**
@@ -48,13 +48,13 @@ public:
      * Létrehoz neki egy uiMenu objektumot és azt berakja idle() pozícióba.
      * @param menuPtr A menüre mutató pointer
      */
-    static void Run(Menu* menu);
+    static void Run(Menu* menu,std::ostream& os, std::istream& is);
 
     /**
      * @brief Futtatja a paraméterként kapott menüt.
      * Létrehoz neki egy uiMenu objektumot és azt berakja refreshingidle() pozícióba.
      * @param menuPtr A menüre mutató pointer
      */
-    static void refreshingRun(Menu* menuPtr);
+    static void refreshingRun(Menu* menuPtr,std::ostream& os,std::istream& is);
 };
 #endif //NHF_REFORMED_UIMENU_H
