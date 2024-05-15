@@ -49,7 +49,7 @@ public:
 
     /**
      * @brief Sereg kiválasztására használt fv.
-     * A sereg amit kiválaszt az armies.txt-ből kiválasztott listából, azt tölti majd át a paraméterként kapott army*-be.
+     * A sereg amit kiválaszt az armies.dat-ből kiválasztott listából, azt tölti majd át a paraméterként kapott army*-be.
      */
     static void ChooseArmy(Army*); //a paraméterként megkapott paraméter-be tölti majd be az armyt amit választ
     

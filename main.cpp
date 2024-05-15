@@ -9,7 +9,7 @@
 #include "Exception/Error.h"
 #include "Menu/buttonfunctions.h"
 
-#define CPORTA
+//#define CPORTA
 
 int main() {
 #ifndef CPORTA
@@ -65,6 +65,23 @@ int main() {
      Button button3("Teszt3", 3, &ButtonFunctions::PlayMatch, &army1, &army2);
      EXPECT_STREQ("Teszt3",button3.getName());
      EXPECT_EQ(3,button3.getId());
+
+     //setId
+     button3.setId(6);
+     EXPECT_EQ(6,button3.getId());
+
     } ENDM;
+
+
+    TEST(ButtonFunctionHandler, fuggvenyek){
+            Army army1;
+            Army army2;
+
+            ButtonFunctionHandler buttonFunctionHandler(&ButtonFunctions::Play);
+            buttonFunctionHandler.execute();
+
+
+    } ENDM;
+
 #endif
 }

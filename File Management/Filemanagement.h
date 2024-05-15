@@ -16,7 +16,7 @@
 
 /**
  * @brief Fájlkezelő osztály.
- * Legfőkébb az elkészített seregek tárolását valósítja meg az armies.txt-ben.
+ * Legfőkébb az elkészített seregek tárolását valósítja meg az armies.dat-ben.
  */
 class Filemanagement{
 
@@ -24,7 +24,7 @@ public:
 
     /**
      * @brief A lementett seregek listájával visszatérő fv.
-     * Kiolvassa az adott fájból(armies.txt) a seregeket. Ha nem létezik akkor létrehoz egyet 0 db sereggel.
+     * Kiolvassa az adott fájból(armies.dat) a seregeket. Ha nem létezik akkor létrehoz egyet 0 db sereggel.
      * @param filename Az olvasandó fájl neve
      * @return List<Army> A lementett seregek listája
      */
@@ -76,7 +76,7 @@ private:
      * @brief Ha az adott fájl nem létezik akkor létrehoz egyet.
      * Emellett használ egy bool visszatérési értéket, amit a ListofArmies fel is használ.
      * @param filename Fájlnév.
-     * @return true: Ha nem létezik a keresett fájl. Ekkor ez egyben jelet ad arra, hogy a ListofArmies inicializálja az armies.txt első sorát.
+     * @return true: Ha nem létezik a keresett fájl. Ekkor ez egyben jelet ad arra, hogy a ListofArmies inicializálja az armies.dat első sorát.
      * @return false: Ha létezik a keresett fájl. Ezután nincs több teendő. 
      */
     static bool ifFileNonExistentCreate(const char* filename);

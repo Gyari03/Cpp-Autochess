@@ -40,7 +40,7 @@ void ButtonFunctions::NewGame(){
 void ButtonFunctions::ArmyMenu(){
     Menu army;
     army.addButton(Button("Create new army", army.getIdCounter(), &CreateArmy));
-    List<Army> armies = Filemanagement::ListofArmies("armies.txt");
+    List<Army> armies = Filemanagement::ListofArmies("armies.dat");
     for(int i = 0;i<armies.getSize();i++){
         Army* currentArmy = armies[i];
         army.addButton(Button(currentArmy->getnameofArmy(), army.getIdCounter(), &EditArmy, currentArmy));
@@ -63,7 +63,7 @@ void ButtonFunctions::EditArmy(Army* army){
 
 void ButtonFunctions::ChooseArmy(Army* reg){
     Menu choice;
-    List<Army> armies = Filemanagement::ListofArmies("armies.txt");
+    List<Army> armies = Filemanagement::ListofArmies("armies.dat");
     for(int i=0;i<armies.getSize();i++){
         Army* currentArmy = armies[i];
         choice.addButton(Button(currentArmy->getnameofArmy(), choice.getIdCounter(), &Army::copyArmy, currentArmy, reg));

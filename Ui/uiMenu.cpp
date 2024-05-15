@@ -20,8 +20,11 @@ bool uiMenu::handleInput(){ //returnérték:bool-> true:lejátszott függvény||
     size_t choice;
     std::cin>>inputBuffer;
 
-    if (!isdigit(inputBuffer[0])) {throw Error("Invalid button choice input");}
-    choice = inputBuffer[0] - '0';
+    for(char i:inputBuffer){
+        if (!isdigit(i)) {throw Error("Invalid button choice input");}
+    }
+
+    choice = std::stoi(inputBuffer);
 
     if(choice==0){
         menu->updateExit();
@@ -29,7 +32,8 @@ bool uiMenu::handleInput(){ //returnérték:bool-> true:lejátszott függvény||
     }
     //hibás bemenet esetén:
     else if(choice>menu->getIdCounter() || choice<0){
-        return false;
+        //return false;
+        throw Error("Invalid button index");
     }
     ButtonFunctionHandler function = menu->getButton(choice - 1)->getFunction();
     function.execute();
@@ -48,11 +52,16 @@ void uiMenu::idle() {
 }
 
 void uiMenu::refreshingidle() {
+    display();
+
     while(!(menu->getExit())){
-        display();
-        if(handleInput()){menu->updateExit();} //handleInput mellékhatása egy bool
+        try{
+            if(handleInput()){menu->updateExit();} //handleInput mellékhatása egy bool
+            display();
+        }catch (const std::exception &e) {std::cout << "Error:" << e.what() << std::endl;}
     }
 }
+
 
 void uiMenu::refreshingRun(Menu* menuPtr){
         uiMenu menu(menuPtr);
