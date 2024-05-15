@@ -75,3 +75,7 @@ void ButtonFunctions::PlayMatch(Army* reg1, Army* reg2){
     Game game = Game(reg1,reg2);
     uiGame::Run(&game);
 }
+
+void ButtonFunctions::tesztfuggveny(std::ostream &os) {
+    os<<"Lefutottam!";
+}

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include "Menu/menu.h"
 #include "Menu/button.h"
 #include "Menu/buttonfunctions.h"
@@ -9,7 +10,7 @@
 #include "Exception/Error.h"
 #include "Menu/buttonfunctions.h"
 
-//#define CPORTA
+#define CPORTA
 
 int main() {
 #ifndef CPORTA
@@ -69,19 +70,28 @@ int main() {
      //setId
      button3.setId(6);
      EXPECT_EQ(6,button3.getId());
-
     } ENDM;
 
 
+    //Ennel létrehoztunk egy testing class-t a tesztelésekre
     TEST(ButtonFunctionHandler, fuggvenyek){
-            Army army1;
-            Army army2;
-
-            ButtonFunctionHandler buttonFunctionHandler(&ButtonFunctions::Play);
-            buttonFunctionHandler.execute();
-
-
+        std::stringstream os;
+        ButtonFunctionHandlerForTests buttonFunctionHandler(&ButtonFunctions::tesztfuggveny,os);
+        buttonFunctionHandler.execute();
+        EXPECT_STREQ("Lefutottam!",os.str().c_str()); //sikerült lefuttatnia a benne lévő függvényt
     } ENDM;
 
+
+    TEST(Button, fuggvenyek){
+
+
+    }ENDM;
+
+
+
+    //hogy ne záruljon be az ablak
+    char a;
+    std::cin>>a;
+    a = 'b';
 #endif
 }

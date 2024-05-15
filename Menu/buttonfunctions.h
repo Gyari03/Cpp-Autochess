@@ -59,5 +59,9 @@ public:
      * @param reg2 Fekete csapat
      */
     static void PlayMatch(Army* reg1, Army* reg2);
+
+
+    //Teszteknél felhasznált függvény
+    static void tesztfuggveny(std::ostream& os);
 };
 #endif //NHF_REFORMED_BUTTONFUNCTIONS_H
