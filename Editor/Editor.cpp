@@ -26,7 +26,7 @@ Piece* Editor::searchFor(int coordX, int coordY){
 }
 
 void Editor::updateExit() {
-    exit = true;
+    exit = !exit;
 }
 
 bool Editor::getExit() const {
@@ -34,7 +34,7 @@ bool Editor::getExit() const {
 }
 
 void Editor::updateDelete() {
-    toDelete=true;
+    toDelete = !toDelete;
 }
 
 bool Editor::getDelete() const {

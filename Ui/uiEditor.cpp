@@ -150,4 +150,3 @@ void uiEditor::Run(Editor* editorptr,std::ostream& os,std::istream& is){
         editorptr->editArmy();
     }
 }
-

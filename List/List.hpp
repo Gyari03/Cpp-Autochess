@@ -18,7 +18,7 @@ struct Node{
     T* getData(){           /**< Adat lekérése */
         return data;
     }
-    T* release(){           /**< Adat felszabadítása és visszaadása */
+    T* release(){           /**< Adat kibocsátása(nem felszabadítása) és visszaadása */
         T* ptr = data;
         data = nullptr;
         return ptr;

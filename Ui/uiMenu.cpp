@@ -8,8 +8,10 @@ uiMenu::~uiMenu(){}
 
 void uiMenu::display(){
     this->clearScreen();
-    for(size_t i=0;i<menu->getIdCounter();i++){
-        os<<menu->getButton(i)->getId()<<")"<<menu->getButton(i)->getName()<<std::endl;
+    if(!this->menu->getExit()){
+        for(size_t i=0;i<menu->getIdCounter();i++){
+            os<<menu->getButton(i)->getId()<<")"<<menu->getButton(i)->getName()<<std::endl;
+        }
     }
 }
 

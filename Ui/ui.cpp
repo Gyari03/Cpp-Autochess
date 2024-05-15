@@ -6,9 +6,11 @@
 #include <unistd.h>
 #endif
 
+#define CPORTA
+
 void ui::clearScreen(){
 #ifdef CPORTA
-    return; //Ha tesztekkel dolgozunk akkor hagyjuk ki a képenyő tisztítását mert sír a jporta a system hívásoktól
+   // return; //Ha tesztekkel dolgozunk akkor hagyjuk ki a képenyő tisztítását mert sír a jporta a system hívásoktól
 #elif _WIN32
     std::system("cls");
 #else
@@ -17,7 +19,9 @@ void ui::clearScreen(){
 }
 
 void ui::delayMilliseconds(unsigned int ms) {
-#ifdef _WIN32
+#ifdef CPORTA
+    // Ha tesztekkel vagyunk nem kell várakozni
+#elif _WIN32
     Sleep(ms);
 #else
     usleep(ms * 1000);
