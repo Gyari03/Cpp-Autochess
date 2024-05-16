@@ -5,6 +5,8 @@
 #include "Menu/buttonfunctions.h"
 #include "Ui/ui.h"
 #include "Ui/uiMenu.h"
+#include "Ui/uiEditor.h"
+#include "Ui/uiGame.h"
 #include "Memtrace/gtest_lite.h"
 #include "Memtrace/memtrace.h"
 #include "Exception/Error.h"
@@ -209,6 +211,257 @@ int main() {
         ui.refreshingidle(); //ki fog lépni egyből mert getExit()=true
         EXPECT_STREQ("",os.str().c_str()); //üreset kell hogy kapjon
         }ENDM;
+
+    TEST(uiEditor,fuggvenyek){
+        Editor editor;
+        std::stringstream os;
+        std::stringstream is;
+
+        EXPECT_TRUE(editor.getArmy()->getPiece(1,1)==nullptr);
+
+        uiEditor ui(&editor,os,is);
+
+        is<<"K11";
+        ui.handleInput();
+        EXPECT_FALSE(editor.getArmy()->getPiece(1,1)==nullptr);
+
+        is.clear();
+        os.str("");
+
+        is<<"M33"; //nem létező bábutípusra throw
+        EXPECT_THROW(ui.handleInput(),Error);
+
+        is.clear();
+        os.str("");
+
+        is<<"D11";
+        ui.handleInput();
+        EXPECT_TRUE(editor.getArmy()->getPiece(1,1)==nullptr);
+
+        char urestabla[]="     1         2         3         4         5         6         7         8\n"
+                     "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                     "#         #         #         #         #         #         #         #         #\n"
+                     "#         #         #         #         #         #         #         #         #  4\n"
+                     "#         #         #         #         #         #         #         #         #\n"
+                     "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                     "#         #         #         #         #         #         #         #         #\n"
+                     "#         #         #         #         #         #         #         #         #  3\n"
+                     "#         #         #         #         #         #         #         #         #\n"
+                     "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                     "#         #         #         #         #         #         #         #         #\n"
+                     "#         #         #         #         #         #         #         #         #  2\n"
+                     "#         #         #         #         #         #         #         #         #\n"
+                     "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                     "#         #         #         #         #         #         #         #         #\n"
+                     "#         #         #         #         #         #         #         #         #  1\n"
+                     "#         #         #         #         #         #         #         #         #\n"
+                     "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n";
+
+        is.clear();
+        os.str("");
+
+        ui.display();
+        EXPECT_STREQ(urestabla,os.str().c_str());
+
+        is.clear();
+        os.str("");
+
+        is<<"Q22";
+        ui.handleInput();
+        editor.updateExit();
+
+
+        ui.idle();
+
+        char tablababuval[]="     1         2         3         4         5         6         7         8\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "#         #         #         #         #         #         #         #         #  4\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "#         #         #         #         #         #         #         #         #  3\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "#         #    Q    #         #         #         #         #         #         #  2\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "#         #         #         #         #         #         #         #         #  1\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n";
+
+        EXPECT_STREQ(tablababuval,os.str().c_str());
+    }ENDM;
+
+    TEST(uiGame,fuggvenyek){
+        Army army1;
+        Army army2;
+        Game game(&army1,&army2);
+        std::stringstream os;
+        std::stringstream is;
+        uiGame ui(&game,os,is);
+
+        char urestabla[]="     1         2         3         4         5         6         7         8\n"
+                         "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "#         #         #         #         #         #         #         #         #  8\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "#         #         #         #         #         #         #         #         #  7\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "#         #         #         #         #         #         #         #         #  6\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "#         #         #         #         #         #         #         #         #  5\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "#         #         #         #         #         #         #         #         #  4\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "#         #         #         #         #         #         #         #         #  3\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "#         #         #         #         #         #         #         #         #  2\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "#         #         #         #         #         #         #         #         #  1\n"
+                         "#         #         #         #         #         #         #         #         #\n"
+                         "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n";
+        ui.display();
+        EXPECT_STREQ(urestabla,os.str().c_str());
+
+        game.getTeam(0)->getArmy()->addPiece(*Piece::createPiece('K',1,1));
+
+
+        char tablababuval[]="     1         2         3         4         5         6         7         8\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "#         #         #         #         #         #         #         #         #  8\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "#         #         #         #         #         #         #         #         #  7\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "#         #         #         #         #         #         #         #         #  6\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "#         #         #         #         #         #         #         #         #  5\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "#         #         #         #         #         #         #         #         #  4\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "#         #         #         #         #         #         #         #         #  3\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "#         #         #         #         #         #         #         #         #  2\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "#    K    #         #         #         #         #         #         #         #  1\n"
+                            "#         #         #         #         #         #         #         #         #\n"
+                            "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n";
+
+            is.clear();
+            os.str("");
+
+            ui.renderTable();
+            EXPECT_STREQ(tablababuval,os.str().c_str());
+
+            is.clear();
+            os.str("");
+
+            game.getTeam(1)->getArmy()->addPiece(*Piece::createPiece('K',5,8));
+            game.getTeam(1)->getArmy()->addPiece(*Piece::createPiece('Q',1,8));
+            game.getTeam(1)->getArmy()->addPiece(*Piece::createPiece('Q',2,8));
+            //checkifover;
+
+            is.clear();
+            os.str("");
+
+            ui.handleInput(); //fehér jön       //handleinput a playroundot hívja meg így is
+            game.playRound(); //fekete jön-> le is üti a fehér királyt
+            game.playRound(); //fehér próbál jönni, de nincs mivel->veszt
+
+
+            ui.idle();
+            EXPECT_STREQ("Team 2 Wins!",os.str().c_str());
+
+            is.clear();
+            os.str("");
+
+            ui.endScreen();
+            EXPECT_STREQ("Team 2 Wins!",os.str().c_str());
+        }ENDM;
+
+    TEST(uiGame,run_fuggveny){
+        Army army1;
+        Army army2;
+        Game game(&army1,&army2);
+        std::stringstream os;
+        std::stringstream is;
+        uiGame ui(&game,os,is);
+
+        game.getTeam(0)->getArmy()->addPiece(*Piece::createPiece('K',1,1));
+        game.getTeam(0)->getArmy()->addPiece(*Piece::createPiece('Q',1,2));
+        game.getTeam(0)->getArmy()->addPiece(*Piece::createPiece('Q',2,1));
+
+        game.getTeam(1)->getArmy()->addPiece(*Piece::createPiece('K',8,8));
+
+        uiGame::Run(&game,os,is);
+
+        int siz = strlen("Team 1 Wins!");
+        std::string osstring = os.str();
+        std::string endscreen = osstring.substr(osstring.size() - siz);
+        EXPECT_STREQ("Team 1 Wins!",endscreen.c_str());
+        //Feltételezve azt, hogy team 1 nyer, mivel a team 2-nek a nyerés majdnem lehetetlen.
+    }ENDM;
+
+    TEST(Error,fuggvenyek){
+        std::stringstream os;
+
+        try{
+            throw Error("Test");
+        }catch (const std::exception &e) {os << "Error:" << e.what() << std::endl;}
+
+        EXPECT_STREQ("Error:Test\n",os.str().c_str());
+        EXPECT_THROW(throw Error("Test"),Error);
+    }ENDM;
+
+    TEST(Piece,fuggvenyek){
+        Piece* piece1 = Piece::createPiece('K',5,6);
+        EXPECT_EQ(5,piece1->getCoordX());
+        EXPECT_EQ(6,piece1->getCoordY());
+        EXPECT_EQ('K',piece1->getName());
+
+        piece1->setCoordX(2);
+        piece1->setCoordY(8);
+        EXPECT_EQ(2,piece1->getCoordX());
+        EXPECT_EQ(8,piece1->getCoordY());
+
+
+
+
+        delete piece1;
+    }ENDM;
+
+
 
     char a;std::cin>>a;
 #endif

@@ -35,7 +35,7 @@ void Army::incrementsizeofArmy() {
 void Army::addPiece(Piece& newPiece) {
 
     //hibakezelés túl nagy index esetén:
-    if(newPiece.getCoordX() > 8 || newPiece.getCoordY() > 4){
+    if(newPiece.getCoordX() > 8 || newPiece.getCoordY() > 8){
         Piece* ptr = &newPiece; //rámutatás, hogy fel tudjam szabadítani mivel ez nem kerül bele a listbe ahonnan felszabadulnakk
         delete ptr;
         return;
