@@ -430,7 +430,7 @@ int main() {
         std::string osstring = os.str();
         std::string endscreen = osstring.substr(osstring.size() - siz);
         EXPECT_STREQ("Team 1 Wins!",endscreen.c_str());
-        //Feltételezve azt, hogy team 1 nyer, mivel a team 2-nek a nyerés majdnem lehetetlen.
+        //Feltételezve azt, hogy team 1 nyer, mivel a team 2-nek a nyerés majdnem(kicsi esélye azért van hogy hibázzon a teszt) lehetetlen.
     }ENDM;
 
     TEST(Error,fuggvenyek){
@@ -454,15 +454,210 @@ int main() {
         piece1->setCoordY(8);
         EXPECT_EQ(2,piece1->getCoordX());
         EXPECT_EQ(8,piece1->getCoordY());
-
-
-
-
         delete piece1;
     }ENDM;
 
+    TEST(Piece,lepesfuggvenyek){
+        Army army1;
+        Army army2;
+        Game game(&army1,&army2);
+        std::stringstream os;
+        std::stringstream is;
 
+        //Tesztelésre felhasznált bábu létrehozása
+        game.getTeam(0)->getArmy()->addPiece(*Piece::createPiece('P',2,4));
 
+        //Upwards fv.
+        Piece::upwards(game.getTeam(0)->getArmy()->getPiece(2,4),&game);
+        bool current=false;
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordY();
+            if(x==2 && y == 6){current = true; break;}
+        }
+        EXPECT_TRUE(current);
+        game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().clear();
+
+        //Downwards fv.
+        Piece::downwards(game.getTeam(0)->getArmy()->getPiece(2,4),&game);
+        current = false;
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordY();
+            if(x==2 && y == 2){current = true; break;}
+        }
+        EXPECT_TRUE(current);
+        game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().clear();
+
+        //Rightwards fv.
+        Piece::rightwards(game.getTeam(0)->getArmy()->getPiece(2,4),&game);
+        current = false;
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordY();
+            if(x==6 && y == 4){current = true; break;}
+        }
+        EXPECT_TRUE(current);
+        game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().clear();
+
+        //Leftwards fv.
+        Piece::leftwards(game.getTeam(0)->getArmy()->getPiece(2,4),&game);
+        current = false;
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordY();
+            if(x==1 && y == 4){current = true; break;}
+        }
+        EXPECT_TRUE(current);
+        game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().clear();
+
+        //Orthogonal fv.
+        Piece::orthogonal(game.getTeam(0)->getArmy()->getPiece(2,4),&game);
+        current = false;
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordY();
+            if(x==8 && y == 8){current = true; break;}
+        }
+        EXPECT_FALSE(current);
+        game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().clear();
+
+        //diagonalUpRight
+        Piece::diagonalUpRight(game.getTeam(0)->getArmy()->getPiece(2,4),&game);
+        current = false;
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordY();
+            if(x==4 && y == 6){current = true; break;}
+        }
+        EXPECT_TRUE(current);
+        game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().clear();
+
+        //diagonalUpLeft
+        Piece::diagonalUpLeft(game.getTeam(0)->getArmy()->getPiece(2,4),&game);
+        current = false;
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordY();
+            if(x==1 && y ==5){current = true; break;}
+        }
+        EXPECT_TRUE(current);
+        game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().clear();
+
+        //diagonalDownRight
+        Piece::diagonalDownRight(game.getTeam(0)->getArmy()->getPiece(2,4),&game);
+        current = false;
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordY();
+            if(x==4 && y ==2){current = true; break;}
+        }
+        EXPECT_TRUE(current);
+        game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().clear();
+
+        //diagonalDownLeft
+        Piece::diagonalDownLeft(game.getTeam(0)->getArmy()->getPiece(2,4),&game);
+        current = false;
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordY();
+            if(x==1 && y ==3){current = true; break;}
+        }
+        EXPECT_TRUE(current);
+        game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().clear();
+
+        //diagonal
+        Piece::diagonal(game.getTeam(0)->getArmy()->getPiece(2,4),&game);
+        current = false;
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordY();
+            if(x==2 && y ==6){current = true; break;}
+        }
+        EXPECT_FALSE(current);
+        game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().clear();
+
+        //pawnMove
+        game.getTeam(1)->getArmy()->addPiece(*Piece::createPiece('Q',3,5)); //leüthető bábu létrehozása
+
+        Piece::pawnMove(game.getTeam(0)->getArmy()->getPiece(2,4),&game);
+        current = false;
+        bool canDestroyOtherPiece = false;
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordY();
+            if(x==2 && y == 5){current = true;}
+            if(x==3 && y == 5){canDestroyOtherPiece = true;}
+        }
+        EXPECT_TRUE(current&&canDestroyOtherPiece);
+        game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().clear();
+        game.getTeam(1)->getArmy()->deletePiece(3,5);
+
+        //horseMove
+        game.getTeam(1)->getArmy()->addPiece(*Piece::createPiece('Q',3,6)); //leüthető bábu létrehozása
+        Piece::horseMove(game.getTeam(0)->getArmy()->getPiece(2,4),&game);
+        current = false;
+        canDestroyOtherPiece = false;
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordY();
+            if(x==1 && y == 2){current = true;}
+            if(x==3 && y == 6){canDestroyOtherPiece = true;}
+        }
+        EXPECT_TRUE(current&&canDestroyOtherPiece);
+        game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().clear();
+        game.getTeam(1)->getArmy()->deletePiece(3,6);
+
+        //kingMove
+        game.getTeam(1)->getArmy()->addPiece(*Piece::createPiece('Q',3,3)); //leüthető bábu létrehozása
+        Piece::kingMove(game.getTeam(0)->getArmy()->getPiece(2,4),&game);
+        current = false;
+        canDestroyOtherPiece = false;
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves()[i]->getCoordY();
+            if(x==1 && y == 5){current = true;}
+            if(x==3 && y == 3){canDestroyOtherPiece = true;}
+        }
+        EXPECT_TRUE(current&&canDestroyOtherPiece);
+        game.getTeam(0)->getArmy()->getPiece(2,4)->getMoves().clear();
+        game.getTeam(1)->getArmy()->deletePiece(3,3);
+
+        }ENDM;
+
+    TEST(Bishop,fuggvenyek){
+        Army army1;
+        Army army2;
+        Game game(&army1,&army2);
+        std::stringstream os;
+        std::stringstream is;
+
+        game.getTeam(0)->getArmy()->addPiece(*Piece::createPiece('B',4,5));
+
+        //szövetséges létrehozása:rajta nem léphet túl és nem ütheti le
+        game.getTeam(0)->getArmy()->addPiece(*Piece::createPiece('Q',3,6));
+        bool doesNotDestroyAlly = true;
+        bool doesNotJumpThroughAlly = true;
+        //ellenség létrehozása
+        bool destroysEnemy = false;
+        game.getTeam(1)->getArmy()->addPiece(*Piece::createPiece('H',7,8));
+
+        game.getTeam(0)->getArmy()->getPiece(4,5)->calculateMoves(&game);
+        for(int i=0;i<game.getTeam(0)->getArmy()->getPiece(4,5)->getMoves().getSize();i++){
+            int x =game.getTeam(0)->getArmy()->getPiece(4,5)->getMoves()[i]->getCoordX();
+            int y =game.getTeam(0)->getArmy()->getPiece(4,5)->getMoves()[i]->getCoordY();
+            if(x==3 && y == 6){doesNotDestroyAlly = false;}
+            if(x==7 && y == 8){destroysEnemy = true;}
+            if(x==2 && y == 7){doesNotJumpThroughAlly = false;}
+        }
+        EXPECT_TRUE(doesNotDestroyAlly);
+        EXPECT_TRUE(destroysEnemy);
+        EXPECT_TRUE(doesNotJumpThroughAlly);
+        }ENDM;
+
+    TEST(Horse,fuggvenyek){
+
+    }ENDM;
     char a;std::cin>>a;
 #endif
 }
