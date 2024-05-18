@@ -71,6 +71,6 @@ public:
      * Azért fontos, mert ha 0 van egy csapatban akkor a csapat vesztett. Ez minden körben lefut.
      * @return Királyok darabaszáma egy csapatban.
      */
-    int countAmountOfKigns();
+    int countAmountOfKings();
 };
 #endif //NHF_REFORMED_TEAM_H
