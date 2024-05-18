@@ -174,8 +174,8 @@ Egy menü tartalmaz egy dinamikusan foglalt `Button` tömböt.
 
 ## Fájlkezelés
 
-- armies.txt
-: A lementett seregeket egy `armies.txt`-ben tároljuk, az alábbi rendszer szerint:
+- armies.dat
+: A lementett seregeket egy `armies.dat`-ben tároljuk, az alábbi rendszer szerint:
 
 ```
 1. sorban: A seregek darabszáma

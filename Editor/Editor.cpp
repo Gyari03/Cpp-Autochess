@@ -26,7 +26,7 @@ Piece* Editor::searchFor(int coordX, int coordY){
 }
 
 void Editor::updateExit() {
-    exit = true;
+    exit = !exit;
 }
 
 bool Editor::getExit() const {
@@ -34,7 +34,7 @@ bool Editor::getExit() const {
 }
 
 void Editor::updateDelete() {
-    toDelete=true;
+    toDelete = !toDelete;
 }
 
 bool Editor::getDelete() const {
@@ -42,13 +42,13 @@ bool Editor::getDelete() const {
 }
 
 void Editor::saveArmy() {
-    Filemanagement::AppendArmy(army,"armies.txt");
+    Filemanagement::AppendArmy(army,"armies.dat");
 }
 
 void Editor::editArmy() {
-    Filemanagement::EditArmy(army,"armies.txt");
+    Filemanagement::EditArmy(army,"armies.dat");
 }
 
 void Editor::deleteArmy() {
-    Filemanagement::DeleteArmy(army,"armies.txt");
+    Filemanagement::DeleteArmy(army,"armies.dat");
 }

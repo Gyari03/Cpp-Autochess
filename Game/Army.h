@@ -118,7 +118,7 @@ public:
      * @param source 
      * @param destination 
      */
-    static void copyArmy(Army* source, Army* destination);
+    static void copyArmy(Army* source, Army* destination,std::ostream& os=std::cout,std::istream& is=std::cin);
 
     /**
      * @brief Áttükrözi egy seregnek a bábuit a másik térfélre.

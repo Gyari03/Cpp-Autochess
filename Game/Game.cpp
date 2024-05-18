@@ -110,7 +110,7 @@ void Game::checkIfOver() {
     else{current=team[1];}
 
     //Ha egyik csapatban nincs király -> másik csapat a nyertes
-    if(current->countAmountOfKigns()==0){
+    if(current->countAmountOfKings() == 0){
         if(current==team[0]){
             updateEnd();
             result = TEAM2_WIN;

@@ -5,7 +5,7 @@
 
 #ifndef NHF_REFORMED_UI_H
 #define NHF_REFORMED_UI_H
-
+#include <iostream>
 
 /**
  * @brief ui absztakt osztály
@@ -14,8 +14,7 @@
  */
 class ui {
 public:
-    ui(){}                              /**< Default konstruktor */
-    
+    ui(std::ostream& ostream,std::istream& istream):os(ostream),is(istream){}                              /**< Default konstruktor */
     /**
      * @brief Tisztán virtuális tag függvény a képernyőre való megjelenítésért.
      * Ez mutatja meg a felhasználónak a program válaszreakcióját a felhasználó bemenetére.
@@ -45,5 +44,12 @@ public:
      * @param ms milliszekundum-nyi késleltetés
      */
     static void delayMilliseconds(unsigned int ms);
+
+
+public:     //Tesztek miatt ui nem feltétlen fog csak std::cout-ra írni, meg std::cin-t használni
+    std::ostream& os;
+    std::istream& is;
+
+
 };
 #endif //NHF_REFORMED_UI_H

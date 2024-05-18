@@ -213,7 +213,6 @@ bool Filemanagement::ifFileNonExistentCreate(const char* filename){
     if (!file.is_open()) {
         std::ofstream newFile(filename);
         if (!newFile.is_open()) {
-            //throw std::runtime_error("Hiba a fajl letrehozasa kozben.");  Fajl throw
         }
         newFile.close();
         returnValue = true;

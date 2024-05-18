@@ -78,19 +78,19 @@ public:
 
     /**
      * @brief Elmenti az újonnan készült sereget.
-     * Kimenti az armies.txt-be leghátulra.
+     * Kimenti az armies.dat-be leghátulra.
      */
     void saveArmy();
 
     /**
      * @brief Elmenti az éppen szerkesztett sereg változtatásait.
-     * Átírja az armies.txt-ben a sereget a legújabb verziójával.
+     * Átírja az armies.dat-ben a sereget a legújabb verziójával.
      */
     void editArmy();
 
     /**
      * @brief Kitörli az éppen szerkesztett sereget.
-     * Kitörli az armies.txt-ben a sereget.
+     * Kitörli az armies.dat-ben a sereget.
      */
     void deleteArmy();
 };

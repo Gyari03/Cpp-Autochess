@@ -31,7 +31,7 @@ public:
      * @param id A gomb sorszáma
      * @param function A gombhoz rendelt függvény pointer
      */
-    Button(const char* name,size_t id,void (*function)());
+    Button(const char* name,size_t id,void (*function)(std::ostream& ostream,std::istream& istream),std::ostream& os,std::istream& is);
 
     /**
      * @brief Paraméterezett konstruktor egy függvénnyel, és egy Army objektummal.
@@ -40,7 +40,7 @@ public:
      * @param functionArmy A gombhoz rendelt függvény pointer egy Army objektummal
      * @param armyPtr Az Army objektum pointer
      */
-    Button(const char* name,size_t id,void (*functionArmy)(Army*),Army* armyPtr);
+    Button(const char* name,size_t id,void (*functionArmy)(Army*,std::ostream& ostream,std::istream& istream),Army* armyPtr,std::ostream& os,std::istream& is);
 
     /**
      * @brief Paraméterezett konstruktor két függvénnyel és két Army objektummal.
@@ -50,7 +50,7 @@ public:
      * @param armyPtr1 Az első Army objektum pointer
      * @param armyPtr2 A második Army objektum pointer
      */
-    Button(const char* name,size_t id,void (*functionArmy)(Army* first,Army* second),Army* armyPtr1,Army* armyPtr2);
+    Button(const char* name,size_t id,void (*functionArmy)(Army* first,Army* second,std::ostream& ostream,std::istream& istream),Army* armyPtr1,Army* armyPtr2,std::ostream& os,std::istream& is);
     
     /**
      * @brief Destruktor.
@@ -72,7 +72,7 @@ public:
      * @brief Setter függvény az id-ra.
      * @param id Az új id
      */
-    void setId(size_t id);
+    void setId(size_t idx);
 
     /**
      * @brief Getter függvény az id-ra. 

@@ -3,26 +3,24 @@
 
 #include "../Memtrace/memtrace.h"
 
-Button::Button():id(0),name(nullptr),buttonFunction(){}
+Button::Button():id(0),name(nullptr),buttonFunction(std::cout,std::cin){}
 
-Button::Button(const char* name,size_t id,void (*function)()):id(id),buttonFunction(function) {
+Button::Button(const char* name,size_t id,void (*function)(std::ostream& ostream,std::istream& istream),std::ostream& os,std::istream& is):id(id),buttonFunction(function,os,is) {
     this->name = new char[strlen(name)+1];
     strcpy(this->name,name);
 }
 
-Button::Button(const char *name, size_t id, void (*functionArmy)(Army *),Army* armyPtr):buttonFunction(functionArmy,armyPtr) {
+Button::Button(const char *name, size_t id, void (*functionArmy)(Army* army,std::ostream& ostream,std::istream& istream),Army* armyPtr,std::ostream& os,std::istream& is):buttonFunction(functionArmy,armyPtr,os,is) {
     this->id=id;
     this->name = new char[strlen(name)+1];
     strcpy(this->name,name);
 }
 
-Button::Button(const char *name, size_t id, void (*functionArmy)(Army* first, Army* second), Army *armyPtr1,Army* armyPtr2): buttonFunction(functionArmy,armyPtr1,armyPtr2) {
+Button::Button(const char *name, size_t id, void (*functionArmy)(Army* first, Army* second,std::ostream& ostream,std::istream& istream), Army *armyPtr1,Army* armyPtr2,std::ostream& os,std::istream& is): buttonFunction(functionArmy,armyPtr1,armyPtr2,os,is) {
     this->id=id;
     this->name = new char[strlen(name)+1];
     strcpy(this->name,name);
 }
-
-
 
 Button::~Button() {
     delete[] name;
@@ -46,8 +44,8 @@ Button &Button::operator=(const Button &other) {
     return *this;
 }
 
-void Button::setId(size_t id) {
-    this->id=id;
+void Button::setId(size_t idx) {
+    this->id=idx;
 }
 
 size_t Button::getId()const {
