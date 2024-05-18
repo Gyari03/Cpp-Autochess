@@ -15,7 +15,7 @@
 #include "Game/Piece.h"
 #include "File Management/Filemanagement.h"
 
-#define CPORTA
+//#define CPORTA
 
 int main() {
 #ifndef CPORTA
@@ -437,9 +437,9 @@ int main() {
 
             uiGame::Run(&game, os, is);
 
-            int siz = strlen("Team 1 Wins!");
+            //int siz = strlen("Team 1 Wins!");
             std::string osstring = os.str();
-            std::string endscreen = osstring.substr(osstring.size() - siz);
+            std::string endscreen = osstring.substr(osstring.size() - 12);
             EXPECT_STREQ("Team 1 Wins!", endscreen.c_str());
             //Feltételezve azt, hogy team 1 nyer, mivel a team 2-nek a nyerés majdnem(kicsi esélye azért van hogy hibázzon a teszt) lehetetlen.
         }ENDM;

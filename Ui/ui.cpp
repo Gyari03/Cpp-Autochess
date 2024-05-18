@@ -6,7 +6,7 @@
 #include <unistd.h>
 #endif
 
-#define CPORTA
+//#define CPORTA
 
 void ui::clearScreen(){
 #ifdef CPORTA

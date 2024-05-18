@@ -63,23 +63,7 @@ struct ButtonFunctionHandler{
      * @brief Az objektum megfelelő függvényének végrehajtása.
      */
     void execute();
-
-
-
-
-    //ButtonFunctionHandler(void (*testfunc)(std::ostream& os)):fun(testfunc), funArmy(nullptr), funArmyFor2(nullptr) , regArmy1(nullptr), regArmy2(nullptr){}
 };
-
-/*
-class ButtonFunctionHandlerForTests:public ButtonFunctionHandler{
-    void (*testfunc)(std::ostream& os);
-    std::ostream& outputstream;
-public:
-    ButtonFunctionHandlerForTests(void (*testfunc)(std::ostream& os),std::ostream& os):ButtonFunctionHandler(),testfunc(testfunc),outputstream(os){}
-
-    void execute(){testfunc(outputstream);}
-};
-*/
 
 #endif //NHF_REFORMED_BUTTONFUNCTIONHANDLER_H
 

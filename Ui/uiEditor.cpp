@@ -79,10 +79,12 @@ bool uiEditor::handleInput(){
     if (!strchr("KBQHPROD0", toupper(name))) {throw Error("Invalid first character input");} //hibakezelés
 
     if(name=='0'){editor->updateExit();return true;}//kilépés
-    x = input[1] - '0';
-    y = input[2] - '0';
-    if(strchr("09",input[1]) || strchr("09",input[2])){throw Error("Invalid X-Y coordinate input");} //hibakezelés
-    if(y>4){throw Error("Invalid Y coordinate(can't be >4)");}
+    if(input!="delete"){
+        x = input[1] - '0';
+        y = input[2] - '0';
+        if(strchr("09",input[1]) || strchr("09",input[2])){throw Error("Invalid X-Y coordinate input");} //hibakezelés
+        if(y>4){throw Error("Invalid Y coordinate(can't be >4)");}
+    }
     if(name=='d'|| name=='D'){
         if(input=="delete") {
             if(strcmp(editor->getArmy()->getnameofArmy(),"")==0){throw Error("Cannot delete non-existent army");} //hibakezelés
